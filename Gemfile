@@ -49,6 +49,8 @@ gem 'thin', group: :development
 # Use Figaro to protect variables
 gem "figaro"
 
+gem 'bootstrap-sass', '~> 3.1.1'
+
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 

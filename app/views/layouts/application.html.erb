@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Eclist</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <title>La Lista</title>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application"%>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="container">
+    <ul class="nav nav-tabs">
+      <li><%= link_to "La Lista", bienvenida_inicio_path %></li>
+    </ul>
 
-<%= yield %>
-
+    <%= yield %>
+  </div>
 </body>
 </html>
