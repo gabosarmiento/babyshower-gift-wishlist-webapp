@@ -50,6 +50,7 @@ gem 'thin', group: :development
 gem "figaro"
 
 gem 'bootstrap-sass', '~> 3.1.1'
+gem 'devise'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
