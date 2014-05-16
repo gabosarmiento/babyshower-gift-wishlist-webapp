@@ -51,6 +51,7 @@ gem "figaro"
 
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'devise'
+gem 'newrelic_rpm'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
