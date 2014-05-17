@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140516232607) do
+ActiveRecord::Schema.define(version: 20140517051621) do
 
   create_table "lista", force: true do |t|
     t.string   "nombre"
@@ -25,9 +25,8 @@ ActiveRecord::Schema.define(version: 20140516232607) do
   create_table "regalos", force: true do |t|
     t.string   "titulo"
     t.string   "imagen"
-    t.string   "estado"
+    t.string   "state"
     t.string   "url"
-    t.string   "generosidad"
     t.integer  "lista_id"
     t.datetime "created_at"
     t.datetime "updated_at"
