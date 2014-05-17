@@ -18,7 +18,7 @@
         <% end %>
     </div>
     <% end %>
-    <%= control_group_tag(@lista.errors[:nombre]) do %>
+    <%= form_group_tag(@lista.errors[:nombre]) do %>
       <div class="form-group">
         <%= f.label :nombre %>
         <%= f.text_field :nombre, class: 'form-control', placeholder: "Ingresa el nombre de tu lista: lista de bodas, lista de regalos..." %>
