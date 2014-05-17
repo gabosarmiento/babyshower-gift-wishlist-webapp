@@ -59,7 +59,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
 gem 'unf'
-gem 'state_machine'
+
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 

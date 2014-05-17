@@ -1,0 +1,19 @@
+ <div class="regalo-<%= regalo.id %>">
+  <span>
+    <%= image_tag(regalo.imagen.thumb.url) if regalo.imagen? %>
+  </span> 
+  <span>
+    <%= regalo.titulo.to_s.humanize.titleize%>
+  </span> 
+
+  <span>
+    <%= link_to "comprar", lista_regalo_comprar_path(regalo.lista, regalo) %>
+  </span>
+  <span>
+    <%= link_to "reservar", lista_regalo_reservar_path(regalo.lista, regalo) %>
+  </span>
+  <span>
+    <%= link_to "liberar", lista_regalo_liberar_path(regalo.lista, regalo) %>
+  </span>
+
+</div>

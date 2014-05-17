@@ -3,7 +3,6 @@ class CreateRegalos < ActiveRecord::Migration
     create_table :regalos do |t|
       t.string :titulo
       t.string :imagen
-      t.string :state
       t.string :url
       t.references :lista, index: true
 

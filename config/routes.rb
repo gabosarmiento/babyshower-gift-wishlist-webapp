@@ -1,6 +1,10 @@
 Eclist::Application.routes.draw do
   resources :listas do
-    resources :regalos 
+    resources :regalos do
+      get '/reservar' => 'compromisos#reservar', as: :reservar
+      get '/comprar' => 'compromisos#comprar', as: :comprar
+      get '/liberar' => 'compromisos#liberar', as: :liberar
+    end
   end
   devise_scope :user do
   get "ingresar", to: "devise/sessions#new"

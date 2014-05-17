@@ -1,31 +1,42 @@
 <h3><%= @lista.nombre %></h3>
-<%= link_to "back", :back %>
-<% if policy(@lista).update? %>
-<%= link_to "Añadir Regalo", new_lista_regalo_path(@lista), class: "btn btn-primary" %>
-<% end %>
+<%= link_to "Ver todos los regalos", lista_regalos_path(@lista), class: "btn btn-primary" %>
 <div class="col-md-12">
   <section class="col-md-4"> 
     <h3>Todos los Regalos</h3>
     <div class="todos-list">
       <ol>
-        <li class="todos-item"></li>
+        <% @disponibles.each do |regalo| %>
+        <li class="todos-item">
+          <%= render partial: "regalos/regalo", locals: {regalo: regalo} %>
+        </li>
+        <% end %>
       </ol>
     </div>
   </section>
   <section class="col-md-4"> 
     <h3>Regalos reservados</h3>
     <div class="reservados-list">
+      <% @reservados.each do |regalo| %>
       <ol>
-        <li class="reservados-item"></li>
+        <li class="reservados-item">
+          <%= render partial: "regalos/regalo", locals: {regalo: regalo} %>
+        </li>
+        <% end %>
       </ol>
     </div>
   </section>
-  <section class="col-md-4"> <h3>Regalos comprados</h3>
+  <section class="col-md-4"> 
+    <h3>Regalos comprados</h3>
     <div class="comprados-list">
       <ol>
-        <li class="comprados-item"></li>
+        <% @comprados.each do |regalo| %>
+        <li class="comprados-item">
+          <%= render partial: "regalos/regalo", locals: {regalo: regalo} %>
+        </li>
+        <% end %>
       </ol>
     </div>
   </section>
 </div>
 
+<%= link_to "Atrás", :back, class: "btn btn-default" %>

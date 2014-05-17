@@ -6,6 +6,9 @@ class ListasController < ApplicationController
 
   def show
     @lista = Lista.find(params[:id])
+    @disponibles = Regalo.where(lista_id: @lista.id).joins(:compromiso).merge(Compromiso.where(value: "disponible"))
+    @reservados = Regalo.where(lista_id: @lista.id).joins(:compromiso).merge(Compromiso.where(value: "reservado"))
+    @comprados =Regalo.where(lista_id: @lista.id).joins(:compromiso).merge(Compromiso.where(value: "comprado"))
     authorize @lista
   end
 
