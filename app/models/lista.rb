@@ -12,4 +12,5 @@
 class Lista < ActiveRecord::Base
   has_many :regalos
   belongs_to :user
+  validates :nombre, length: { minimum: 5 }, presence: true
 end

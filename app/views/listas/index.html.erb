@@ -1,0 +1,29 @@
+<h3>Listas</h3>
+<% if current_user.present? %>
+<div class="alert alert-info">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <strong>Nota:</strong>
+  Crea tus listas
+</div>
+<% end %>
+<% if policy(Lista.new).create? %>
+  <%= link_to "Crea una lista", new_lista_path, class: 'btn btn-success' %>
+<% end %>
+<hr>
+<% unless @listas.empty? %>
+<% @listas.each do |lista| %>
+ <div class="media">
+    <div class="media-body">
+      <h4 class="media-heading">
+        <%= link_to lista.nombre, lista_path(lista) %>
+        <% if policy(lista).edit? %>
+        <%= link_to "Editar", edit_lista_path(lista), class: "btn btn-xs btn-primary" %>
+        <% end %>
+        <% if policy(lista).destroy? %>
+         <%= link_to "delete", lista_path(lista), method: :delete, class: "btn btn-xs btn-danger", data: { :confirm => "Are you sure ?" } %>
+        <% end %>
+      </h4>
+    </div>
+  </div>
+<% end %>
+<% end %>

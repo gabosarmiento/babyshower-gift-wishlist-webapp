@@ -1,4 +1,5 @@
 Eclist::Application.routes.draw do
+  resources :listas
   devise_scope :user do
   get "ingresar", to: "devise/sessions#new"
   get "registrarse", to: "devise/registrations#new"

@@ -54,6 +54,8 @@ gem 'devise'
 gem 'newrelic_rpm'
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 gem 'annotate', ">=2.6.0"
+gem 'pundit'
+
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 

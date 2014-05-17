@@ -10,6 +10,11 @@
   <div class="container">
     <ul class="nav nav-tabs">
       <li><%= link_to "Inicio", root_path %></li>
+      <% if current_user %>
+        <li class="pull-left">
+          <%= link_to "Listas", listas_path %>
+        </li>
+        <% end %>
       <div class="pull-right user-info">
        <% if current_user %>
          Hola <%= current_user.email %>! <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %>

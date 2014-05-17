@@ -1,1 +1,6 @@
 es: 
+  activerecord:
+    models:
+      lista:
+        one: Lista
+        other: Listas

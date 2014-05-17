@@ -28,4 +28,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :listas
+  def role?(base_role)
+  role == base_role.to_s
+  end
+  
+  ROLES = %w[member moderator admin]
 end

@@ -1,0 +1,16 @@
+<%= form_for lista, :url => lista_path, html: {class: "lista-form"} do |f| %>
+    <% if lista.errors.any? %>
+    <div class="alert alert-danger">
+        <% lista.errors.full_messages.each do |msg| %>
+          <div><%= msg %></div>
+        <% end %>
+    </div>
+    <% end %>
+    <%= control_group_tag(lista.errors[:nombre]) do %>
+      <div class="form-group">
+        <%= f.label :nombre %>
+        <%= f.text_field :nombre, class: 'form-control', placeholder: "Ingresa el nombre de tu lista: lista de bodas, lista de regalos..." %>
+      </div>
+    <% end %>
+      <%= f.submit "Guardar", class: 'btn btn-success' %>
+    <% end %>
