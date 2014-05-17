@@ -1,3 +1,31 @@
-<h1><%= @lista.nombre %></h1>
+<h3><%= @lista.nombre %></h3>
 <%= link_to "back", :back %>
+<% if policy(@lista).update? %>
+<%= link_to "Añadir Regalo", new_lista_regalo_path(@lista), class: "btn btn-primary" %>
+<% end %>
+<div class="col-md-12">
+  <section class="col-md-4"> 
+    <h3>Todos los Regalos</h3>
+    <div class="todos-list">
+      <ol>
+        <li class="todos-item"></li>
+      </ol>
+    </div>
+  </section>
+  <section class="col-md-4"> 
+    <h3>Regalos reservados</h3>
+    <div class="reservados-list">
+      <ol>
+        <li class="reservados-item"></li>
+      </ol>
+    </div>
+  </section>
+  <section class="col-md-4"> <h3>Regalos comprados</h3>
+    <div class="comprados-list">
+      <ol>
+        <li class="comprados-item"></li>
+      </ol>
+    </div>
+  </section>
+</div>
 

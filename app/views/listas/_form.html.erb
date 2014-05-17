@@ -1,4 +1,4 @@
-<%= form_for lista, :url => lista_path, html: {class: "lista-form"} do |f| %>
+<%= form_for lista, url: lista_path, html: {class: "lista-form"} do |f| %>
     <% if lista.errors.any? %>
     <div class="alert alert-danger">
         <% lista.errors.full_messages.each do |msg| %>

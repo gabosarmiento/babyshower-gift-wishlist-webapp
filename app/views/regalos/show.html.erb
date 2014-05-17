@@ -1,0 +1,3 @@
+<h1><%= @regalo.titulo %></h1>
+<p><%= image_tag(@regalo.imagen.url) if @regalo.imagen? %></p>
+<p><%= link_to 'más info', @regalo.url if @regalo.url? %> </p>
