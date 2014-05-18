@@ -1,5 +1,9 @@
 <h3><%= @lista.nombre %></h3>
+<% if @lista.regalos.empty? %>
+<%= link_to "Añadir tu primer regalo", new_lista_regalo_path(@lista), class: "btn btn-primary" %>
+<% else %>
 <%= link_to "Ver todos los regalos", lista_regalos_path(@lista), class: "btn btn-primary" %>
+<% end %>
 <div class="col-md-12">
   <section class="col-md-4"> 
     <h3>Todos los Regalos</h3>

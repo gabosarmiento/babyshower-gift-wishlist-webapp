@@ -16,6 +16,14 @@ class CompromisosController < ApplicationController
     redirect_to :back
   end
 
+  def destroy
+    if @compromiso.destroy
+      redirect_to :back
+    else
+      redirect_to :back
+      flash[:error] = "Hubo un problema al borrarlo."
+    end
+  end
   private
 
   def setup

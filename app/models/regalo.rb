@@ -17,6 +17,5 @@ class Regalo < ActiveRecord::Base
   mount_uploader :imagen, ImagenUploader
   validates :titulo, length: { minimum: 5 }, presence: true
   validates :imagen, presence: true 
-  validates :url, :allow_blank => true, :format => URI::regexp(%w(http https)) 
-  
+  validates :url, :allow_blank => true, :format => URI::regexp(%w(http https))
 end

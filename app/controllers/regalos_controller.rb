@@ -7,12 +7,13 @@ class RegalosController < ApplicationController
 
   def new
     @lista = Lista.find(params[:lista_id])
-    @regalo = Regalo.new
+    @regalo = @lista.regalos.new
     authorize @regalo
   end
 
   def show
     @regalo = Regalo.find(params[:id])
+    authorize @regalo
   end
 
   def edit
@@ -25,7 +26,7 @@ class RegalosController < ApplicationController
     @lista = Lista.find(params[:lista_id])
     @regalo = @lista.regalos.create(regalo_params)
     if @regalo.save 
-      redirect_to lista_regalos_path(@lista), notice: "El Regalo ha sido guardado exitosamente"
+      redirect_to lista_regalo_path(@lista, @regalo), notice: "El Regalo ha sido guardado exitosamente"
     else
       flash[:error] = "Hubo un error al guardar el regalo. Inténtalo de nuevo"
       render :new

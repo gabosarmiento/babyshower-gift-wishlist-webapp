@@ -4,6 +4,7 @@ Eclist::Application.routes.draw do
       get '/reservar' => 'compromisos#reservar', as: :reservar
       get '/comprar' => 'compromisos#comprar', as: :comprar
       get '/liberar' => 'compromisos#liberar', as: :liberar
+      resources :compromisos, only: [:destroy]
     end
   end
   devise_scope :user do
