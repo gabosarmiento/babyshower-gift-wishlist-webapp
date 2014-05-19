@@ -1,0 +1,8 @@
+Has recibido una invitación de parte de <%= User.find(@convidado.anfitrion_id).name.to_s.humanize.titleize %>
+===============================================
+
+Queremos hacerte participe de la celebración del <%= @convidado.fiesta.nombre.humanize.titleize %>.
+
+Para ver los detalles de la fiesta, solo debes seguir este link: <%= link_to "regístrate", @url %>.
+
+Te esperamos y que tengas un buen día!

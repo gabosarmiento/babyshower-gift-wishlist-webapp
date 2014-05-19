@@ -1,0 +1,7 @@
+<h1>Editar fiesta </h1>
+<p>Convida a tus amigos</p>
+<%= form_for @convidado, :url => fiesta_convidados_path(@fiesta) do |f| %>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    <%= f.submit 'Enviar' %>
+<% end %>

@@ -1,4 +1,7 @@
 Eclist::Application.routes.draw do
+  resources :fiestas do
+    resources :convidados
+  end
   resources :listas do
     resources :regalos do
       get '/reservar' => 'compromisos#reservar', as: :reservar
@@ -7,11 +10,11 @@ Eclist::Application.routes.draw do
       resources :compromisos, only: [:destroy]
     end
   end
+  devise_for :users, controllers: { registrations: 'registrations' }
   devise_scope :user do
   get "ingresar", to: "devise/sessions#new"
   get "registrarse", to: "devise/registrations#new"
   end
-  devise_for :users
   resources :users, only: [:update]
   get "inicio" => "bienvenida#inicio"
   root to: 'bienvenida#inicio'

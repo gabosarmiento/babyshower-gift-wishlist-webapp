@@ -5,7 +5,7 @@
 #  id                     :integer          not null, primary key
 #  name                   :string(255)
 #  email                  :string(255)      default(""), not null
-#  encrypted_password     :string(255)      default(""), not null
+#  encrypted_password     :string(255)      default("")
 #  reset_password_token   :string(255)
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
@@ -21,6 +21,14 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #  role                   :string(255)
+#  invitation_token       :string(255)
+#  invitation_created_at  :datetime
+#  invitation_sent_at     :datetime
+#  invitation_accepted_at :datetime
+#  invitation_limit       :integer
+#  invited_by_id          :integer
+#  invited_by_type        :string(255)
+#  invitations_count      :integer          default(0)
 #
 
 class User < ActiveRecord::Base
@@ -30,6 +38,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :listas
   has_many :compromisos, dependent: :destroy
+  has_many :fiestas
+  has_many :rsvps
+  has_many :fiestas, through: :rsvps
+  has_many :invitaciones, :class_name => "Convidado", :foreign_key => 'invitado_id'
+  has_many :invitaciones_enviadas, :class_name => "Convidado", :foreign_key => 'anfitrion_id'
   def role?(base_role)
   role == base_role.to_s
   end
