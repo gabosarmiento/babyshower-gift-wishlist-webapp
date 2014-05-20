@@ -2,7 +2,8 @@ class ConvidadosController < ApplicationController
   def index
     @fiesta = Fiesta.find(params[:fiesta_id])
     @convidados = @fiesta.convidados
-    @convidado = @fiesta.convidados.new
+    @convidado = Convidado.new
+    @convidado.fiesta_id = @fiesta.id
     authorize @convidados
   end
 

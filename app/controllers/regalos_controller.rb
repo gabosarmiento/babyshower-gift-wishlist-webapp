@@ -1,7 +1,7 @@
 class RegalosController < ApplicationController
   def index
     @fiesta = Fiesta.find(params[:fiesta_id])
-    @lista = Lista.find(params[:lista_id])
+    @lista = @fiesta.listas.find(params[:lista_id])
     @regalos = @lista.regalos
     authorize @regalos
   end

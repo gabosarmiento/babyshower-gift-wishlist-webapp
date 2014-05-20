@@ -10,7 +10,9 @@
           <tr>
             <th>Nombre</th>
             <th>Correo</th>
+            <% if policy(@convidado).destroy? %>
             <th>Eliminar</th>
+            <% end %>
           </tr>
         </thead>
         <tbody>
@@ -22,18 +24,21 @@
             <td>No registrado aún</td>
             <% end %>
             <td><%= convidado.email %></td>
+            <% if policy(@convidado).destroy? %>
             <td><%= link_to "Eliminar", [@fiesta, convidado], method: :delete %></td>
+            <% end %>
           </tr>
           <% end %>
         </tbody>
       </table>
+      <% if policy(@convidado).create? %>
       <h3 class="extra-margin-top">Invitar usuarios</h3>
       <%= form_for [@fiesta, @convidado] do |f| %>
       <%= f.label :email, placeholder: "email" %>
       <%= f.email_field :email %>
       <%= f.submit 'Invitar amigos' , class: "btn-primary"%>
       <% end %>
-
+      <% end %>
     </div>
   </div>
 </div>

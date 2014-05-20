@@ -4,10 +4,13 @@ class ListaPolicy < ApplicationPolicy
   end
 
   def show?
-     user.present? && (record.fiesta.users.first == user || user.role?(:admin))
+     user.present? && (record.fiesta.users.first == user || user.role?(:admin) || record.fiesta.esta_invitado?(user))
   end
 
+  def create?
+    update?
+  end
   def update?
-    show?
+    user.present? && (record.fiesta.users.first == user || user.role?(:admin))
   end
 end
