@@ -59,7 +59,9 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
 gem 'unf'
-gem 'bootstrap-datetimepicker-rails'
+gem 'momentjs-rails', '~> 2.5.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'
+gem "font-awesome-rails"
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

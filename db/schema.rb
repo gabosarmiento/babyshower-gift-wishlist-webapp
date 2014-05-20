@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140520083909) do
+ActiveRecord::Schema.define(version: 20140520162621) do
 
   create_table "compromisos", force: true do |t|
     t.integer  "user_id"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20140520083909) do
     t.integer  "lista_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "donde_lo_consigues"
   end
 
   add_index "regalos", ["lista_id"], name: "index_regalos_on_lista_id"
@@ -103,6 +104,8 @@ ActiveRecord::Schema.define(version: 20140520083909) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

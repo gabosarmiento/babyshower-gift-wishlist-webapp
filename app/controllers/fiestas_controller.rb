@@ -21,7 +21,7 @@ class FiestasController < ApplicationController
     @fiesta = current_user.fiestas.create(fiesta_params)
     authorize @fiesta
     if @fiesta.save
-      redirect_to @fiesta, notice: "Listos para la Fiesta! Creada exitosamente"
+      redirect_to @fiesta, notice: "Fiesta creada exitosamente. Ahora añade una lista de regalos"
     else
       flash[:error] = "Tu fiesta no pudo ser creada"
       render :new

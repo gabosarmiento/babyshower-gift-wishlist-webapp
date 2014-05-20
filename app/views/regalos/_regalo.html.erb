@@ -13,14 +13,14 @@
     <% case regalo.compromiso.value %>
     <% when "disponible" %>
     <span>
-      <%= link_to "comprar", fiesta_lista_regalo_comprar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-default btn-md" %>
+      <%= link_to "reservar", fiesta_lista_regalo_reservar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-default btn-md" %>
     </span>
     <span>
-      <%= link_to "reservar", fiesta_lista_regalo_reservar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-default btn-md" %>
+      <%= link_to "comprar", fiesta_lista_regalo_comprar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-default btn-md" %>
     </span>
     <% if policy(regalo).destroy? %>
     <span>
-      <%= link_to "eliminar de la lista", fiesta_lista_regalo_compromiso_path(regalo.lista.fiesta, regalo.lista, regalo, regalo.compromiso), method: :delete, class: "btn btn-default btn-md" %>
+      <%= link_to "eliminar de la lista", fiesta_lista_regalo_compromiso_path(regalo.lista.fiesta, regalo.lista, regalo, regalo.compromiso), method: :delete, class: "btn btn-danger btn-sm" %>
     </span>
     <% end %>
     <% when "reservado" %>
@@ -31,9 +31,11 @@
       <%= link_to "comprar", fiesta_lista_regalo_comprar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-default btn-md" %>
     </span>
     <% when "comprado" %>
+    <% if policy(regalo).edit? %>
       <span>
       <%= link_to "liberar", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-default btn-md" %>
       </span>
+      <% end %>
     <% end %>
     </div><!-- /controles-->
   </div><!-- /regalo-->
@@ -51,7 +53,7 @@
     </div></a>
     <div class="controles">
       <span>
-      <%= link_to "publicar en la lista", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-default btn-md" %>
+      <%= link_to "publicar en la lista", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-success btn-md" %>
       </span>
     </div>
   </div>

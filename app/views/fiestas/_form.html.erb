@@ -45,7 +45,13 @@
           <%= form_group_tag(fiesta.errors[:fecha_y_hora_inicio]) do %>
           <div class="form-group">
               <%= f.label :fecha_y_hora_inicio %>
-              <%= f.text_field :fecha_y_hora_inicio, class: "form-control", placeholder: "DD/MM/AA HH:MM AM/PM" %>
+              <div id="datetimepicker1" class="input-group date">
+              <%= f.text_field :fecha_y_hora_inicio, class: "form-control", placeholder: "dd/mm/yyyy hh:mm AM/PM", data: {format: "DD/MM/YYYY HH:MM AM/PM"} %>
+              <span class="input-group-addon">
+                <i class="fa fa-calendar">
+                </i>
+              </span>
+              </div>
           </div>
           <% end %>
         </div>
@@ -53,7 +59,13 @@
           <%= form_group_tag(fiesta.errors[:fecha_y_hora_cierre]) do %>
           <div class="form-group">
               <%= f.label :fecha_y_hora_cierre %>
-              <%= f.text_field :fecha_y_hora_cierre, class: "form-control", placeholder: "DD/MM/AA HH:MM AM/PM" %>
+              <div id="datetimepicker2" class="input-group date">
+              <%= f.text_field :fecha_y_hora_cierre, class: "form-control", placeholder: "dd/mm/yyyy hh:mm AM/PM" , data: {format: "dd/MM/yyyy hh:mm:ss"}%>
+              <span class="input-group-addon">
+                <i class="fa fa-calendar">
+                </i>
+              </span>
+              </div>
           </div>
           <% end %>
         </div>
@@ -73,3 +85,27 @@
 </div> <!-- /col finaliza -->
 <% end %> <!-- /forma finaliza -->
 
+
+<script>
+var ready;
+ready = function() {
+  $('#datetimepicker1').datetimepicker({
+        icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                }
+    });
+    $('#datetimepicker2').datetimepicker({
+        icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                }
+    });
+};
+$(document).ready(ready);
+$(document).on('page:load', ready);
+</script>

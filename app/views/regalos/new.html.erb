@@ -1,5 +1,5 @@
 <h3>Nuevo Regalo</h3>
-<p>Un regalo a la vez</p>
+<p>Un regalo a la vez para... <%= @fiesta.nombre %></p>
 <%= form_for @regalo, url: fiesta_lista_regalos_path(@fiesta, @lista), html: {class: "lista-form"} do |f| %>
     <% if @regalo.errors.any? %>
     <div class="alert alert-danger">
@@ -21,13 +21,19 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :remote_imagen_url, "o copia la dirección de la imagen aquí" %><br />
+        <%= f.label :remote_imagen_url, "o haz copy/paste  de la dirección(URL) de la foto" %><br />
         <%= f.text_field :remote_imagen_url, class: "form-control", placeholder: "http://example.com/image.jpg" %>
+      </div>
+      <% end %>
+       <%= form_group_tag(@regalo.errors[:donde_lo_consigues]) do %>
+      <div class="form-group">
+        <%= f.label :donde_lo_consigues, "Dónde lo consigues?" %>
+        <%= f.text_area :donde_lo_consigues, class: 'form-control', placeholder: "Si quieres dar  indicaciones para explicar mejor tu producto, adelante!", cols: 40, row: "20" %>
       </div>
       <% end %>
       <%= form_group_tag(@regalo.errors[:url]) do %>
       <div class="form-group">
-        <%= f.label :url, "Quieres publicar una página con información adicional?"%>
+        <%= f.label :url, "o si prefieres compartir una página con información adicional?"%>
         <%= f.text_field :url, class: 'form-control', placeholder: "http:// o https:// " %>
       </div>
       <% end %>

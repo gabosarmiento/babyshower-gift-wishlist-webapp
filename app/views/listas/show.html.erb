@@ -3,8 +3,13 @@
 <% if @lista.regalos.empty? %>
 <%= link_to "Añadir tu primer regalo", new_fiesta_lista_regalo_path(@fiesta,@lista), class: "btn btn-primary" %>
 <% else %>
-<%= link_to "Añadir regalo", new_fiesta_lista_regalo_path(@fiesta, @lista), class: "btn btn-primary" %>
+<%= link_to "Añade un regalo", new_fiesta_lista_regalo_path(@fiesta, @lista), class: "btn btn-primary" %>
 <% end %>
+<div class="alert alert-info">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <strong>Nota:</strong>
+  Esta es la vista que veran todos tus invitados. Para ver todos los regalos entra <%= link_to "aquí", fiesta_lista_regalos_path(@fiesta, @lista)  %>.
+</div>
 <% end %>
 <div class="col-md-12">
   <section class="col-md-4"> 

@@ -1,32 +1,39 @@
 <div class="fiesta">
   <div class="row">
     <div class="col-sm-12">
-      <h3><%= @fiesta.nombre.humanize.titleize %><% if policy(@fiesta).update? %><small><span>
-      <%= link_to "editar", edit_fiesta_path(@fiesta), class: "btn btn-primary btn-xs" %></span>
-      <span><%= link_to "borrar", @fiesta, method: :delete, data: {confirm: "Estas seguro de borrar esta fiesta?"}, class: "btn btn-danger btn-xs" %></span>
-      <% end %></small></h3>
-      
+      <div class="jumbotron">
+        <h3><%= @fiesta.nombre.humanize.titleize %><% if policy(@fiesta).update? %>
+          <small>
+            <span>
+              <%= link_to "editar", edit_fiesta_path(@fiesta), class: "btn btn-primary btn-xs" %></span>
+            <span>
+            <%= link_to "borrar", @fiesta, method: :delete, data: {confirm: "Estas seguro de borrar esta fiesta?"}, class: "btn btn-danger btn-xs" %>
+            </span>
+          </small>
+          <% end %>
+        </h3>
 
-      <p><%= @fiesta.descripcion %></p>
+        <p><%= @fiesta.descripcion %></p>
+       
+        <p>Dónde: <strong><%= @fiesta.lugar %></strong></p>
       
-      <p>Dónde: <strong><%= @fiesta.lugar %></strong></p>
-      
-      <p>Cuando: <strong><%= @fiesta.fecha_y_hora_inicio %></strong> a <strong><%= @fiesta.fecha_y_hora_cierre %></strong></p>
+        <p>Cuando: <strong><%= @fiesta.fecha_y_hora_inicio %></strong> a <strong><%= @fiesta.fecha_y_hora_cierre %></strong></p>
+      </div> 
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-2">
-      <div>
+    <div class="col-sm-3">
+      <div class="listas">
         <% if @fiesta.listas.empty? %>
-        <%= link_to "Crear lista", new_fiesta_lista_path(@fiesta), class: "btn btn-primary btn-xs" %>
+        <span><%= link_to "Crear lista", new_fiesta_lista_path(@fiesta), class: "btn btn-primary btn-lg pull-left" %></span>
         <% else %>
-        <%= link_to "ver lista de regalos", fiesta_lista_path(@fiesta, @lista), class: "btn btn-xs btn-primary" %>
+        <span><%= link_to "ver lista de regalos", fiesta_lista_path(@fiesta, @lista), class: "btn btn-lg btn-primary pull-left" %></span>
         <% end %>
       </div>
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-3">
       <div class="invitados">
-        <p><%= link_to "ver lista de invitados", fiesta_convidados_path(@fiesta) , class: "btn btn-xs btn-primary"%></p>
+        <span><%= link_to "ver lista de invitados", fiesta_convidados_path(@fiesta) , class: "btn btn-lg btn-primary pull-right"%></span>
       </div>
     </div>
   </div>
