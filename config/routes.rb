@@ -18,6 +18,9 @@ Eclist::Application.routes.draw do
   end
   resources :users, only: [:update]
   get "inicio" => "bienvenida#inicio"
+  # Change root path if user is authenticated
+  authenticated :user do
+    root to: "fiestas#index", :as => "authenticated_root"
+  end
   root to: 'bienvenida#inicio'
-
 end
