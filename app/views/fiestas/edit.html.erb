@@ -1,7 +1,15 @@
 <h1>Editar fiesta </h1>
-<p>Convida a tus amigos</p>
-<%= form_for @convidado, :url => fiesta_convidados_path(@fiesta) do |f| %>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-    <%= f.submit 'Enviar' %>
-<% end %>
+<div class="row">
+  <div class="col-md-6">
+    <span class="help-block">Personaliza tu mensaje</span>
+    <%= render partial: "form", locals: {fiesta: @fiesta} %>
+  </div>
+  <div class="col-md-6">
+  <span class="help-block">Convida a tus amigos</span>
+  <%= form_for @convidado, :url => fiesta_convidados_path(@fiesta) do |f| %>
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+      <%= f.submit 'Enviar' %>
+  <% end %>
+  </div>
+</div>

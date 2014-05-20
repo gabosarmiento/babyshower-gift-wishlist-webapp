@@ -59,6 +59,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
 gem 'unf'
+gem 'bootstrap-datetimepicker-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

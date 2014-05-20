@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140519013705) do
+ActiveRecord::Schema.define(version: 20140520071310) do
 
   create_table "compromisos", force: true do |t|
     t.integer  "user_id"
@@ -36,25 +36,24 @@ ActiveRecord::Schema.define(version: 20140519013705) do
 
   add_index "convidados", ["fiesta_id"], name: "index_convidados_on_fiesta_id"
 
-  create_table "fiesta", force: true do |t|
+  create_table "fiestas", force: true do |t|
     t.string   "nombre"
-    t.boolean  "public",      default: false
     t.text     "descripcion"
-    t.integer  "user_id"
+    t.string   "fecha_y_hora_inicio"
+    t.string   "fecha_y_hora_cierre"
+    t.string   "lugar"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "fiesta", ["user_id"], name: "index_fiesta_on_user_id"
-
-  create_table "lista", force: true do |t|
+  create_table "listas", force: true do |t|
     t.string   "nombre"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
   end
 
-  add_index "lista", ["user_id"], name: "index_lista_on_user_id"
+  add_index "listas", ["user_id"], name: "index_listas_on_user_id"
 
   create_table "regalos", force: true do |t|
     t.string   "titulo"

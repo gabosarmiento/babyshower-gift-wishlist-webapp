@@ -1,12 +1,12 @@
 # == Schema Information
 #
-# Table name: lista
+# Table name: listas
 #
 #  id         :integer          not null, primary key
 #  nombre     :string(255)
+#  user_id    :integer
 #  created_at :datetime
 #  updated_at :datetime
-#  user_id    :integer
 #
 
 class Lista < ActiveRecord::Base

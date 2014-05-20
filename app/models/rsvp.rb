@@ -11,5 +11,5 @@
 
 class Rsvp < ActiveRecord::Base
   belongs_to :anfitrion, :class_name => "User", :foreign_key => "user_id"
-  belongs_to :fiesta
+  belongs_to :fiesta, :class_name => "Fiesta"
 end

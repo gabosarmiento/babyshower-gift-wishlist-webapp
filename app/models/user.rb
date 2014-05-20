@@ -38,7 +38,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :listas
   has_many :compromisos, dependent: :destroy
-  has_many :fiestas
   has_many :rsvps
   has_many :fiestas, through: :rsvps
   has_many :invitaciones, :class_name => "Convidado", :foreign_key => 'invitado_id'

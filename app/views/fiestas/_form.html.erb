@@ -1,0 +1,75 @@
+<%= form_for @fiesta do |f| %>
+<div class="col-md-12">
+  <!-- notificaciones de errores -->
+  <% if fiesta.errors.any? %>
+    <div class="alert alert-danger">
+      <% fiesta.errors.full_messages.each do |msg| %>
+        <div><%= msg %></div>
+      <% end %>
+    </div>
+  <% end %>
+  <!-- notificaciones de errores fin -->
+    <div class="row">
+      <div class="col-sm-12">
+        <%= form_group_tag(fiesta.errors[:nombre]) do %>
+        <div class="form-group">
+            <%= f.label :nombre %>
+            <%= f.text_field :nombre, class: "form-control", :autofocus => true, placeholder: "ingresa el nombre de la fiesta, baby shower, shower de apartamento, matrimonio, lo que quieras..." %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <%= form_group_tag(fiesta.errors[:descripcion]) do %>
+        <div class="form-group">
+            <%= f.label :descripcion, "Descripción" %>
+            <%= f.text_area :descripcion, class: "form-control", placeholder: "Unas cuantas palabras para entusiasmar a tus invitados" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <%= form_group_tag(fiesta.errors[:lugar]) do %>
+        <div class="form-group">
+            <%= f.label :lugar %>
+            <%= f.text_field :lugar, class: "form-control", placeholder: "ingresa la dirección o el lugar" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="fechas">
+        <div class="col-sm-6">
+          <%= form_group_tag(fiesta.errors[:fecha_y_hora_inicio]) do %>
+          <div class="form-group">
+              <%= f.label :fecha_y_hora_inicio %>
+              <%= f.text_field :fecha_y_hora_inicio, class: "form-control", placeholder: "DD/MM/AA HH:MM AM/PM" %>
+          </div>
+          <% end %>
+        </div>
+        <div class="col-sm-6">
+          <%= form_group_tag(fiesta.errors[:fecha_y_hora_cierre]) do %>
+          <div class="form-group">
+              <%= f.label :fecha_y_hora_cierre %>
+              <%= f.text_field :fecha_y_hora_cierre, class: "form-control", placeholder: "DD/MM/AA HH:MM AM/PM" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <br>
+         <%= f.submit class: "btn btn-md btn-primary" do %>
+          <i class="fa fa-dot-circle-o"></i> Crear
+          <% end %>
+        </div>
+      </div>
+    </div> 
+</div> <!-- /col finaliza -->
+<% end %> <!-- /forma finaliza -->
+

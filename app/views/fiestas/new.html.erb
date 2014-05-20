@@ -1,2 +1,5 @@
-<h1>Fiestas#new</h1>
-<p>Find me in app/views/fiestas/new.html.erb</p>
+<h3>Nueva fiesta</h3>
+<span class="help-block">
+Estos campos definen lo que tus invitados verán al momento de invitarlos.
+</span>
+<%= render partial: "form", locals: {fiesta: @fiesta} %>

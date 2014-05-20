@@ -1,2 +1,31 @@
-<h1>Fiestas#show</h1>
-<p>Find me in app/views/fiestas/show.html.erb</p>
+<div class="fiesta">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3><%= @fiesta.nombre.humanize.titleize %><% if policy(@fiesta).update? %><small><span>
+      <%= link_to "editar", edit_fiesta_path(@fiesta), class: "btn btn-primary btn-xs" %></span>
+      <span><%= link_to "borrar", @fiesta, method: :delete, data: {confirm: "Estas seguro de borrar esta fiesta?"}, class: "btn btn-danger btn-xs" %></span>
+      <% end %></small></h3>
+      <small>Organizado por: <strong><%= @fiesta.users.first.name.humanize.titleize if @fiesta.users.first.name? || @fiesta.users.first.email %></strong></small>
+
+      <p><%= @fiesta.descripcion %></p>
+      
+      <p>Dónde: <strong><%= @fiesta.lugar %></strong></p>
+      
+      <p>Cuando: <strong><%= @fiesta.fecha_y_hora_inicio %></strong> a <strong><%= @fiesta.fecha_y_hora_cierre %></strong></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Lista de Regalos</h3>
+      <div text-center>
+        <%= link_to "Crear lista", "#", class: "btn btn-info btn-xs" %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <h3>Invitados</h3>
+      <div class="invitados">
+        <p>lista</p>
+      </div>
+    </div>
+  </div>
+</div>

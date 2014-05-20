@@ -1,2 +1,36 @@
-<h1>Fiestas#index</h1>
-<p>Find me in app/views/fiestas/index.html.erb</p>
+<h1>Fiestas</h1>
+<div class="row">
+
+  <div class="col-sm-6">
+    <h3>Mis invitaciones</h3>
+    <span class="help-block">
+      Fiestas en las que esperan tu presencia.
+    </span>
+    <% unless @invitaciones_ids.empty? %>
+      <% @invitaciones_ids.each do |id| %>
+      <div id="invitacion-<%= id %>"><%= link_to Fiesta.find(id).nombre, fiesta_path(Fiesta.find(id)) %>
+        <span class="pull-right"><small>Invitado por: <%= Fiesta.find(id).users.first.name.humanize.titleize %></small></span>
+      </div>
+      <% end %>
+    <% else %>
+      Algún día te sorprenderá. No pierdas la fe. Ya llegará!
+    <% end %>
+
+  </div>
+  <!-- Fiestas que tu organizas-->
+   <div class="col-sm-6">
+    <h3>Mis fiestas <% if policy(@fiesta).create? %>
+    <small><%= link_to "nueva fiesta", new_fiesta_path(@fiesta)  %></small>
+    <% end %></h3>
+    <span class="help-block">
+      Las reuniones que tu organizas.
+    </span>
+    <% unless @fiestas.empty? %>
+      <% @fiestas.each do |fiesta| %>
+      <div id="fiesta-<%= fiesta.id %>"><%= link_to fiesta.nombre, fiesta %></div>
+      <% end %>
+    <% else %>
+      Anímate a crear tu primera fiesta. Es gratis! 
+    <% end %>
+  </div>
+</div>

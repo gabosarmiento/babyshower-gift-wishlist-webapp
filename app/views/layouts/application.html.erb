@@ -12,6 +12,9 @@
       <li><%= link_to "Inicio", root_path %></li>
       <% if current_user %>
         <li class="pull-left">
+          <%= link_to "Fiestas", fiestas_path %>
+        </li>
+        <li class="pull-left">
           <%= link_to "Listas", listas_path %>
         </li>
         <% end %>
