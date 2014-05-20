@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140520071310) do
+ActiveRecord::Schema.define(version: 20140520083909) do
 
   create_table "compromisos", force: true do |t|
     t.integer  "user_id"
@@ -48,12 +48,12 @@ ActiveRecord::Schema.define(version: 20140520071310) do
 
   create_table "listas", force: true do |t|
     t.string   "nombre"
-    t.integer  "user_id"
+    t.integer  "fiesta_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "listas", ["user_id"], name: "index_listas_on_user_id"
+  add_index "listas", ["fiesta_id"], name: "index_listas_on_fiesta_id"
 
   create_table "regalos", force: true do |t|
     t.string   "titulo"

@@ -3,11 +3,11 @@
 <div class="alert alert-info">
   <button type="button" class="close" data-dismiss="alert">×</button>
   <strong>Nota:</strong>
-  Crea tus listas
+  Crea tus listas para el <%= @fiesta.nombre %>
 </div>
 <% end %>
-<% if policy(Lista.new).create? %>
-  <%= link_to "Crea una lista", new_lista_path, class: 'btn btn-success' %>
+<% if policy(Fiesta.new).create? %>
+  <%= link_to "Crea una lista", new_fiesta_lista_path(@fiesta), class: 'btn btn-success' %>
 <% end %>
 <hr>
 <% unless @listas.empty? %>

@@ -15,8 +15,8 @@ class RegistrationsController < Devise::RegistrationsController
     if resource_saved
       if @token != nil
         convidado = Convidado.find_by_token(@token)
-        org =  convidado.fiesta #encuentra la fiesta atada a la invitación
-        resource.fiestas.push(org) #añade este usuario a la fiesta como rsvp
+        # org =  convidado.fiesta #encuentra la fiesta atada a la invitación
+        # resource.fiestas.push(org) #añade este usuario a la fiesta como rsvp
         resource.invitaciones.push(convidado)
       end
       if resource.active_for_authentication?

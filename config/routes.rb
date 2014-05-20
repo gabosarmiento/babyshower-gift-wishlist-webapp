@@ -1,15 +1,16 @@
 Eclist::Application.routes.draw do
   resources :fiestas do
     resources :convidados
-  end
-  resources :listas do
-    resources :regalos do
-      get '/reservar' => 'compromisos#reservar', as: :reservar
-      get '/comprar' => 'compromisos#comprar', as: :comprar
-      get '/liberar' => 'compromisos#liberar', as: :liberar
-      resources :compromisos, only: [:destroy]
+    resources :listas do
+      resources :regalos do
+        get '/reservar' => 'compromisos#reservar', as: :reservar
+        get '/comprar' => 'compromisos#comprar', as: :comprar
+        get '/liberar' => 'compromisos#liberar', as: :liberar
+        resources :compromisos, only: [:destroy]
+      end
     end
   end
+  
   devise_for :users, controllers: { registrations: 'registrations' }
   devise_scope :user do
   get "ingresar", to: "devise/sessions#new"

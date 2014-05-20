@@ -5,7 +5,7 @@
       <%= link_to "editar", edit_fiesta_path(@fiesta), class: "btn btn-primary btn-xs" %></span>
       <span><%= link_to "borrar", @fiesta, method: :delete, data: {confirm: "Estas seguro de borrar esta fiesta?"}, class: "btn btn-danger btn-xs" %></span>
       <% end %></small></h3>
-      <small>Organizado por: <strong><%= @fiesta.users.first.name.humanize.titleize if @fiesta.users.first.name? || @fiesta.users.first.email %></strong></small>
+      
 
       <p><%= @fiesta.descripcion %></p>
       
@@ -15,16 +15,18 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-6">
-      <h3>Lista de Regalos</h3>
-      <div text-center>
-        <%= link_to "Crear lista", "#", class: "btn btn-info btn-xs" %>
+    <div class="col-sm-2">
+      <div>
+        <% if @fiesta.listas.empty? %>
+        <%= link_to "Crear lista", new_fiesta_lista_path(@fiesta), class: "btn btn-primary btn-xs" %>
+        <% else %>
+        <%= link_to "ver lista de regalos", fiesta_lista_path(@fiesta, @lista), class: "btn btn-xs btn-primary" %>
+        <% end %>
       </div>
     </div>
-    <div class="col-sm-6">
-      <h3>Invitados</h3>
+    <div class="col-sm-2">
       <div class="invitados">
-        <p>lista</p>
+        <p><%= link_to "ver lista de invitados", fiesta_convidados_path(@fiesta) , class: "btn btn-xs btn-primary"%></p>
       </div>
     </div>
   </div>

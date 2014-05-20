@@ -8,8 +8,8 @@
     </span>
     <% unless @invitaciones_ids.empty? %>
       <% @invitaciones_ids.each do |id| %>
-      <div id="invitacion-<%= id %>"><%= link_to Fiesta.find(id).nombre, fiesta_path(Fiesta.find(id)) %>
-        <span class="pull-right"><small>Invitado por: <%= Fiesta.find(id).users.first.name.humanize.titleize %></small></span>
+      <div id="invitacion-<%= id %>"><span><%= link_to Fiesta.find(id).nombre, fiesta_path(Fiesta.find(id)) %></span>
+        <span><small>Invitado por: <%= Fiesta.find(id).users.first.email %></small></span>
       </div>
       <% end %>
     <% else %>

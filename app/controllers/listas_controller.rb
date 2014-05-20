@@ -1,10 +1,12 @@
 class ListasController < ApplicationController
   def index
+    @fiesta = Fiesta.find(params[:fiesta_id])
     @listas = current_user.listas
     authorize @listas
   end
 
   def show
+    @fiesta = Fiesta.find(params[:fiesta_id])
     @lista = Lista.find(params[:id])
     @disponibles = Regalo.where(lista_id: @lista.id).joins(:compromiso).merge(Compromiso.where(value: "disponible"))
     @reservados = Regalo.where(lista_id: @lista.id).joins(:compromiso).merge(Compromiso.where(value: "reservado"))
@@ -13,7 +15,8 @@ class ListasController < ApplicationController
   end
 
   def new
-    @lista = current_user.listas.new
+    @fiesta = Fiesta.find(params[:fiesta_id])
+    @lista = @fiesta.listas.new
     authorize @lista
   end
 
@@ -34,10 +37,11 @@ class ListasController < ApplicationController
   end
 
   def create
-    @lista = current_user.listas.create(lista_params)
+    @fiesta = Fiesta.find(params[:fiesta_id])
+    @lista = @fiesta.listas.create(lista_params)
     authorize @lista
     if @lista.save
-      redirect_to lista_path(@lista), notice: "Lista guardada exitosamente"
+      redirect_to [@fiesta,@lista], notice: "Lista guardada exitosamente"
     else
       flash[:error] = "Error al crear la lista. Intenta de nuevo"
       render :new

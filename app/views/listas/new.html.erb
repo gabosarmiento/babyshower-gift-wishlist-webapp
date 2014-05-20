@@ -10,7 +10,7 @@
     </ul>
   </div>
   <div class="col-md-8">
-    <%= form_for @lista, :url => listas_path, html: {class: "lista-form"} do |f| %>
+    <%= form_for [@fiesta,@lista], html: {class: "lista-form"} do |f| %>
     <% if @lista.errors.any? %>
     <div class="alert alert-danger">
         <% @lista.errors.full_messages.each do |msg| %>

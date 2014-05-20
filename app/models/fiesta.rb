@@ -15,6 +15,7 @@
 class Fiesta < ActiveRecord::Base
   has_many :rsvps
   has_many :users, through: :rsvps, source: :anfitrion
+  has_many :listas
   has_many :convidados
   validates :nombre, length: { minimum: 5 }, presence: true
   validates :descripcion, length: { minimum: 20 }, presence: true

@@ -1,6 +1,7 @@
-<h3>Regalos de la lista <strong><%= link_to @lista.nombre.to_s.humanize.titleize, lista_path(@lista) %></strong></h3>
+<h3>Regalos de la lista <strong><%= link_to @lista.nombre.to_s.humanize.titleize, [@fiesta, @lista]
+ %></strong></h3>
 <% if policy(@lista).create? %>
-<%= link_to "Añadir Regalo", new_lista_regalo_path(@lista), class: "btn btn-primary" %>
+<%= link_to "Añadir Regalo", new_fiesta_lista_regalo_path(@fiesta, @lista), class: "btn btn-primary" %>
 <% end %>
 <hr>
-<%= render @regalos %>
+<%# render @regalos %>

@@ -30,6 +30,7 @@ class FiestasController < ApplicationController
 
   def show
     @fiesta = Fiesta.find(params[:id])
+    @lista = @fiesta.listas.first if @fiesta.listas.first
     authorize @fiesta
   end
 

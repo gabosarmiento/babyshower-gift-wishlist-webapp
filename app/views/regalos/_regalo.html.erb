@@ -12,33 +12,33 @@
     <% case regalo.compromiso.value %>
     <% when "disponible" %>
     <span>
-      <%= link_to "comprar", lista_regalo_comprar_path(regalo.lista, regalo), class: "btn btn-default btn-md" %>
+      <%= link_to "comprar", fiesta_lista_regalo_comprar_path(fiesta, lista, regalo), class: "btn btn-default btn-md" %>
     </span>
     <span>
-      <%= link_to "reservar", lista_regalo_reservar_path(regalo.lista, regalo), class: "btn btn-default btn-md" %>
+      <%= link_to "reservar", fiesta_lista_regalo_reservar_path(fiesta, lista, regalo), class: "btn btn-default btn-md" %>
     </span>
-    <% if policy(regalo.lista).destroy? %>
+    <% if policy(regalo).destroy? %>
     <span>
-      <%= link_to "eliminar de la lista", lista_regalo_compromiso_path(regalo.lista, regalo, regalo.compromiso), method: :delete, class: "btn btn-default btn-md" %>
+      <%= link_to "eliminar de la lista", fiesta_lista_regalo_compromiso_path(fiesta, lista, regalo, regalo.compromiso), method: :delete, class: "btn btn-default btn-md" %>
     </span>
     <% end %>
     <% when "reservado" %>
     <span>
-      <%= link_to "liberar", lista_regalo_liberar_path(regalo.lista, regalo), class: "btn btn-default btn-md" %>
+      <%= link_to "liberar", fiesta_lista_regalo_liberar_path(fiesta, lista, regalo), class: "btn btn-default btn-md" %>
     </span>
     <span>
-      <%= link_to "comprar", lista_regalo_comprar_path(regalo.lista, regalo), class: "btn btn-default btn-md" %>
+      <%= link_to "comprar", fiesta_lista_regalo_comprar_path(fiesta, lista, regalo), class: "btn btn-default btn-md" %>
     </span>
     <% when "comprado" %>
       <span>
-      <%= link_to "liberar", lista_regalo_liberar_path(regalo.lista, regalo), class: "btn btn-default btn-md" %>
+      <%= link_to "liberar", fiesta_lista_regalo_liberar_path(fiesta, lista, regalo), class: "btn btn-default btn-md" %>
       </span>
     <% end %>
     </div><!-- /controles-->
   </div><!-- /regalo-->
   <!-- /controles-->
   <% else %>
-  <% if policy(regalo.lista).edit? %>
+  <% if policy(lista).edit? %>
   <div class="regalo-<%= regalo.id %>">
     <div>
     <span>
@@ -50,7 +50,7 @@
     </div>
     <div class="controles">
       <span>
-      <%= link_to "publicar en la lista", lista_regalo_liberar_path(regalo.lista, regalo), class: "btn btn-default btn-md" %>
+      <%= link_to "publicar en la lista", fiesta_lista_regalo_liberar_path(fiesta, lista, regalo), class: "btn btn-default btn-md" %>
       </span>
     </div>
   </div>

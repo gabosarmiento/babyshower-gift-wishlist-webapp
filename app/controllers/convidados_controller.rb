@@ -1,5 +1,9 @@
 class ConvidadosController < ApplicationController
   def index
+    @fiesta = Fiesta.find(params[:fiesta_id])
+    @convidados = @fiesta.convidados
+    @convidado = @fiesta.convidados.new
+    authorize @convidados
   end
 
   def new
@@ -14,7 +18,7 @@ class ConvidadosController < ApplicationController
   def create
    @fiesta = Fiesta.find(params[:fiesta_id])
    @convidado = @fiesta.convidados.create(convidado_params) # Añadir un nuevo Convidado
-   @convidado.anfitrion_id = @fiesta.user_id # asignar anfitrion como el usuario actual
+   @convidado.anfitrion_id = @fiesta.users.first.id # asignar anfitrion como el usuario actual
    authorize @convidado
    if @convidado.save
     if @convidado.invitado != nil
@@ -34,6 +38,15 @@ class ConvidadosController < ApplicationController
   end
 
   def destroy
+    @fiesta = Fiesta.find(params[:fiesta_id])
+    @convidado = Convidado.find(params[:id])
+    if @convidado.destroy
+      flash[:notice] = "Eliminado de la lista de convidados"
+      redirect_to fiesta_convidados_path(@fiesta)
+    else
+      redirect_to fiesta_convidados_path(@fiesta)
+      flash[:error] = "No se pudo eliminar. Intenta de nuevo."
+    end
   end
 
   private
