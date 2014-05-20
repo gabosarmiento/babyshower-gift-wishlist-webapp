@@ -18,7 +18,7 @@
         <% end %>
       <div class="pull-right user-info">
        <% if current_user %>
-         Hola <%= current_user.email %>! <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %>
+         Hola <%= link_to (current_user.name || current_user.email), edit_user_registration_path %>! <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %>
        <% else %>
          <%= link_to "Ya eres miembro?", ingresar_path %> 
        <% end %>

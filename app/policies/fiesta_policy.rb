@@ -11,7 +11,7 @@ class FiestaPolicy < ApplicationPolicy
   end
 
   def update?
-    create?
+    user.present? && record.users.first == user || user.role?(:admin) 
   end
 
   def destroy?
