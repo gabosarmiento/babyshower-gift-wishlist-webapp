@@ -15,37 +15,32 @@
   <section class="col-md-4"> 
     <h3>Todos los Regalos</h3>
     <div class="todos-list">
-      <ol>
+      
         <% @disponibles.each do |regalo| %>
-        <li class="todos-item">
+       
           <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista,regalo: regalo} %>
-        </li>
+        
         <% end %>
-      </ol>
+      
     </div>
   </section>
   <section class="col-md-4"> 
     <h3>Regalos reservados</h3>
     <div class="reservados-list">
       <% @reservados.each do |regalo| %>
-      <ol>
-        <li class="reservados-item">
           <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista, regalo: regalo} %>
-        </li>
+        
         <% end %>
-      </ol>
     </div>
   </section>
   <section class="col-md-4"> 
     <h3>Regalos comprados</h3>
     <div class="comprados-list">
-      <ol>
         <% @comprados.each do |regalo| %>
-        <li class="comprados-item">
+        
           <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista, regalo: regalo} %>
-        </li>
+        
         <% end %>
-      </ol>
     </div>
   </section>
 </div>

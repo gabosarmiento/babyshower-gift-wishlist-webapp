@@ -12,7 +12,7 @@
           </small>
           <% end %>
         </h3>
-
+        <hr>
         <p><%= @fiesta.descripcion %></p>
        
         <p>Dónde: <strong><%= @fiesta.lugar %></strong></p>
@@ -25,7 +25,11 @@
     <div class="col-sm-3">
       <div class="listas">
         <% if @fiesta.listas.empty? %>
-        <span><%= link_to "Crear lista", new_fiesta_lista_path(@fiesta), class: "btn btn-primary btn-lg pull-left" %></span>
+        <% if policy(@fiesta).update? %>
+        <span><%= link_to "Crear lista de regalos", new_fiesta_lista_path(@fiesta), class: "btn btn-primary btn-lg pull-left" %></span>
+        <% else %>
+        <span>No hay listas de regalos disponibles aún. </span>
+        <% end %>
         <% else %>
         <span><%= link_to "ver lista de regalos", fiesta_lista_path(@fiesta, @lista), class: "btn btn-lg btn-primary pull-left" %></span>
         <% end %>

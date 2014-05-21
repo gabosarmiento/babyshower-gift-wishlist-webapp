@@ -1,26 +1,30 @@
-<h3>Fiestas</h3>
+<h3>Vista global</h3>
 <div class="row">
   <!-- Fiestas que tu organizas-->
    <div class="col-sm-5">
     <div class="well">
-    <h3>Mis fiestas <% if policy(@fiesta).create? %>
-    <% end %></h3>
+    <h3>Mis fiestas 
+      <span class="badge badge-info"><%= @fiestas.count if @fiestas %></span>
+    </h3>
     <span class="help-block">
       Las reuniones que tu organizas. Gestiona listas. Invita amigos.
     </span>
     </div>
     <% unless @fiestas.empty? %>
+      <div class="pull-right"><% if policy(@fiesta).create? %><%= link_to " añadir fiesta", new_fiesta_path(@fiesta), class: "btn btn-xs btn-primary fa fa-plus"  %><% end %></div>
+      <br>
       <% @fiestas.each do |fiesta| %>
       <div id="fiesta-<%= fiesta.id %>" class="lista-fiestas"><%= link_to fiesta.nombre, fiesta %></div>
       <% end %>
     <% else %>
-      Anímate a crear tu primera fiesta. Es gratis! <%= link_to " añadir fiesta", new_fiesta_path(@fiesta), class: "btn btn-xs btn-primary fa fa-plus"  %>
+      Anímate a crear tu primera fiesta. Es gratis! <% if policy(@fiesta).create? %><%= link_to " añadir fiesta", new_fiesta_path(@fiesta), class: "btn btn-xs btn-primary fa fa-plus"  %><% end %>
+
     <% end %>
   </div>
   <!-- Fiestas a las que te invitan -->
   <div class="col-sm-5 col-sm-offset-1">
     <div class="well">
-    <h3>Próximas fiestas</h3>
+    <h3>Próximas fiestas <span class="badge badge-info"><%= @invitaciones_ids.count if @invitaciones_ids %></span></h3>
     <span class="help-block">
       Fiestas en las que esperan tu presencia.
     </span>

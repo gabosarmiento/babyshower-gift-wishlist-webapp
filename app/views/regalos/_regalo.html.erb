@@ -69,8 +69,12 @@
           <h4 class="modal-title">Regalo: <%= "#{regalo.titulo}" %></h4>
         </div>
         <div class="modal-body">
-         <p><%= image_tag(regalo.imagen.url) if regalo.imagen? %></p>
-        <p><%= link_to 'más info', regalo.url if regalo.url? %> </p>
+          <div class="row">
+          <p>Lo consigues en: <%= regalo.donde_lo_consigues %></p>
+          <p>Más info: <%= link_to 'url para mayor información', regalo.url if regalo.url? %></p></div>
+          <div class="row">
+            <%= image_tag(regalo.imagen.normal.url) if regalo.imagen? %>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

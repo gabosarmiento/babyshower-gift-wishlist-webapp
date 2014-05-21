@@ -46,7 +46,7 @@
           <div class="form-group">
               <%= f.label :fecha_y_hora_inicio %>
               <div id="datetimepicker1" class="input-group date">
-              <%= f.text_field :fecha_y_hora_inicio, class: "form-control", placeholder: "dd/mm/yyyy hh:mm AM/PM", data: {format: "DD/MM/YYYY HH:MM AM/PM"} %>
+              <%= f.text_field :fecha_y_hora_inicio, class: "form-control", data: {format: "dd/MM/YYYY hh:mm"} %>
               <span class="input-group-addon">
                 <i class="fa fa-calendar">
                 </i>
@@ -60,7 +60,7 @@
           <div class="form-group">
               <%= f.label :fecha_y_hora_cierre %>
               <div id="datetimepicker2" class="input-group date">
-              <%= f.text_field :fecha_y_hora_cierre, class: "form-control", placeholder: "dd/mm/yyyy hh:mm AM/PM" , data: {format: "dd/MM/yyyy hh:mm:ss"}%>
+              <%= f.text_field :fecha_y_hora_cierre, class: "form-control" , data: {format: "dd/MM/YYYY hh:mm"}%>
               <span class="input-group-addon">
                 <i class="fa fa-calendar">
                 </i>

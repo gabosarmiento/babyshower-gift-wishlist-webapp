@@ -1,6 +1,9 @@
 es: 
   activerecord:
     models:
-      lista:
-        one: Lista
-        other: Listas
+      Lista:
+        one: 'lista'
+        other: 'listas'
+      Fiesta:
+        one: 'fiesta'
+        other: 'fiestas'

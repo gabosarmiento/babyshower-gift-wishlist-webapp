@@ -17,9 +17,12 @@ class Fiesta < ActiveRecord::Base
   has_many :users, through: :rsvps, source: :anfitrion
   has_many :listas
   has_many :convidados
+  
   validates :nombre, length: { minimum: 5 }, presence: true
   validates :descripcion, length: { minimum: 20 }, presence: true
   validates :lugar, length: {minimum: 10}, presence: true
+  validates :fecha_y_hora_inicio, presence: true
+  validates :fecha_y_hora_cierre, presence: true
   def esta_invitado?(user)
     unless self.convidados.empty?
       self.convidados.each do |u|
