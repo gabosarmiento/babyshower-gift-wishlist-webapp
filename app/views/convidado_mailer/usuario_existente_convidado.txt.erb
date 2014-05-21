@@ -3,6 +3,6 @@ Has recibido una invitación de parte de <%= User.find(@convidado.anfitrion_id).
 
 Queremos hacerte participe de la celebración del <%= @convidado.fiesta.nombre.humanize.titleize %>.
 
-Para ver los detalles de la fiesta, solo debes seguir este link: <%= link_to "Fiesta", fiesta_url(@convidado.fiesta) %>.
+Para ver los detalles de la fiesta <%= link_to "Accede al portal", ingresar_path %>.
 
 Te esperamos y que tengas un buen día!

@@ -37,6 +37,7 @@ class CompromisosController < ApplicationController
   end
 
   def actualizar_compromiso(new_value)
+    
       @compromiso.update_attributes(:value => new_value, :user_id => current_user.id)
   end
 end
