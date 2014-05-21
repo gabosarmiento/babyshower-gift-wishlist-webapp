@@ -19,7 +19,7 @@
         </div>
       <% end %>
       <% unless current_user.provider? %>
-      <span class="help-block">Deja estos campos en blanco si no quieres cambiar tu password.</span>
+      <span class="help-block">Deja los siguientes campos en blanco si no quieres cambiar tu contraseña.</span>
       <div class="form-group">
         <%= f.label :password, "Contraseña" %>
         <%= f.password_field :password,autocomplete: "off", class: 'form-control', placeholder: "Ingresa la contraseña" %>
