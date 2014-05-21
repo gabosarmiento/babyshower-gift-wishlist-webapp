@@ -18,13 +18,15 @@ class ConvidadosController < ApplicationController
 
   def create
    @fiesta = Fiesta.find(params[:fiesta_id])
+   @anfitrion = @fiesta.users.first
    @convidado = @fiesta.convidados.create(convidado_params) # Añadir un nuevo Convidado
-   @convidado.anfitrion_id = @fiesta.users.first.id # asignar anfitrion como el usuario actual
+   @convidado.anfitrion = @anfitrion # asignar anfitrion como el usuario actual
    authorize @convidado
    if @convidado.save
     if @convidado.invitado != nil
        ConvidadoMailer.usuario_existente_convidado(@convidado).deliver
-       @convidado.invitado.fiestas.push(@convidado.fiesta)
+       # @convidado.invitado.invitaciones.push(@convidado)
+       # @convidado.invitado.fiestas.push(@convidado.fiesta)
     else
       ConvidadoMailer.nuevo_usuario_convidado(@convidado, new_user_registration_url(:convidado_token => @convidado.token)).deliver #enviar la invitación a nuestro mailer para que entregue el mailer
     end
