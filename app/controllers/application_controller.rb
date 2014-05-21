@@ -11,6 +11,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) do |u|
       u.permit(:name, :email, :password, :password_confirmation, :convidado_token)
     end
+    devise_parameter_sanitizer.for(:account_update) do |u|
+      u.permit(:name, :email, :password, :password_confirmation)
+    end
   end
   private
   def user_not_authorized
