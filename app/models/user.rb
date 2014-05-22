@@ -46,13 +46,13 @@ class User < ActiveRecord::Base
   has_many :invitaciones_enviadas, :class_name => "Convidado", :foreign_key => 'anfitrion_id'
   after_create :default_role
 
-  private
-  def default_role
-    self.role = 'member'
-  end
   def role?(base_role)
   role == base_role.to_s
   end
   
   ROLES = %w[member admin]
+  private
+  def default_role
+    self.role = 'member'
+  end
 end
