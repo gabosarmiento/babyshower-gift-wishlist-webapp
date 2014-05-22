@@ -16,38 +16,60 @@
   <% end %>
 
   <% end %>
-  <div class="col-md-12">
-    <section class="col-md-4"> 
-      <h3>Regalos disponibles <span class="badge"><%= @disponibles.count %></span></h3>
-      <div class="todos-list">
-        
-          <% @disponibles.each do |regalo| %>
-         
-            <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista,regalo: regalo} %>
-          
-          <% end %>
-        
+  <div class="clearfix"></div>
+  <div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"> 
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Regalos disponibles <span class="badge"><%= @disponibles.count %></span>
+        </div>
+        <div class="panel-body">
+          <div class="todos-list">
+            
+              <% @disponibles.each do |regalo| %>
+             
+                <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista,regalo: regalo} %>
+              
+              <% end %>
+            
+          </div>
+        </div>
       </div>
-    </section>
-    <section class="col-md-4"> 
-      <h3>Regalos reservados <span class="badge"><%= @reservados.count %></span></h3>
-      <div class="reservados-list">
-        <% @reservados.each do |regalo| %>
-            <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista, regalo: regalo} %>
-          
-          <% end %>
+      <div class="clearfix"></div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"> 
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Regalos reservados <span class="badge"><%= @reservados.count %></span>
+        </div>
+        <div class="panel-body">
+          <div class="reservados-list">
+            <% @reservados.each do |regalo| %>
+                <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista, regalo: regalo} %>
+              
+              <% end %>
+          </div>
+        </div>
       </div>
-    </section>
-    <section class="col-md-4"> 
-      <h3>Regalos comprados <span class="badge"><%= @comprados.count %></span></h3>
-      <div class="comprados-list">
+      <div class="clearfix"></div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"> 
+      <div class="panel panel-default">
+        <div class="panel-heading">
+         Regalos comprados <span class="badge"><%= @comprados.count %></span>
+        </div>
+        <div class="panel-body">
+          <div class="comprados-list">
           <% @comprados.each do |regalo| %>
           
             <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista, regalo: regalo} %>
           
           <% end %>
+          </div>
+        </div>
       </div>
-    </section>
+      <div class="clearfix"></div>
+    </div>
   </div>
   <div>
 </div>
