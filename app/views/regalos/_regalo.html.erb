@@ -2,7 +2,7 @@
   <div class="regalo regalo-<%= regalo.id %>">
     <div class="regalo-body">
         <div class="row">
-          <div class="col-lg-2 col-md-3 col-sm-4 col-xs-3 pull-left">
+          <div class="col-lg-4 col-md-3 col-sm-4 col-xs-3 pull-left">
             <a href="" class="btn btn-default btn-modal" data-selector="<%= "modal-regalo-#{regalo.id}" %>">
             <%= image_tag(regalo.imagen.thumb.url) if regalo.imagen? %>
             </a>
@@ -72,7 +72,6 @@
   </div>
   <% end %>
 <% end %>
-<hr>
 <!-- modal begins -->
 <%= content_tag :div, class: 'modal fade', id: "modal-regalo-#{regalo.id}",role: "dialog"  do %>
     <div class="modal-dialog">
