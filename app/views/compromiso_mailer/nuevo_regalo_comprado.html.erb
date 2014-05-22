@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3>Has recibido un regalo de <%= User.find(@compromiso.user_id).name.to_s.humanize.titleize %></h3>
+
+    <p> Te compró el regalo: <%= @regalo.titulo.to_s.humanize.titleize %> </p>
+    <p>
+      Para ver el estado de los regalos de tu <%= @fiesta.nombre %>, sigue este link y <%= link_to "accede al portal", ingresar_url %> con tus datos.
+    </p>
+
+    <p>Que tengas un buen día!</p>
+  </body>
+</html>
