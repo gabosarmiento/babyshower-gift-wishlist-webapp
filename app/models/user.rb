@@ -44,9 +44,15 @@ class User < ActiveRecord::Base
   has_many :fiestas, through: :rsvps
   has_many :invitaciones, :class_name => "Convidado", :foreign_key => 'invitado_id'
   has_many :invitaciones_enviadas, :class_name => "Convidado", :foreign_key => 'anfitrion_id'
-  def role?(base_role)
-  role == base_role.to_s
+  after_create :default_role
+
+  private
+  def default_role
+    self.role = 'member'
   end
+  # def role?(base_role)
+  # role == base_role.to_s
+  # end
   
-  ROLES = %w[member moderator admin]
+  ROLES = %w[member admin]
 end
