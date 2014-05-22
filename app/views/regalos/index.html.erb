@@ -6,9 +6,9 @@
 <%= link_to "Añadir Regalo", new_fiesta_lista_regalo_path(@fiesta, @lista), class: "btn btn-primary" %>
 <% end %>
 <hr>
-
+<ol>
 <%= render @regalos %>
-
+</ol>
 <script>
 var ready;
 ready = function() {

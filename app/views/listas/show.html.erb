@@ -3,7 +3,9 @@
   </ol>
 
   <% if @lista.regalos.empty? %>
+  <div class="col-sm-12">
   <%= link_to "Añadir tu primer regalo", new_fiesta_lista_regalo_path(@fiesta,@lista), class: "btn btn-primary" %>
+  </div>
   <% else %>
   <div class="col-sm-12">
   <% if policy(@lista).update? %>
@@ -29,7 +31,7 @@
               <% @disponibles.each do |regalo| %>
              
                 <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista,regalo: regalo} %>
-              
+              <hr>
               <% end %>
             
           </div>
@@ -46,7 +48,7 @@
           <div class="reservados-list">
             <% @reservados.each do |regalo| %>
                 <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista, regalo: regalo} %>
-              
+              <hr>
               <% end %>
           </div>
         </div>
@@ -63,7 +65,7 @@
           <% @comprados.each do |regalo| %>
           
             <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista, regalo: regalo} %>
-          
+            <hr>
           <% end %>
           </div>
         </div>
