@@ -1,9 +1,12 @@
-<h3>Regalos de la lista <strong><%= link_to @lista.nombre.to_s.humanize.titleize, [@fiesta, @lista]
- %></strong></h3>
+<ol class="breadcrumb">
+    <li>Fiestas / <%= link_to @fiesta.nombre, @fiesta %> / <%= link_to @lista.nombre, [@fiesta, @lista] %> / regalos </li>
+  </ol>
+
 <% if policy(@lista).create? %>
 <%= link_to "Añadir Regalo", new_fiesta_lista_regalo_path(@fiesta, @lista), class: "btn btn-primary" %>
 <% end %>
 <hr>
+
 <%= render @regalos %>
 
 <script>

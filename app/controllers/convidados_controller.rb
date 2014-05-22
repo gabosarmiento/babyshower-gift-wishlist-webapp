@@ -19,7 +19,7 @@ class ConvidadosController < ApplicationController
   def create
    @fiesta = Fiesta.find(params[:fiesta_id])
    @anfitrion = @fiesta.users.first
-   @convidado = @fiesta.convidados.create(convidado_params) # Añadir un nuevo Convidado
+   @convidado = @fiesta.convidados.find_or_create_by!(convidado_params) # Añadir un nuevo Convidado
    @convidado.anfitrion = @anfitrion # asignar anfitrion como el usuario actual
    authorize @convidado
    if @convidado.save
@@ -30,7 +30,7 @@ class ConvidadosController < ApplicationController
     else
       ConvidadoMailer.nuevo_usuario_convidado(@convidado, new_user_registration_url(:convidado_token => @convidado.token)).deliver #enviar la invitación a nuestro mailer para que entregue el mailer
     end
-      redirect_to fiesta_path(@fiesta), notice: "Invitación enviada exitosamente."
+      redirect_to fiesta_convidados_path(@fiesta), notice: "Invitación enviada exitosamente."
    else
       flash[:error] = "Hubo en error enviando la invitación. Intenta nuevamente"
       render :new

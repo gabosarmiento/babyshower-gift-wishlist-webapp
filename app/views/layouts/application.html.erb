@@ -22,7 +22,7 @@
        <% if current_user %>
          Hola <%= link_to (current_user.name || current_user.email), edit_user_registration_path %>! <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %>
        <% else %>
-         <%= link_to "Ya eres miembro?", ingresar_path %> 
+         <%= link_to "Ya eres miembro? Ingresa", ingresar_path %> 
        <% end %>
       </div>
     </ul>

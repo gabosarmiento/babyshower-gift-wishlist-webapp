@@ -41,12 +41,12 @@
     </div>
     <div class="row">
       <div class="fechas">
-        <div class="col-sm-6">
+        <div class="col-sm-5">
           <%= form_group_tag(fiesta.errors[:fecha_y_hora_inicio]) do %>
           <div class="form-group">
               <%= f.label :fecha_y_hora_inicio %>
               <div id="datetimepicker1" class="input-group date">
-              <%= f.text_field :fecha_y_hora_inicio, class: "form-control", data: {format: "dd/MM/YYYY hh:mm"} %>
+              <%= f.text_field :fecha_y_hora_inicio, placeholder: "Selecciona la fecha y hora en el calendario" , class: "form-control", data: {format: "dd/MM/YYYY hh:mm"} %>
               <span class="input-group-addon">
                 <i class="fa fa-calendar">
                 </i>
@@ -55,12 +55,12 @@
           </div>
           <% end %>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-5 col-sm-offset-1">
           <%= form_group_tag(fiesta.errors[:fecha_y_hora_cierre]) do %>
           <div class="form-group">
               <%= f.label :fecha_y_hora_cierre %>
               <div id="datetimepicker2" class="input-group date">
-              <%= f.text_field :fecha_y_hora_cierre, class: "form-control" , data: {format: "dd/MM/YYYY hh:mm"}%>
+              <%= f.text_field :fecha_y_hora_cierre, placeholder: "Selecciona la fecha y hora en el calendario" , class: "form-control" , data: {format: "dd/MM/YYYY hh:mm"}%>
               <span class="input-group-addon">
                 <i class="fa fa-calendar">
                 </i>

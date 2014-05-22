@@ -1,51 +1,55 @@
-<h3><%= @lista.nombre %></h3>
-<% if policy(@lista).update? %>
-<% if @lista.regalos.empty? %>
-<%= link_to "Añadir tu primer regalo", new_fiesta_lista_regalo_path(@fiesta,@lista), class: "btn btn-primary" %>
-<% else %>
-<%= link_to "Añade un regalo", new_fiesta_lista_regalo_path(@fiesta, @lista), class: "btn btn-primary" %>
-<% end %>
-<div class="alert alert-info">
-  <button type="button" class="close" data-dismiss="alert">×</button>
-  <strong>Nota:</strong>
-  Esta es la vista que veran todos tus invitados. Para ver todos los regalos entra <%= link_to "aquí", fiesta_lista_regalos_path(@fiesta, @lista)  %>.
-</div>
-<% end %>
-<div class="col-md-12">
-  <section class="col-md-4"> 
-    <h3>Todos los Regalos</h3>
-    <div class="todos-list">
-      
-        <% @disponibles.each do |regalo| %>
-       
-          <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista,regalo: regalo} %>
+<ol class="breadcrumb">
+    <li>Fiestas / <%= link_to @fiesta.nombre, @fiesta %> / <%= @lista.nombre %></li>
+  </ol>
+
+  <% if @lista.regalos.empty? %>
+  <%= link_to "Añadir tu primer regalo", new_fiesta_lista_regalo_path(@fiesta,@lista), class: "btn btn-primary" %>
+  <% else %>
+  <div class="col-sm-12">
+  <% if policy(@lista).update? %>
+  <div class="alert alert-warning">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>Nota:</strong>
+    No encuentras los regalos? Para ver todos los regalos ingresa <%= link_to "aquí", fiesta_lista_regalos_path(@fiesta, @lista)  %>.
+  </div>
+  <%= link_to "Añade un regalo", new_fiesta_lista_regalo_path(@fiesta, @lista), class: "btn btn-primary" %>
+  <% end %>
+
+  <% end %>
+  <div class="col-md-12">
+    <section class="col-md-4"> 
+      <h3>Regalos disponibles <span class="badge"><%= @disponibles.count %></span></h3>
+      <div class="todos-list">
         
-        <% end %>
-      
-    </div>
-  </section>
-  <section class="col-md-4"> 
-    <h3>Regalos reservados</h3>
-    <div class="reservados-list">
-      <% @reservados.each do |regalo| %>
-          <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista, regalo: regalo} %>
+          <% @disponibles.each do |regalo| %>
+         
+            <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista,regalo: regalo} %>
+          
+          <% end %>
         
-        <% end %>
-    </div>
-  </section>
-  <section class="col-md-4"> 
-    <h3>Regalos comprados</h3>
-    <div class="comprados-list">
-        <% @comprados.each do |regalo| %>
-        
-          <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista, regalo: regalo} %>
-        
-        <% end %>
-    </div>
-  </section>
-</div>
-<div>
-<%= link_to "<< volver a la fiesta", @fiesta, class: "btn btn-xs btn-primary" %>
+      </div>
+    </section>
+    <section class="col-md-4"> 
+      <h3>Regalos reservados <span class="badge"><%= @reservados.count %></span></h3>
+      <div class="reservados-list">
+        <% @reservados.each do |regalo| %>
+            <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista, regalo: regalo} %>
+          
+          <% end %>
+      </div>
+    </section>
+    <section class="col-md-4"> 
+      <h3>Regalos comprados <span class="badge"><%= @comprados.count %></span></h3>
+      <div class="comprados-list">
+          <% @comprados.each do |regalo| %>
+          
+            <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista, regalo: regalo} %>
+          
+          <% end %>
+      </div>
+    </section>
+  </div>
+  <div>
 </div>
 
 <script>

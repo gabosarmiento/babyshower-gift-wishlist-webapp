@@ -13,29 +13,35 @@
     <% case regalo.compromiso.value %>
     <% when "disponible" %>
     <span>
-      <%= link_to "reservar", fiesta_lista_regalo_reservar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-default btn-md" %>
-    </span>
-    <span>
-      <%= link_to "comprar", fiesta_lista_regalo_comprar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-default btn-md" %>
+      <%= link_to "lo quiero reservar", fiesta_lista_regalo_reservar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-info btn-xs", data: {toggle: "tooltip", placement: "top"}, title: "Resérvalo antes de que sea demasiado tarde." %>
     </span>
     <% if policy(regalo).destroy? %>
     <span>
-      <%= link_to "eliminar de la lista", fiesta_lista_regalo_compromiso_path(regalo.lista.fiesta, regalo.lista, regalo, regalo.compromiso), method: :delete, class: "btn btn-danger btn-sm" %>
+      <%= link_to "eliminar de la lista", fiesta_lista_regalo_compromiso_path(regalo.lista.fiesta, regalo.lista, regalo, regalo.compromiso), method: :delete, class: "btn btn-danger btn-xs" %>
     </span>
     <% end %>
     <% when "reservado" %>
+    <% if current_user.id == regalo.compromiso.user_id ||policy(regalo).edit? %>
     <span>
-      <%= link_to "liberar", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-default btn-md" %>
+      <%= link_to "liberarlo", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-success btn-xs", data: {toggle: "tooltip", placement: "top"}, title: "Volverá a la lista de regalos disponibles" %>
     </span>
     <span>
-      <%= link_to "comprar", fiesta_lista_regalo_comprar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-default btn-md" %>
+      <%= link_to "lo he comprado", fiesta_lista_regalo_comprar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-info btn-xs", data: {toggle: "tooltip", placement: "top"}, title: "Notifica al anfitrión de tu compra" %>
     </span>
+    <% else %>
+    <span>
+      <%= link_to "regalo reservado", "", class: "btn btn-default btn-xs disabled" %>
+    </span>
+    <% end %>
     <% when "comprado" %>
     <% if policy(regalo).edit? %>
       <span>
-      <%= link_to "liberar", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-default btn-md" %>
+      <%= link_to "liberar", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-default btn-xs" %>
       </span>
       <% end %>
+      <span>
+      <%= link_to "regalo comprado", "", class: "btn btn-success btn-xs disabled" %>
+    </span>
     <% end %>
     </div><!-- /controles-->
   </div><!-- /regalo-->
@@ -53,28 +59,35 @@
     </div></a>
     <div class="controles">
       <span>
-      <%= link_to "publicar en la lista", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-success btn-md" %>
+      <%= link_to "publicar en la lista", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-success btn-xs" %>
+      </span>
+      <span>
+        <%= link_to "Editar", edit_fiesta_lista_regalo_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-primary btn-xs" %>
+      </span>
+      <span>
+        <%= link_to "Eliminar", [regalo.lista.fiesta, regalo.lista, regalo], method: :delete, class: "btn btn-danger btn-xs" %>
       </span>
     </div>
   </div>
   <% end %>
 <% end %>
-
+<hr>
 <!-- modal begins -->
-<%= content_tag :div, class: 'modal fade', id: "modal-regalo-#{regalo.id}" do %>
+<%= content_tag :div, class: 'modal fade', id: "modal-regalo-#{regalo.id}",role: "dialog"  do %>
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Regalo: <%= "#{regalo.titulo}" %></h4>
+          <h4 class="modal-title"><%= "#{regalo.titulo}" %></h4>
         </div>
         <div class="modal-body">
-          <div class="row">
-          <p>Lo consigues en: <%= regalo.donde_lo_consigues %></p>
-          <p>Más info: <%= link_to 'url para mayor información', regalo.url if regalo.url? %></p></div>
-          <div class="row">
-            <%= image_tag(regalo.imagen.normal.url) if regalo.imagen? %>
-          </div>
+              <p><%= regalo.donde_lo_consigues %>
+              </p>
+              <p><%= link_to 'Más info aquí', regalo.url if regalo.url? %>
+              </p>
+              <hr>
+              <div class="text-center">
+              <%= image_tag(regalo.imagen.normal.url) if regalo.imagen? %></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -84,3 +97,7 @@
  <% end %><!-- /.modal -->
 
 <!-- modal ends -->
+
+<script type="text/javascript">
+$('.btn').tooltip();
+</script>

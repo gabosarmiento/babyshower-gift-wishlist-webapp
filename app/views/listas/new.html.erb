@@ -1,30 +1,32 @@
-<h1>Nueva Lista</h1>
 
-<div class="row">
-  <div class="col-md-4">
-    <p>Guías para las listas</p>
-    <ul>
-      <li>Asegurate de que el nombre sea el indicado.</li>
-      <li>El nombre debe tener mínimo 5 caracteres</li>
-      <li>La Categoria solo será visible para todos los que invites y todos podran ver los regalos en esta lista</li>
-    </ul>
+  <ol class="breadcrumb">
+    <li>Fiestas / <%= link_to @fiesta.nombre, @fiesta %> / nueva lista de regalos</li>
+  </ol>
+
+<div class="col-sm-12">
+  <div class="alert alert-warning">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>Nota:</strong>
+    Empieza por añadir un nombre a la lista. Esta lista es única y sera visible a todos los que reciban una invitación a tu fiesta. Posteriormente podrás añadir regalos.
   </div>
-  <div class="col-md-8">
-    <%= form_for [@fiesta,@lista], html: {class: "lista-form"} do |f| %>
-    <% if @lista.errors.any? %>
-    <div class="alert alert-danger">
-        <% @lista.errors.full_messages.each do |msg| %>
-          <div><%= msg %></div>
-        <% end %>
-    </div>
-    <% end %>
-    <%= form_group_tag(@lista.errors[:nombre]) do %>
-      <div class="form-group">
-        <%= f.label :nombre %>
-        <%= f.text_field :nombre, class: 'form-control', placeholder: "Ingresa el nombre de tu lista: lista de bodas, lista de regalos..." %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= form_for [@fiesta,@lista], html: {class: "lista-form"} do |f| %>
+      <% if @lista.errors.any? %>
+      <div class="alert alert-danger">
+          <% @lista.errors.full_messages.each do |msg| %>
+            <div><%= msg %></div>
+          <% end %>
       </div>
-    <% end %>
-      <%= f.submit "Guardar", class: 'btn btn-success' %>
-    <% end %>
+      <% end %>
+      <%= form_group_tag(@lista.errors[:nombre]) do %>
+        <div class="form-group">
+          <%= f.label :nombre %>
+          <%= f.text_field :nombre, class: 'form-control', placeholder: "por ejemplo 'lista de novios', 'lista de regalos', 'lista de mi nuevo apartamento'..." %>
+        </div>
+      <% end %>
+        <%= f.submit "Guardar", class: 'btn btn-success' %>
+      <% end %>
+    </div>
   </div>
 </div>

@@ -1,10 +1,11 @@
-<h1>RSVPs</h1>
-<p>RSVP es la abreviatura de répondez s'il vous plaît, una expresión francesa, que traducida al español significa "responda, por favor". Se la utiliza generalmente para invitaciones a grandes eventos, para poder confirmar la presencia de los invitados y obtener un mejor planeamiento. - <i>Wikipedia</i></p>
+<ol class="breadcrumb">
+    <li>Fiestas / <%= link_to @fiesta.nombre, @fiesta %> / Convidados </li>
+  </ol>
 
-<div class="col-md-8 col-md-offset-2">
+<div class="col-md-12">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Usuarios invitados
+      Usuarios convidados a la fiesta
     </div>
     <div class="panel-body">
       <table class="table table-striped">
@@ -27,7 +28,7 @@
             <% end %>
             <td><%= convidado.email %></td>
             <% if policy(@convidado).destroy? %>
-            <td><%= link_to "Eliminar", [@fiesta, convidado], method: :delete %></td>
+            <td><%= link_to "Cancelar invitación", [@fiesta, convidado], method: :delete %></td>
             <% end %>
           </tr>
           <% end %>
