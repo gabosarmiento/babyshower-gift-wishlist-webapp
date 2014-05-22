@@ -3,7 +3,7 @@ class FiestaPolicy < ApplicationPolicy
     true
   end
   def show?
-    user.present? && record.users.first == user || user.role?(:admin) || record.esta_invitado?(user) 
+    user.present? && (record.users.first == user || user.role?(:admin) || record.esta_invitado?(user))
   end
 
   def create?
@@ -11,7 +11,7 @@ class FiestaPolicy < ApplicationPolicy
   end
 
   def update?
-    user.present? && record.users.first == user || user.role?(:admin) 
+    user.present? && (record.users.first == user || user.role?(:admin) )
   end
 
   def destroy?

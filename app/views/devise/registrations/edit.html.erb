@@ -18,7 +18,7 @@
           <%= resource.unconfirmed_email %>
         </div>
       <% end %>
-      <% unless current_user.provider? %>
+      <%# unless current_user.provider? %>
       <span class="help-block">Deja los siguientes campos en blanco si no quieres cambiar tu contraseña.</span>
       <div class="form-group">
         <%= f.label :password, "Contraseña" %>
@@ -28,7 +28,7 @@
         <%= f.label :password_confirmation, "Confirmar contraseña" %>
         <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: "Confirma la contraseña" %>
       </div>
-      <% end %>
+      <%# end %>
       <div class="form-group">
         <%= f.submit "Update", class: 'btn btn-success' %>
       </div>

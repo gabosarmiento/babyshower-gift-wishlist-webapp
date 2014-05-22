@@ -50,9 +50,9 @@ class User < ActiveRecord::Base
   def default_role
     self.role = 'member'
   end
-  # def role?(base_role)
-  # role == base_role.to_s
-  # end
+  def role?(base_role)
+  role == base_role.to_s
+  end
   
   ROLES = %w[member admin]
 end
