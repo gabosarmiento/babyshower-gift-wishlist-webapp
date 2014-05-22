@@ -1,51 +1,28 @@
 <% case regalo.compromiso.value %>
     <% when "disponible" %>
-    <span>
+    <div>
       <%= link_to "lo quiero reservar", fiesta_lista_regalo_reservar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-info btn-xs", data: {toggle: "tooltip", placement: "top"}, title: "Resérvalo antes de que sea demasiado tarde." %>
-    </span>
-    <% if policy(regalo).edit? %>
-    <span>
-      <%= link_to "Editar", edit_fiesta_lista_regalo_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-primary btn-xs" %>
-    </span>
-    <% end %>
-    <% if policy(regalo).destroy? %>
-    <span>
-      <%= link_to "eliminar de la lista", fiesta_lista_regalo_compromiso_path(regalo.lista.fiesta, regalo.lista, regalo, regalo.compromiso), method: :delete, class: "btn btn-danger btn-xs" %>
-    </span>
-    <% end %>
+    </div>
     <% when "reservado" %>
     <% if current_user.id == regalo.compromiso.user_id ||policy(regalo).edit? %>
-    <span>
+    <div>
       <%= link_to "liberarlo", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-success btn-xs", data: {toggle: "tooltip", placement: "top"}, title: "Volverá a la lista de regalos disponibles" %>
-    </span>
-    <span>
+    </div>
+    <div>
       <%= link_to "lo he comprado", fiesta_lista_regalo_comprar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-info btn-xs", data: {toggle: "tooltip", placement: "top"}, title: "Notifica al anfitrión de tu compra" %>
-    </span>
-    <% if policy(regalo).edit? %>
-    <span>
-      <%= link_to "Editar", edit_fiesta_lista_regalo_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-primary btn-xs" %>
-    </span>
-    <% end %>
+    </div>
     <% else %>
-      <span>
+      <div>
         <%= link_to "regalo reservado", "", class: "btn btn-default btn-xs disabled" %>
-      </span>
-      <% if policy(regalo).edit? %>
-      <span>
-        <%= link_to "Editar", edit_fiesta_lista_regalo_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-primary btn-xs" %>
-      </span>
-      <% end %>
+      </div>
     <% end %>
     <% when "comprado" %>
-      <span>
+      <div>
       <%= link_to "regalo comprado", "", class: "btn btn-success btn-xs disabled" %>
-      </span>
+      </div>
       <% if policy(regalo).edit? %>
-        <span>
+        <div>
         <%= link_to "liberar", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-default btn-xs" %>
-        </span>
-        <span>
-          <%= link_to "Editar", edit_fiesta_lista_regalo_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-primary btn-xs" %>
-        </span>
+        </div>
       <% end %>
     <% end %>

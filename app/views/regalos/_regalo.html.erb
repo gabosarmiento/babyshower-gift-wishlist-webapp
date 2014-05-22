@@ -1,46 +1,78 @@
  <% unless regalo.compromiso.nil? %>
   <div class="regalo regalo-<%= regalo.id %>">
     <div class="regalo-body">
-      <div>
-        <a href="" class="btn btn-default btn-modal col-sm-12" data-selector="<%= "modal-regalo-#{regalo.id}" %>">
-        <%= image_tag(regalo.imagen.thumb.url) if regalo.imagen? %>
-        </a>
-        <p class="col-sm-12">
-        <small><%= regalo.titulo.to_s.humanize.titleize %></small>
-        </p>
-      </div> 
-      
+        <div class="row">
+          <div class="col-lg-2 col-md-3 col-sm-4 col-xs-3 pull-left">
+            <a href="" class="btn btn-default btn-modal" data-selector="<%= "modal-regalo-#{regalo.id}" %>">
+            <%= image_tag(regalo.imagen.thumb.url) if regalo.imagen? %>
+            </a>
+          </div>
+          <div class="col-lg-8 col-md-7 col-sm-8 col-xs-8 pull-left">
+            <div>
+             <p>
+              <small><%= regalo.titulo.to_s.humanize.titleize %></small>
+            </p>
+            </div>
+            <div class="controles">
+              <%= render partial: "regalos/controles", locals: {regalo: regalo} %>
+            </div><!-- /controles-->
+          </div><!-- /col -->
+        </div><!-- /row -->
+        <% if policy(regalo).edit? %>
+        <div class="Controles Editor">
+        <div class="row">
+          <div class="col-lg-4 col-md-5 col-sm-4 col-xs-4 pull-left">
+            
+            <span>
+              <%= link_to "Editar", edit_fiesta_lista_regalo_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-primary btn-xs" %>
+            </span>
+            <span >
+              <%= link_to "eliminar de la lista", fiesta_lista_regalo_compromiso_path(regalo.lista.fiesta, regalo.lista, regalo, regalo.compromiso), method: :delete, class: "btn btn-warning btn-xs" %>
+            </span>
+            <span>
+                <%= link_to "Borrar regalo", [regalo.lista.fiesta, regalo.lista, regalo], method: :delete, class: "btn btn-danger btn-xs" %>
+              </span>
+          </div>
+        </div>
+        </div>
+        <% end %>
     </div>
-    <div class="controles text-center">
-      <%= render partial: "regalos/controles", locals: {regalo: regalo} %>
-    </div><!-- /controles-->
   </div><!-- /regalo-->
   <!-- /controles-->
   <% else %>
   <% if policy(regalo).edit? %>
   <div class="regalo regalo-<%= regalo.id %>">
-    <a href="" class="btn btn-default btn-modal col-sm-12" data-selector="<%= "modal-regalo-#{regalo.id}" %>"><div class="col-sm-12">
-    <span>
-      <%= image_tag(regalo.imagen.thumb.url) if regalo.imagen? %>
-    </span> 
-    <span>
-      <%= regalo.titulo.to_s.humanize.titleize%>
-    </span> 
-    </div></a>
-    <div class="controles">
-      <span>
-      <%= link_to "publicar en la lista", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-success btn-xs" %>
-      </span>
-      <span>
-        <%= link_to "Editar", edit_fiesta_lista_regalo_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-primary btn-xs" %>
-      </span>
-      <span>
-        <%= link_to "Eliminar", [regalo.lista.fiesta, regalo.lista, regalo], method: :delete, class: "btn btn-danger btn-xs" %>
-      </span>
-    </div>
+    <div class="regalo-body">
+        <div class="row">
+          <div class="col-lg-2 col-md-3 col-sm-4 col-xs-3 pull-left">
+            <a href="" class="btn btn-default btn-modal" data-selector="<%= "modal-regalo-#{regalo.id}" %>">
+            <%= image_tag(regalo.imagen.thumb.url) if regalo.imagen? %>
+            </a>
+          </div>
+          <div class="col-lg-8 col-md-7 col-sm-8 col-xs-8 pull-left">
+            <div>
+             <p>
+              <small><%= regalo.titulo.to_s.humanize.titleize %></small>
+            </p>
+            </div>
+            <div class="controles">
+              <span>
+              <%= link_to "publicar en la lista", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-success btn-xs" %>
+              </span>
+              <span>
+                <%= link_to "Editar", edit_fiesta_lista_regalo_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-primary btn-xs" %>
+              </span>
+              <span>
+                <%= link_to "Eliminar", [regalo.lista.fiesta, regalo.lista, regalo], method: :delete, class: "btn btn-danger btn-xs" %>
+              </span>
+            </div>
+          </div>
+         </div><!-- /row -->
+       </div>
   </div>
   <% end %>
 <% end %>
+<hr>
 <!-- modal begins -->
 <%= content_tag :div, class: 'modal fade', id: "modal-regalo-#{regalo.id}",role: "dialog"  do %>
     <div class="modal-dialog">
