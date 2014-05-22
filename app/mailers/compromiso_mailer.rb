@@ -1,9 +1,9 @@
 class CompromisoMailer < ActionMailer::Base
-  default from: "notificaciones@lalista.herokuapp.com"
-  def nuevo_regalo_comprado(record, regalo, lista)
+  default from: "no-reply@lalista.herokuapp.com"
+  def nuevo_regalo_comprado(record)
     @compromiso = record
-    @regalo = regalo
-    @fiesta = lista.fiesta
+    @regalo = @compromiso.regalo
+    @fiesta = @regalo.lista.fiesta
     mail(to: @fiesta.users.first.email, subject: "#{User.find(@compromiso.user_id).name.to_s.humanize.titleize} ha comprado un regalo")
   end
 

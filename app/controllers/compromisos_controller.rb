@@ -8,7 +8,7 @@ class CompromisosController < ApplicationController
 
   def comprar
     actualizar_compromiso("comprado")
-    CompromisoMailer.nuevo_regalo_comprado(@compromiso, @regalo , @lista)
+    CompromisoMailer.nuevo_regalo_comprado(@compromiso).deliver
     redirect_to :back
   end
 

@@ -21,6 +21,8 @@
       <%= link_to "regalo comprado", "", class: "btn btn-success btn-xs disabled" %>
       </div>
       <% if policy(regalo).edit? %>
+          <div>comprado por <%= regalo.compromiso.user.name %>
+          </div>
         <div>
         <%= link_to "liberar", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-default btn-xs" %>
         </div>
