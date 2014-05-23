@@ -13,7 +13,7 @@
           <% end %>
         </h3>
         <hr>
-        <p><%= @fiesta.descripcion %></p>
+        <p><%= simple_format(@fiesta.descripcion) %></p>
        
         <p>Dónde: <strong><%= @fiesta.lugar %></strong></p>
       
