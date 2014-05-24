@@ -2,12 +2,12 @@
   <div class="regalo regalo-<%= regalo.id %>">
     <div class="regalo-body">
         <div class="row">
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3 pull-left">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 pull-left">
             <a href="" class="btn btn-default btn-modal" data-selector="<%= "modal-regalo-#{regalo.id}" %>">
             <%= image_tag(regalo.imagen.thumb.url) if regalo.imagen? %>
             </a>
           </div>
-          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-9 pull-left">
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 pull-left">
             <div>
              <p>
               <small><strong><%= regalo.titulo.to_s.humanize.titleize %></strong></small>
