@@ -23,6 +23,9 @@ class Fiesta < ActiveRecord::Base
   validates :lugar, length: {minimum: 10}, presence: true
   validates :fecha_y_hora_inicio, presence: true
   validates :fecha_y_hora_cierre, presence: true
+  validates_format_of :fecha_y_hora_cierre, :with => /\A(0[1-9]|1[012])[\/](0[1-9]|[12][0-9]|3[01])[\/](20)\d\d(\s)(0?[1-9]|1[012])(:[0-5]\d)(\s)([AP]M)\Z/
+  validates_format_of :fecha_y_hora_inicio, :with => /\A(0[1-9]|1[012])[\/](0[1-9]|[12][0-9]|3[01])[\/](20)\d\d(\s)(0?[1-9]|1[012])(:[0-5]\d)(\s)([AP]M)\Z/
+  
   def esta_invitado?(user)
     unless self.convidados.empty?
       self.convidados.each do |u|
