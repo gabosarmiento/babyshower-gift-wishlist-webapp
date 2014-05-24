@@ -64,7 +64,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'
 gem "font-awesome-rails"
 gem 'acts_as_list'
 gem 'jquery-ui-rails'
-
+gem "lazyload-rails"
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
