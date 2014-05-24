@@ -72,6 +72,6 @@ class RegalosController < ApplicationController
     render nothing: true
   end
   def regalo_params
-    params.require(:regalo).permit(:titulo, :imagen, :url, :remote_imagen_url, :donde_lo_consigues, :position)
+    params.require(:regalo).permit(:titulo, :descripcion, :imagen, :url, :remote_imagen_url, :donde_lo_consigues, :position)
   end
 end

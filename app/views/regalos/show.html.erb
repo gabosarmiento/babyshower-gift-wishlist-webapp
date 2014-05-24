@@ -2,12 +2,35 @@
   <li>Fiestas / <%= link_to @fiesta.nombre, @fiesta %> / <%= link_to @lista.nombre, [@fiesta, @lista] %> / regalos / <%= @regalo.titulo %>
   </li>
 </ol>
-  <div><%= image_tag(@regalo.imagen.normal.url) if @regalo.imagen? %>
-  </div>
-  <div>
-    <span>Dónde lo puedes conseguir?</span>
-    <p><%= @regalo.donde_lo_consigues.humanize if @regalo.donde_lo_consigues %></p>
-    <p><%= link_to 'más info', @regalo.url if @regalo.url? %> </p>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <%= @regalo.titulo.to_s.humanize.titleize %>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-4">
+
+        <%= image_tag(@regalo.imagen.normal.url) if @regalo.imagen? %>
+        </div>
+        <div class="col-sm-8">
+          <div class="row">
+            <div class="col-sm-12">
+            <%= simple_format(@regalo.descripcion) %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <% unless @regalo.donde_lo_consigues.empty? %>
+              <p>dónde lo podrías conseguir..</p>
+              <p><%= simple_format(@regalo.donde_lo_consigues) %></p>
+              <% end %>
+              <p><%= link_to 'link de referencia del producto', @regalo.url if @regalo.url? %> 
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 <%= link_to "<< Volver a lista", fiesta_lista_path(@fiesta, @lista) , class: "btn btn-primary btn-xs"%>

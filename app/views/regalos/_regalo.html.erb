@@ -81,8 +81,12 @@
           <h4 class="modal-title"><%= "#{regalo.titulo}" %></h4>
         </div>
         <div class="modal-body">
-              <p><%= regalo.donde_lo_consigues %>
+              <p><%= simple_format(regalo.descripcion) %>
               </p>
+              <% if regalo.donde_lo_consigues %>
+              <p>tip del anfitrión:</p>
+              <i><%= simple_format(regalo.donde_lo_consigues) %>
+              </i>
               <p><%= link_to 'Más info aquí', regalo.url if regalo.url? %>
               </p>
               <hr>

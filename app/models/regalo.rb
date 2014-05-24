@@ -11,6 +11,7 @@
 #  updated_at         :datetime
 #  donde_lo_consigues :text
 #  position           :integer
+#  descripcion        :text
 #
 
 class Regalo < ActiveRecord::Base
@@ -22,4 +23,5 @@ class Regalo < ActiveRecord::Base
   validates :imagen, presence: true 
   validates :donde_lo_consigues, :allow_blank => true, length: { maximum: 300 }
   validates :url, :allow_blank => true, :format => URI::regexp(%w(http https))
+  validates :descripcion, :allow_blank => true, presence: true
 end

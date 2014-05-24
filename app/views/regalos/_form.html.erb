@@ -12,9 +12,19 @@
         <%= f.text_field :titulo, class: 'form-control', placeholder: "Ingresa el nombre del regalo" %>
       </div>
     <% end %>
-    <%= form_group_tag(regalo.errors[:imagen]) do %>
+
+     <%= form_group_tag(regalo.errors[:descripcion]) do %>
       <div class="form-group">
-        <%= f.label :imagen, "Añade una imagen" %>
+        <%= f.label :descripcion, "Descripción" %>
+        <%= f.text_area :descripcion, class: 'form-control', placeholder: "Cuéntales la importancia, hazlos parte de la experiencia, hazlos reír, que la razón de comprarlo no sea el objeto sino su utilidad.", rows: "3" %>
+      </div>
+    <% end %>
+    
+    <%= form_group_tag(regalo.errors[:imagen]) do %>
+    <div><%= image_tag(regalo.imagen.normal.url) if regalo.imagen? %>
+    </div>
+      <div class="form-group">
+        <%= f.label :imagen, "Subir una imagen" %>
         <%= f.file_field :imagen %>
       </div>
 
@@ -25,8 +35,8 @@
       <% end %>
        <%= form_group_tag(regalo.errors[:donde_lo_consigues]) do %>
       <div class="form-group">
-        <%= f.label :donde_lo_consigues, "Dónde lo consigues?" %>
-        <%= f.text_area :donde_lo_consigues, class: 'form-control', placeholder: "Si quieres dar  indicaciones para explicar mejor tu producto, adelante!", cols: 40, row: "20" %>
+        <%= f.label :donde_lo_consigues, "Dónde lo consigues? tips?" %>
+        <%= f.text_area :donde_lo_consigues, class: 'form-control', placeholder: "Si quieres dar  indicaciones para explicar mejor tu producto, adelante!", rows: "2" %>
       </div>
       <% end %>
       <%= form_group_tag(regalo.errors[:url]) do %>
