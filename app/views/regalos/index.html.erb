@@ -44,6 +44,7 @@ ready = function() {
     e.preventDefault();
     var selector = "#" + $(this).attr('data-selector');
     $(selector).modal('show');
+    $("img").lazyload();
   });
     $(".hover").hover(function (e) {
         $(this).find('.hovsw').css('cursor', 'move');

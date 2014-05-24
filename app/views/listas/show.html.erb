@@ -84,8 +84,8 @@ ready = function() {
   $('.btn-modal').click(function(e){
     e.preventDefault();
     var selector = "#" + $(this).attr('data-selector');
-    console.log(selector);
     $(selector).modal('show');
+    $("img").lazyload();
   });
 };
 $(document).ready(ready);
