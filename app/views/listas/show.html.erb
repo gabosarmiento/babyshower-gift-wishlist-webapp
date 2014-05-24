@@ -80,12 +80,12 @@
 <script>
 var ready;
 ready = function() {
+  $("img").lazyload();
   $('.btn-modal').click(function(e){
     e.preventDefault();
     var selector = "#" + $(this).attr('data-selector');
     $(selector).modal('show');
   });
-  $("img").lazyload();
 };
 $(document).ready(ready);
 $(document).on('page:load', ready);

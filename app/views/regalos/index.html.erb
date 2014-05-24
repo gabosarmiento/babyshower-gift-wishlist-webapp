@@ -33,6 +33,7 @@
 <script>
 var ready;
 ready = function() {
+  $("img").lazyload();
    $('#regalos').sortable({
     axis: 'y',
     update: function() {
@@ -44,7 +45,6 @@ ready = function() {
     var selector = "#" + $(this).attr('data-selector');
     $(selector).modal('show');
   });
-  $("img").lazyload();
     $(".hover").hover(function (e) {
         $(this).find('.hovsw').css('cursor', 'move');
         $(this).find('.hovsw').css('background-color', '#ccc');
