@@ -12,15 +12,16 @@
   <div class="alert alert-warning">
     <button type="button" class="close" data-dismiss="alert">×</button>
     <strong>Nota:</strong>
-    No encuentras los regalos? Para ver todos los regalos ingresa <%= link_to "aquí", fiesta_lista_regalos_path(@fiesta, @lista)  %>.
+    Debes hacer públicos los regalos para que aparezcan aquí. Entra a ver todos los regalos.
   </div>
   <%= link_to "Añade un regalo", new_fiesta_lista_regalo_path(@fiesta, @lista), class: "btn btn-primary" %>
+  <%= link_to "Ver todos los regalos", fiesta_lista_regalos_path(@fiesta, @lista), class: "btn btn-success"  %>
   <% end %>
 
   <% end %>
   <div class="clearfix"></div>
-  <div>
-    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"> 
+  <div id="listas">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" id="disponibles"> 
       <div class="panel panel-default">
         <div class="panel-heading">
           Regalos disponibles <span class="badge"><%= @disponibles.count %></span>
@@ -39,7 +40,7 @@
       </div>
       <div class="clearfix"></div>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"> 
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" id="reservados"> 
       <div class="panel panel-default">
         <div class="panel-heading">
           Regalos reservados <span class="badge"><%= @reservados.count %></span>
@@ -55,7 +56,7 @@
       </div>
       <div class="clearfix"></div>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"> 
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" id="comprados"> 
       <div class="panel panel-default">
         <div class="panel-heading">
          Regalos comprados <span class="badge"><%= @comprados.count %></span>

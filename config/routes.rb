@@ -3,6 +3,7 @@ Eclist::Application.routes.draw do
     resources :convidados
     resources :listas do
       resources :regalos do
+        collection { post :ordenar }
         get '/reservar' => 'compromisos#reservar', as: :reservar
         get '/comprar' => 'compromisos#comprar', as: :comprar
         get '/liberar' => 'compromisos#liberar', as: :liberar

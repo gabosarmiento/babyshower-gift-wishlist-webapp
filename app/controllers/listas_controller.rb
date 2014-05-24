@@ -8,9 +8,9 @@ class ListasController < ApplicationController
   def show
     @fiesta = Fiesta.find(params[:fiesta_id])
     @lista = Lista.find(params[:id])
-    @disponibles = Regalo.where(lista_id: @lista.id).joins(:compromiso).merge(Compromiso.where(value: "disponible"))
-    @reservados = Regalo.where(lista_id: @lista.id).joins(:compromiso).merge(Compromiso.where(value: "reservado"))
-    @comprados =Regalo.where(lista_id: @lista.id).joins(:compromiso).merge(Compromiso.where(value: "comprado"))
+    @disponibles = Regalo.where(lista_id: @lista.id).joins(:compromiso).merge(Compromiso.where(value: "disponible")).order("position")
+    @reservados = Regalo.where(lista_id: @lista.id).joins(:compromiso).merge(Compromiso.where(value: "reservado")).order("position")
+    @comprados =Regalo.where(lista_id: @lista.id).joins(:compromiso).merge(Compromiso.where(value: "comprado")).order("position")
     authorize @lista
   end
 

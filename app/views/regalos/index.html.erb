@@ -3,21 +3,57 @@
   </ol>
 
 <% if policy(@lista).create? %>
-<%= link_to "Añadir Regalo", new_fiesta_lista_regalo_path(@fiesta, @lista), class: "btn btn-primary" %>
-<% end %>
+
+<div class="alert alert-info">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <strong>Nota del desarrollador:</strong>
+   Puedes ordenar los elementos de la lista arrastrándolos. 
+</div>
+
+<%= link_to "añade un regalo a la lista", new_fiesta_lista_regalo_path(@fiesta, @lista), class: "btn btn-primary" %>
+
+<hr>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+  <ul id="regalos" data-update-url="<%= ordenar_fiesta_lista_regalos_url(@fiesta, @lista) %>">
+    <% @regalos.each do |regalo| %>
+      <%= content_tag_for :li, regalo do %>
+      <span class="handle hover">
+      <%= render regalo %>
+      </span>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+<% else %>
 <hr>
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 <%= render @regalos %>
 </div>
+<% end %>
 <script>
 var ready;
 ready = function() {
+   $('#regalos').sortable({
+    axis: 'y',
+    update: function() {
+      $.post($(this).data('update-url'), $(this).sortable('serialize'));
+    }
+  });
   $('.btn-modal').click(function(e){
     e.preventDefault();
     var selector = "#" + $(this).attr('data-selector');
-    console.log(selector);
     $(selector).modal('show');
   });
+    $(".hover").hover(function (e) {
+        $(this).find('.hovsw').css('cursor', 'move');
+        $(this).find('.hovsw').css('background-color', '#ccc');
+        $(this).find('.hovsw').css('box-shadow', '1px 1px 1px #888888');
+    }, function (e) {
+        $(this).find('.hovsw').css('cursor', 'auto');
+        $(this).find('.hovsw').css('background-color', 'none'); 
+        $(this).find('.hovsw').css('box-shadow', 'none');
+    });
+  
 };
 $(document).ready(ready);
 $(document).on('page:load', ready);

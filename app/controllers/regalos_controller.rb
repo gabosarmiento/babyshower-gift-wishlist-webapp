@@ -2,7 +2,7 @@ class RegalosController < ApplicationController
   def index
     @fiesta = Fiesta.find(params[:fiesta_id])
     @lista = @fiesta.listas.find(params[:lista_id])
-    @regalos = @lista.regalos
+    @regalos = @lista.regalos.order("position")
     authorize @regalos
   end
 
@@ -65,7 +65,13 @@ class RegalosController < ApplicationController
     end
   end
 
+  def ordenar
+    params[:regalo].each_with_index do |id, index|
+    Regalo.update_all({position: index+1}, {id: id})
+    end
+    render nothing: true
+  end
   def regalo_params
-    params.require(:regalo).permit(:titulo, :imagen, :url, :remote_imagen_url, :donde_lo_consigues)
+    params.require(:regalo).permit(:titulo, :imagen, :url, :remote_imagen_url, :donde_lo_consigues, :position)
   end
 end

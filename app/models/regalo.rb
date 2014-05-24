@@ -10,11 +10,13 @@
 #  created_at         :datetime
 #  updated_at         :datetime
 #  donde_lo_consigues :text
+#  position           :integer
 #
 
 class Regalo < ActiveRecord::Base
   belongs_to :lista
   has_one :compromiso, dependent: :destroy
+  acts_as_list scope: :lista
   mount_uploader :imagen, ImagenUploader
   validates :titulo, length: { minimum: 5 }, presence: true
   validates :imagen, presence: true 
