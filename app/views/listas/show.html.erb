@@ -84,11 +84,10 @@ ready = function() {
   $('.btn-modal').click(function(e){
     e.preventDefault();
     var selector = "#" + $(this).attr('data-selector');
-    $(selector).modal('show');
+    $(selector).modal('show', function(){
+      $("img").lazyload();
   });
-  $('.modal').on('show', function (){
-    $("img").lazyload();
-  });
+  
 };
 $(document).ready(ready);
 $(document).on('page:load', ready);

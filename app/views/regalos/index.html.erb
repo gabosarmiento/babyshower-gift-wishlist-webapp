@@ -43,10 +43,9 @@ ready = function() {
   $('.btn-modal').click(function(e){
     e.preventDefault();
     var selector = "#" + $(this).attr('data-selector');
-    $(selector).modal('show');
-  });
-   $('.modal').on('show', function (){
-    $("img").lazyload();
+    $(selector).modal('show', function(){
+      $("img").lazyload();
+    });
   });
     $(".hover").hover(function (e) {
         $(this).find('.hovsw').css('cursor', 'move');
