@@ -20,6 +20,5 @@
 //= require jquery.lazyload
 //= require_tree .
 $(document).ready(function(){
-  $("img").lazyload();
   $(".alert").delay(4500).slideUp().fadeOut(2000); 
 });

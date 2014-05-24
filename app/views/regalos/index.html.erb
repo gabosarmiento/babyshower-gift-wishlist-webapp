@@ -33,6 +33,7 @@
 <script>
 var ready;
 ready = function() {
+   $("img").lazyload();
    $('#regalos').sortable({
     axis: 'y',
     update: function() {

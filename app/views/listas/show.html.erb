@@ -80,6 +80,7 @@
 <script>
 var ready;
 ready = function() {
+  $("img").lazyload();
   $('.btn-modal').click(function(e){
     e.preventDefault();
     var selector = "#" + $(this).attr('data-selector');
