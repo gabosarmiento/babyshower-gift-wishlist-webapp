@@ -80,16 +80,14 @@
 <script>
 var ready;
 ready = function() {
-  $("img").lazyload();
   $('.btn-modal').click(function(e){
     e.preventDefault();
     var selector = "#" + $(this).attr('data-selector');
-    $(selector).modal('show', function(){
-      $("img").lazyload({
-        event : "show"
-      });
+    $(selector).modal('show');
   });
-  
+  $("img").lazyload({
+    skip_invisible : false
+  });
 };
 $(document).ready(ready);
 $(document).on('page:load', ready);

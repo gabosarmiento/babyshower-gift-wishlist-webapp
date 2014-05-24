@@ -33,7 +33,6 @@
 <script>
 var ready;
 ready = function() {
-   $("img").lazyload();
    $('#regalos').sortable({
     axis: 'y',
     update: function() {
@@ -43,12 +42,11 @@ ready = function() {
   $('.btn-modal').click(function(e){
     e.preventDefault();
     var selector = "#" + $(this).attr('data-selector');
-    $(selector).modal('show', function(){
-      $("img").lazyload({
-        event : "show"
-      });
-    });
+    $(selector).modal('show');
   });
+  $("img").lazyload({
+    skip_invisible : false
+    });
     $(".hover").hover(function (e) {
         $(this).find('.hovsw').css('cursor', 'move');
         $(this).find('.hovsw').css('background-color', '#ccc');
