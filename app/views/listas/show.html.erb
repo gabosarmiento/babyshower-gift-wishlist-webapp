@@ -85,6 +85,8 @@ ready = function() {
     e.preventDefault();
     var selector = "#" + $(this).attr('data-selector');
     $(selector).modal('show');
+  });
+  $('.modal').on('shown', function (){
     $("img").lazyload();
   });
 };
