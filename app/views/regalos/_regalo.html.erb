@@ -87,7 +87,7 @@
               </p>
               <hr>
               <div class="text-center">
-              <%= image_tag(regalo.imagen.normal.url) if regalo.imagen? %></div>
+              <%= image_tag(regalo.imagen.normal.url, class: "lazy") if regalo.imagen? %></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
