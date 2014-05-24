@@ -44,7 +44,9 @@ ready = function() {
     e.preventDefault();
     var selector = "#" + $(this).attr('data-selector');
     $(selector).modal('show', function(){
-      $("img").lazyload();
+      $("img").lazyload({
+        event : "show"
+      });
     });
   });
     $(".hover").hover(function (e) {
