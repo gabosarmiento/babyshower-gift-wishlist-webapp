@@ -4,7 +4,7 @@
         <div class="row">
           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 pull-left">
             <a href="" class="btn btn-default btn-modal" data-selector="<%= "modal-regalo-#{regalo.id}" %>">
-            <%= image_tag(regalo.imagen.thumb.url) if regalo.imagen? %>
+            <%= image_tag(regalo.imagen.thumb.url, class: "lazy") if regalo.imagen? %>
             </a>
           </div>
           <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 pull-left">
@@ -46,7 +46,7 @@
         <div class="row">
           <div class="col-lg-2 col-md-3 col-sm-4 col-xs-3 pull-left">
             <a href="" class="btn btn-default btn-modal" data-selector="<%= "modal-regalo-#{regalo.id}" %>">
-            <%= image_tag(regalo.imagen.thumb.url) if regalo.imagen? %>
+            <%= image_tag(regalo.imagen.thumb.url, class: "lazy") if regalo.imagen? %>
             </a>
           </div>
           <div class="col-lg-8 col-md-7 col-sm-8 col-xs-9 pull-left">
@@ -87,7 +87,7 @@
               </p>
               <hr>
               <div class="text-center">
-              <%= image_tag(regalo.imagen.normal.url, class: "lazy") if regalo.imagen? %></div>
+              <%= image_tag(regalo.imagen.normal.url) if regalo.imagen? %></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
