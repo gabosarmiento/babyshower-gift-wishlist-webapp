@@ -6,9 +6,9 @@
   <body>
     <h3>Has recibido una invitación de parte de <%= User.find(@convidado.anfitrion_id).name.to_s.humanize.titleize %></h3>
     <p>Queremos invitarte a la celebración del <strong><%= @convidado.fiesta.nombre.humanize.titleize%></strong>.</p>
-
+    <p>Debes registrarte para que puedas confirmar tu asistencia, ver los invitados, y ver la lista de regalos.</p>
     <p>
-      Para ver más detalles, sigue este link y <%= link_to "accede al portal", @url %> con tus datos.
+      Solo debes seguir este link: <%= link_to "regístrate", @url %>.
     </p>
 
     <p>Te esperamos y que tengas un buen día!</p>
