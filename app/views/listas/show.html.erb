@@ -86,7 +86,7 @@ ready = function() {
     var selector = "#" + $(this).attr('data-selector');
     $(selector).modal('show');
   });
-  $('.modal').on('shown', function (){
+  $('.modal').on('show', function (){
     $("img").lazyload();
   });
 };
