@@ -85,9 +85,7 @@ ready = function() {
     var selector = "#" + $(this).attr('data-selector');
     $(selector).modal('show');
   });
-  $("img").lazyload({
-    skip_invisible : false
-  });
+  $("img").lazyload();
 };
 $(document).ready(ready);
 $(document).on('page:load', ready);
