@@ -1,7 +1,6 @@
 class FiestasController < ApplicationController
   def index
     @fiestas = current_user.fiestas
-    @invitaciones_ids = current_user.invitaciones.pluck(:fiesta_id)
     @fiesta = Fiesta.new
     authorize @fiestas
   end
@@ -58,6 +57,9 @@ class FiestasController < ApplicationController
     end
   end
 
+  def invitaciones
+     @invitaciones_ids = current_user.invitaciones.pluck(:fiesta_id)
+  end
   private
   def fiesta_params
     params.require(:fiesta).permit(:nombre, :descripcion, :fecha_y_hora_inicio, :fecha_y_hora_cierre, :lugar)

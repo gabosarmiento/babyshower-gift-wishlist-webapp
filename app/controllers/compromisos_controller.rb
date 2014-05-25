@@ -38,6 +38,10 @@ class CompromisosController < ApplicationController
   end
 
   def actualizar_compromiso(new_value)
-      @compromiso.update_attributes(:value => new_value, :user_id => current_user.id)
+      if new_value == "disponible" 
+        @compromiso.update_attributes(:value => new_value, :user_id => nil)
+      else
+         @compromiso.update_attributes(:value => new_value, :user_id => current_user.id)
+      end
   end
 end

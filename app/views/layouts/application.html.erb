@@ -31,9 +31,12 @@
           <ul class="nav navbar-nav">
             <li><%= link_to "inicio", root_path %></li>
             <% if current_user %>
-            <li> <a href="#about" class="smoothScroll"> Invitaciones</a></li>
-            <li> <a href="#services" class="smoothScroll"> Fiestas</a></li>
-            <li> <a href="#team" class="smoothScroll"> Regalos</a></li>
+            <li> <%= link_to fiestas_path do %>
+              <i class="fa fa-ticket"></i> Fiestas
+             <% end %></li>
+            <li> <%= link_to invitaciones_path do %><i class="fa fa-envelope"></i> Invitaciones<% end %></li>
+            <li> <%= link_to regalos_reservados_path do %>
+              <i class="fa fa-gift"></i> Regalos<% end %></li>
             <% end %>
           </ul>
           <ul class="nav navbar-nav navbar-right">

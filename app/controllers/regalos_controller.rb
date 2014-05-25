@@ -71,6 +71,10 @@ class RegalosController < ApplicationController
     end
     render nothing: true
   end
+
+  def reservados
+    @compromisos = current_user.compromisos
+  end
   def regalo_params
     params.require(:regalo).permit(:titulo, :descripcion, :imagen, :url, :remote_imagen_url, :donde_lo_consigues, :position)
   end

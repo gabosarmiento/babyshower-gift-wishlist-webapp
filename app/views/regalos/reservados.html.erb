@@ -1,0 +1,24 @@
+<div class="container" id="regalos-container">
+  <div class="row">
+    <!-- Regalos que tienes el compromiso de comprar-->
+     <div class="col-sm-12">
+      <div class="well">
+      <h3>Mis regalos reservados
+        <span class="badge badge-info"><%= @compromisos.count if @compromisos %></span>
+      </h3>
+      <span class="help-block">
+        Los regalos que tu seleccionaste en las listas en las que fuiste invitado.
+      </span>
+      </div>
+      <% unless @compromisos.empty? %>
+        <% @compromisos.each do |compromiso| %>
+          <div class="lista-compromisos"> 
+          <%= link_to compromiso.regalo.lista.fiesta.nombre, compromiso.regalo.lista.fiesta %>
+          <%= compromiso.regalo.lista.fiesta.fecha %>
+          <%= render compromiso.regalo %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

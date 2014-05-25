@@ -1,4 +1,6 @@
 Eclist::Application.routes.draw do
+  get '/invitaciones' => 'fiestas#invitaciones'
+  get '/regalos_reservados' => 'regalos#reservados'
   resources :fiestas do
     resources :convidados
     resources :listas do

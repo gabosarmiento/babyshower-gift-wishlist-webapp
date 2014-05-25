@@ -35,4 +35,8 @@ class Fiesta < ActiveRecord::Base
       end
     end
   end
+
+  def fecha
+    self.fecha_y_hora_inicio
+  end
 end
