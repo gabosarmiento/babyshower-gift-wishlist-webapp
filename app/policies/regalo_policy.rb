@@ -7,11 +7,11 @@ class RegaloPolicy < ApplicationPolicy
   end
   
   def show?
-     user.present? && (record.lista.fiesta.users.first == user || user.role?(:admin)) 
+     user.present? && (record.lista.fiesta.users.first == user || user.role?(:admin) || record.lista.fiesta.esta_invitado?(user)) 
   end
 
   def update?
-    show?
+     user.present? && (record.lista.fiesta.users.first == user || user.role?(:admin)) 
   end
 
   def destroy?
