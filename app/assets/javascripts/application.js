@@ -18,6 +18,7 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require smooth-scroll
+//= require jquery.noty
 //= require_tree .
 $(document).ready(function(){
   $(".alert").delay(4500).slideUp().fadeOut(2000); 
