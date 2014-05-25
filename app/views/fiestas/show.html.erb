@@ -82,11 +82,11 @@
         <span>No hay listas de regalos disponibles aún. </span>
         <% end %>
         <% else %>
-        <span><%= link_to "ver lista de regalos", fiesta_lista_path(@fiesta, @lista), class: "btn btn-lg btn-success" %></span>
+        <span><%= link_to "ver lista de regalos", fiesta_lista_path(@fiesta, @lista), class: "btn btn-lg btn-info" %></span>
         <% end %>
     </div>
     <div class="col-lg-3">
-      <span><%= link_to "ver lista de invitados", fiesta_convidados_path(@fiesta) , class: "btn btn-lg btn-success"%>
+      <span><%= link_to "ver lista de invitados", fiesta_convidados_path(@fiesta) , class: "btn btn-lg btn-primary"%>
       </span>
     </div>
     </div>
@@ -104,14 +104,14 @@
         </div>
         <div class="col-lg-6">
           <p><t>Email</t><br/>
-            <% if @fiesta.email_contacto.nil? %>
+            <% if @fiesta.email_contacto.nil? || @fiesta.email_contacto.empty? %>
             <%= @fiesta.users.first.email %>
             <% else %>
             <%= @fiesta.email_contacto %> 
             <% end %>
             <br/>
           </p>
-          <% if @fiesta.telefono_contacto %>
+          <% unless @fiesta.telefono_contacto.nil? || @fiesta.telefono_contacto.empty? %>
           <p><t>Teléfono</t><br/>
             <%= @fiesta.telefono_contacto %> <br/>
           </p>

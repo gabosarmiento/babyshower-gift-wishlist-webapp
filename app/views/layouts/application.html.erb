@@ -26,7 +26,7 @@
       <div class="container">
         <div class="navbar-header">
           <%= link_to root_path, class: "navbar-brand hidden-xs hidden-sm" do %>
-          <span class="fa fa-book" style="font-size:25px; color:#3498db;"> La lista</span>
+          <span class="fa fa-book" style="font-size:25px; color:#fff;"> La lista</span>
           <% end %>
         </div>
         <div class="navbar-collapse collapse">
@@ -43,7 +43,9 @@
           <ul class="nav navbar-nav navbar-right">
             <div class="user-info">
             <% if current_user %>
-              Hola <%= link_to (current_user.name || current_user.email), edit_user_registration_path %>! <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %>
+              Hola <%= link_to (current_user.name || current_user.email), edit_user_registration_path %>! <%= link_to destroy_user_session_path, method: :delete do %>
+               Cerrar sesión <i class="fa fa-power-off"></i>
+              <% end %>
             <% else %>
               <%= link_to "Ya eres miembro? Ingresa", ingresar_path %> 
             <% end %>

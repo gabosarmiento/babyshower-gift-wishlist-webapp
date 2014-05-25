@@ -1,6 +1,6 @@
 <div class="container" id="regalos-container">
 <ol class="breadcrumb">
-  <li>Fiestas / <%= link_to @fiesta.nombre, @fiesta %> / <%= link_to @lista.nombre, [@fiesta, @lista] %> / regalos / <%= @regalo.titulo %>
+  <li><%= link_to @fiesta.nombre, @fiesta %> / <%= link_to @lista.nombre, [@fiesta, @lista] %> / regalos / <%= @regalo.titulo %>
   </li>
 </ol>
   <div class="panel panel-default">

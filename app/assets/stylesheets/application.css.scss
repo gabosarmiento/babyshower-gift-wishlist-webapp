@@ -448,18 +448,15 @@ a:after {
    =============== */
 
 #intro {
-  background: #2c3e50;
+  background: #ccc;
   padding-top: 60px;
   padding-bottom: 60px;
-  color: white;
+  color: black;
 } 
 
-#intro h5, p {
-  color: white;
-}
+
 
 #intro i {
-  color: white;
   font-size: 20px;
   padding-right: 8px;
   vertical-align: middle;
@@ -499,12 +496,19 @@ sm {
 .user-info {
   margin-top: 12px;
    color: #999999;
+   a {
+    color: white;
+   }
+   a:hover {
+    color: #999999;
+   }
 }
 
 .nav {
   margin-top: 5px;
   i {
     font-size: 20px;
+    color: white;
   }
 }
 
@@ -523,7 +527,7 @@ sm {
   margin-bottom: 2px;
 }
 
-#signup, #signin, #passwords, #confirmations, #registrations, #fiestas-container, #listas-container, #regalos-container, #alert-container {
+#signup, #signin, #passwords, #confirmations, #registrations, #fiestas-container, #listas-container, #regalos-container, #alert-container , #convidados-container{
   margin-top: -50px;
   padding-top:120px;
 }

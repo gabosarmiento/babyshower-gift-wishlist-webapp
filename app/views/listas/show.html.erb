@@ -1,6 +1,6 @@
 <div class="container" id="listas-container">
 <ol class="breadcrumb">
-    <li>Fiestas / <%= link_to @fiesta.nombre, @fiesta %> / <%= @lista.nombre %></li>
+    <li><%= link_to @fiesta.nombre, @fiesta %> / <%= @lista.nombre %></li>
   </ol>
 
   <% if @lista.regalos.empty? %>
