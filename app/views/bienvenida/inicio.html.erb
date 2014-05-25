@@ -1,27 +1,64 @@
-<div class="jumbotron">
-<h1>La Lista</h1>
-<p>Una herramienta para gestionar listas de regalos</p>
-<h3>Busca la lista a la que fuiste invitado y se el primero en reservar el regalo. </h3>
-<%= link_to "Regístrate hoy!", registrarse_path, class: "btn btn-lg btn-info"%>
+<!-- ==== HEADERWRAP ==== -->
+  <div id="headerwrap" id="home" name="home">
+  <header class="clearfix">
+        <h1><span class="fa fa-gift"></span></h1>
+        <p>Una aplicación para gestionar listas de regalos para personas descomplicadas.</p>
+        <%= link_to "Regístrate!", registrarse_path, class: "btn btn-lg btn-info"%>
+    </header>     
+  </div><!-- /headerwrap -->
+
+<!-- ==== GREYWRAP ==== -->
+    <div id="greywrap">
+      <div class="row">
+        <div class="col-lg-4 callout">
+          <span class="fa fa-book"></span>
+          <h2>Lista de regalos sencilla</h2>
+          <p>Crea una lista, publica los regalos sin un precio o cantidad. Añade una foto o un link donde lo viste y listo.</p>
+        </div><!-- col-lg-4 --> 
+
+        <div class="col-lg-4 callout">
+          <span class="fa fa-glass"></span>
+          <h2>Invita a tus familiares o amigos</h2>
+          <p>Como anfitrión de la fiesta puedes invitar vía correo a todos tus seres queridos y notificarles de cualquier novedad.</p>
+        </div><!-- col-lg-4 -->
+        
+        <div class="col-lg-4 callout">
+          <span class="fa fa-heart"></span>
+          <h2>Regalitos preferidos</h2>
+          <p>Cada invitado podrá reservar los regalos que más les guste y la aplicación le ayudará a conseguirlo antes de la fecha de la fiesta.</p>
+        </div><!-- col-lg-4 --> 
+      </div><!-- row -->
+    </div><!-- greywrap -->
+    
+
+    <!-- ==== SERVICES ==== -->
+    <div class="container" id="services" name="services">
+      <br>
+      <br>
+      <div class="row">
+        <h2 class="centered">Una aplicación desde el corazón.</h2>
+        <hr>
+        <br>
+        <div class="col-lg-offset-2 col-lg-8">
+          <p>Cuando iba a nacer mi hija, construí esta aplicación para su baby shower. 
+          </p>
+          <p>En nuestra primera fiesta lo único que queremos es que las personas escojan el regalo que más les llame la atención, lo reserven y lo traigan a la fiesta.</p>
+          <p>Dejar una lista de regalos en cualquier tienda de cadena se ha vuelto la moda pero para nosotros eso es muy impersonal, y no nos gusta la idea de casi obligar a la gente a que compren productos de una tienda en particular. Es por eso que preferimos que las personas compren sus regalos donde prefieran, pero que tengan una lista en la que se pueden guiar.</p>
+          <p>
+          </p>
+          <p>Al final si alguién quiere traer algo que no está en la lista, se puede y si está en La Lista genial!.</p>
+          <p>Gracias por participar</p> 
+        </div><!-- col-lg -->
+      </div><!-- row -->
+      
+      <div class="row">
+        <h2 class="centered">Pruébala ahora.</h2>
+        <hr>
+        <br>
+        <div class="col-lg-offset-2 col-lg-8 centered">
+          <%= link_to "Regístrate hoy!", registrarse_path, class: "btn btn-lg btn-info centered"%>
+        </div><!-- col -->
+      </div><!-- row -->
+    </div><!-- container -->
 
 </div>
-<br>
-<div class="">
-
-<q>Cuando iba a nacer mi hija, construí esta sencilla aplicación para su baby shower. Ojalá logre hacerle la vida más fácil a quienes quieran organizar una lista de regalos. No tiene costo y si la necesitas para tu fiesta genial úsala!</q>
-</div>
-<!-- <div class="row">
-  <div class="col-md-4">
-    <h2>Regístrate con nosotros</h2>
-    <p>La Lista te permite registrarte fácilmente con tu cuenta de correo o con tu cuenta en facebook. Como usuario podrás crear tus propias fiestas con listas de regalos e invitar a todos tus familiares o amigos, o recibir invitaciones a fiestas de tus amigos.</p>
-  </div>
-  <div class="col-md-4">
-    <h2>Crea los productos</h2>
-    <p>Como anfitrión de la fiesta puedes añadir la cantidad de regalos que tu quieras. Puedes subir imágenes de las cosas que te gustan y hacer más atractivos los regalos. Si lo que deseas es regalar, entonces podrás infórmale al anfitrión de la fiesta que deseas reservar un regalo y tu intención de compra permitirá que tu producto no pueda ser comprado por alguien más. </p>
-  </div>
-  <div class="col-md-4">
-    <h2>Compra los productos</h2>
-    <p>La Lista te brinda la información ampliada de la fiesta, de los invitados y de los regalos que espera el anfitrión. Lo mejor de todo es que tu puedes comprar los regalos de tu preferencia en el lugar que prefieras. Tu decides cuánto presupuesto asignar y cuando ya lo tengas en tu poder debes notificar que has comprado el producto para que el anfitrión sepa qué regalos quedan disponibles.</p>
-  </div>
-</div>
- -->

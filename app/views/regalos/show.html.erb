@@ -1,3 +1,4 @@
+<div class="container" id="regalos-container">
 <ol class="breadcrumb">
   <li>Fiestas / <%= link_to @fiesta.nombre, @fiesta %> / <%= link_to @lista.nombre, [@fiesta, @lista] %> / regalos / <%= @regalo.titulo %>
   </li>
@@ -34,3 +35,4 @@
   </div>
 
 <%= link_to "<< Volver a lista", fiesta_lista_path(@fiesta, @lista) , class: "btn btn-primary btn-xs"%>
+</div>
