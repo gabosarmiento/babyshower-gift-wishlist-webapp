@@ -332,7 +332,29 @@ a:after {
   margin-bottom: 10px;
 }
 
+#footwrap {
+  background: #2f2f2f;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
 
+#footwrap p {
+  color: white;
+}
+
+#footwrap h5 {
+  color: white;
+}
+
+
+#footwrap t {
+  font-weight: 700;
+}
+
+#footwrap i {
+  padding-right: 8px;
+  color: #1abc9c;
+}
 /* ==========================================================================
    MEDIA QUERIES
    ========================================================================== */
@@ -415,9 +437,65 @@ a:after {
   font-size: 25px;
 }
 
+/* Section Dividers Backgrounds */
+
+.divider1 {
+  background-image: url(divider1.jpg)
+}
+
 /* ===============
    Other Settings
    =============== */
+
+#intro {
+  background: #2c3e50;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  color: white;
+} 
+
+#intro h5, p {
+  color: white;
+}
+
+#intro i {
+  color: white;
+  font-size: 20px;
+  padding-right: 8px;
+  vertical-align: middle;
+}
+
+/* Global Values */
+
+.desc {
+  padding-top: 50px;
+}
+
+.desc p {
+  color: #2f2f2f;
+}
+
+.desc t {
+  color: #34495e;
+  font-weight: 700;
+}
+
+.desc imp {
+  padding: 6px;
+  color: white;
+  background: #34495e;
+}
+
+.desc more {
+  color: #95a5a6;
+}
+
+
+sm {
+  font-size: 12px;
+}
+
+
 .user-info {
   margin-top: 12px;
    color: #999999;

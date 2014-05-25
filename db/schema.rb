@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140524193746) do
+ActiveRecord::Schema.define(version: 20140525091903) do
 
   create_table "compromisos", force: true do |t|
     t.integer  "user_id"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 20140524193746) do
     t.string   "lugar"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email_contacto"
+    t.string   "telefono_contacto"
   end
 
   create_table "listas", force: true do |t|

@@ -71,7 +71,26 @@
         </div>
       </div>
     </div>
-
+    <div class="row">
+      <div class="col-sm-12">
+        <%= form_group_tag(fiesta.errors[:telefono_contacto]) do %>
+        <div class="form-group">
+            <%= f.label :telefono_contacto, "teléfono de contacto" %>
+            <%= f.text_field :telefono_contacto, class: "form-control", placeholder: "ingresa el teléfono o móvil" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <%= form_group_tag(fiesta.errors[:email_contacto]) do %>
+        <div class="form-group">
+            <%= f.label :email_contacto %>
+            <%= f.text_field :email_contacto, class: "form-control", placeholder: "ingresa el mail de contacto. Dejar en blanco si es el mismo de tu cuenta." %>
+        </div>
+        <% end %>
+      </div>
+    </div>
     <div class="row">
       <div class="col-sm-12">
         <div class="form-group">

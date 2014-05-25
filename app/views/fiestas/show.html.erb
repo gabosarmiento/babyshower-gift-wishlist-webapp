@@ -1,31 +1,81 @@
-<div class="container" id="fiestas-container">
-<div class="fiesta">
+<!-- ==== SECTION DIVIDER1 -->
+  <section class="section-divider textdivider divider1">
+    <div class="container">
+      <h1><%= @fiesta.nombre.to_s.capitalize %></h1>
+      <hr>
+      <p><%= @fiesta.users.first.name %> | <%= @fiesta.users.first.email %></p>
+      <% if policy(@fiesta).update? %>
+    <span>
+      <%= link_to "editar", edit_fiesta_path(@fiesta), class: "btn btn-primary btn-md" %></span>
+    <span>
+    <%= link_to "borrar", @fiesta, method: :delete, data: {confirm: "Estas seguro de borrar esta fiesta?"}, class: "btn btn-danger btn-md" %>
+    </span>
+<% end %>
+    </div><!-- container -->
+  </section><!-- section -->
+
+<section id="descripcion" name="descripcion"></section>
+  <div id="intro">
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-lg-2 col-lg-offset-1">
+          <h5>Descripción</h5>
+        </div>
+        <div class="col-lg-6">
+          <%= simple_format(@fiesta.descripcion) %>
+        </div>
+       <!--  <div class="col-lg-3">
+          <p><a href="#"><i class="fa fa-check"></i></a> <sm>Confirmar asistencia</sm></p>
+        </div> -->
+        
+      </div><!--/.row -->
+    </div><!--/.container -->
+  </div><!--/ #intro -->
+
+<section id="fecha" name="fecha"></section>
+<div class="container desc">
   <div class="row">
-    <div class="col-sm-12">
-      <div class="jumbotron">
-        <h3><%= @fiesta.nombre.humanize.titleize %><% if policy(@fiesta).update? %>
-          <small>
-            <span>
-              <%= link_to "editar", edit_fiesta_path(@fiesta), class: "btn btn-primary btn-xs" %></span>
-            <span>
-            <%= link_to "borrar", @fiesta, method: :delete, data: {confirm: "Estas seguro de borrar esta fiesta?"}, class: "btn btn-danger btn-xs" %>
-            </span>
-          </small>
-          <% end %>
-        </h3>
-        <hr>
-        <p><%= simple_format(@fiesta.descripcion) %></p>
-       
-        <p>Dónde: <strong><%= @fiesta.lugar %></strong></p>
-      
-        <p>Cuando: <strong><time><%= @fiesta.fecha_y_hora_inicio %></time></strong> a <strong><time><%= @fiesta.fecha_y_hora_cierre %></time></strong></p>
-      </div> 
+    <div class="col-lg-2 col-lg-offset-1">
+      <h5>Fecha y Hora</h5>
+    </div>
+    <div class="col-lg-6">
+      <p><t>inicio - </t><time><%= @fiesta.fecha_y_hora_inicio %></time><br/>
+         <t>cierre - </t><time><%= @fiesta.fecha_y_hora_cierre %></time><br/>
+      </p>
+    </div>
+    <!-- <div class="col-lg-3">
+      <p><sm>DD:HH:MM:SS</sm><br/>
+      <imp><sm>Tiempo restante</sm></imp>
+      </p>
+    </div> -->
+  </div>
+  <br>
+    <hr>
+</div>
+
+<section id="lugar" name="lugar"></section>
+<div class="container desc">
+  <div class="row">
+    <div class="col-lg-2 col-lg-offset-1">
+      <h5>Lugar</h5>
+    </div>
+    <div class="col-lg-6">
+      <p><t><%= @fiesta.lugar %></t></p>
     </div>
   </div>
+  <br>
+  <hr>
+</div>
+
+<section id="listas" name="listas"></section>
+<div class="container desc">
   <div class="row">
-    <div class="col-xs-6">
-      <div class="listas">
-        <% if @fiesta.listas.empty? %>
+    <div class="col-lg-2 col-lg-offset-1">
+      <h5>Listas</h5>
+    </div>
+    <div class="col-lg-3">
+      <% if @fiesta.listas.empty? %>
         <% if policy(@fiesta).update? %>
         <span><%= link_to "Crear lista de regalos", new_fiesta_lista_path(@fiesta), class: "btn btn-primary btn-lg" %></span>
         <% else %>
@@ -34,14 +84,39 @@
         <% else %>
         <span><%= link_to "ver lista de regalos", fiesta_lista_path(@fiesta, @lista), class: "btn btn-lg btn-success" %></span>
         <% end %>
-      </div>
     </div>
+    <div class="col-lg-3">
+      <span><%= link_to "ver lista de invitados", fiesta_convidados_path(@fiesta) , class: "btn btn-lg btn-success"%>
+      </span>
+    </div>
+    </div>
+    <br>
 
-    <div class="col-xs-6">
-      <div class="invitados">
-        <span><%= link_to "ver lista de invitados", fiesta_convidados_path(@fiesta) , class: "btn btn-lg btn-success"%></span>
-      </div>
-    </div>
   </div>
-</div>
-</div>
+<section id="contacto" name="contacto"></section>
+<!--FOOTER DESCRIPTION -->
+  <div id="footwrap">
+    <div class="container">
+      <div class="row">
+      
+        <div class="col-lg-2 col-lg-offset-1">
+          <h5>CONTACTO</h5>
+        </div>
+        <div class="col-lg-6">
+          <p><t>Email</t><br/>
+            <% if @fiesta.email_contacto.nil? %>
+            <%= @fiesta.users.first.email %>
+            <% else %>
+            <%= @fiesta.email_contacto %> 
+            <% end %>
+            <br/>
+          </p>
+          <% if @fiesta.telefono_contacto %>
+          <p><t>Teléfono</t><br/>
+            <%= @fiesta.telefono_contacto %> <br/>
+          </p>
+          <% end %>
+        </div>
+      </div><!--/.row -->
+    </div><!--/.container -->
+  </div><!--/ #footer -->

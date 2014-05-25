@@ -25,11 +25,12 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand hidden-xs hidden-sm" href="#home"><span class="fa fa-shield" style="font-size:18px; color:#3498db;"></span></a>
+          <%= link_to root_path, class: "navbar-brand hidden-xs hidden-sm" do %>
+          <span class="fa fa-book" style="font-size:25px; color:#3498db;"> La lista</span>
+          <% end %>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "inicio", root_path %></li>
             <% if current_user %>
             <li> <%= link_to fiestas_path do %>
               <i class="fa fa-ticket"></i> Fiestas
