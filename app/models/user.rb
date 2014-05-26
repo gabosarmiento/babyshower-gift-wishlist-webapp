@@ -52,6 +52,7 @@ class User < ActiveRecord::Base
                          email: auth.info.email,
                          password: pass,
                          password_confirmation: pass
+                         #avatar: auth.info.image # assuming the user model has an avatar
                         )
       user.skip_confirmation!
       user.asignar_invitaciones 
@@ -59,16 +60,6 @@ class User < ActiveRecord::Base
     end
     return user if user
   end
-  # def self.find_for_facebook_oauth(auth)
-  #   where(auth.slice(:provider, :uid)).first_or_create do |user|
-  #     user.provider = auth.provider
-  #     user.uid = auth.uid
-  #     user.email = auth.info.email
-  #     user.password = Devise.friendly_token[0,20]
-  #     user.name = auth.info.name   # assuming the user model has a name
-  #     user.image = auth.info.image # assuming the user model has an image
-  #   end
-  # end
 
   def asignar_invitaciones
     @invitaciones = Convidado.where(email: self.email)
