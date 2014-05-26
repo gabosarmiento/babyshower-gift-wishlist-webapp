@@ -9,6 +9,7 @@
       Usuarios convidados a la fiesta
     </div>
     <div class="panel-body">
+      <div class="table-responsive">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -35,6 +36,7 @@
           <% end %>
         </tbody>
       </table>
+      </div>
       <% if policy(@convidado).create? %>
       <h3 class="extra-margin-top">Invitar usuarios</h3>
       <%= form_for [@fiesta, @convidado] do |f| %>
