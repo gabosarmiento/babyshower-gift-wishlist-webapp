@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   has_many :fiestas, through: :rsvps
   has_many :invitaciones, :class_name => "Convidado", :foreign_key => 'invitado_id', dependent: :destroy
   has_many :invitaciones_enviadas, :class_name => "Convidado", :foreign_key => 'anfitrion_id', dependent: :destroy
-  before_save :default_role
+  before_create :default_role
 
   # Devise callback for facebook oauth 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
