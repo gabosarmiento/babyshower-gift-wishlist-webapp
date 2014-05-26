@@ -31,8 +31,9 @@
           <div class="todos-list">
             
               <% @disponibles.each do |regalo| %>
-             
+              <div class="hover">
                 <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista,regalo: regalo} %>
+              </div>
               <hr>
               <% end %>
             
@@ -49,7 +50,9 @@
         <div class="panel-body">
           <div class="reservados-list">
             <% @reservados.each do |regalo| %>
+              <div class="hover">
                 <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista, regalo: regalo} %>
+              </div>
               <hr>
               <% end %>
           </div>
@@ -65,8 +68,9 @@
         <div class="panel-body">
           <div class="comprados-list">
           <% @comprados.each do |regalo| %>
-          
+            <div class="hover">
             <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista, regalo: regalo} %>
+            </div>
             <hr>
           <% end %>
           </div>
@@ -86,6 +90,13 @@ ready = function() {
     var selector = "#" + $(this).attr('data-selector');
     $(selector).modal('show');
   });
+  $(".hover").hover(function (e) {
+        $(this).find('#ver-modal').css({"opacity": "0.9"});
+        $(this).find('.btn-modal').css('box-shadow', '1px 1px 1px #888888');
+    }, function (e) {
+        $(this).find('#ver-modal').css({"opacity": "0"}); 
+        $(this).find('.btn-modal').css('box-shadow', 'none');
+    });
 };
 $(document).ready(ready);
 $(document).on('page:load', ready);
