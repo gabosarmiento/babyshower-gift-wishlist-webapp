@@ -34,7 +34,8 @@ class User < ActiveRecord::Base
   has_many :fiestas, through: :rsvps
   has_many :invitaciones, :class_name => "Convidado", :foreign_key => 'invitado_id', dependent: :destroy
   has_many :invitaciones_enviadas, :class_name => "Convidado", :foreign_key => 'anfitrion_id', dependent: :destroy
-  after_create :default_role
+  before_save :default_role
+
   # Devise callback for facebook oauth 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
@@ -53,6 +54,7 @@ class User < ActiveRecord::Base
                          password_confirmation: pass
                         )
       user.skip_confirmation!
+      user.asignar_invitaciones 
       user.save
     end
     return user if user
@@ -68,6 +70,15 @@ class User < ActiveRecord::Base
   #   end
   # end
 
+  def asignar_invitaciones
+    @invitaciones = Convidado.where(email: self.email)
+    unless @invitaciones.empty?
+      @invitaciones.each do |invitacion|
+        self.invitaciones.push(invitacion)
+      end
+    end
+  end
+
   def role?(base_role)
   role == base_role.to_s
   end
@@ -76,6 +87,11 @@ class User < ActiveRecord::Base
   private
   def default_role
     self.role = 'member'
-    self.save
+    self.asignar_invitaciones
   end
+ 
+  # protected
+  # def confirmation_required?
+  #   false
+  # end
 end

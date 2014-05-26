@@ -1,10 +1,14 @@
-Has recibido una invitación de parte de <%= User.find(@convidado.anfitrion_id).name.to_s.humanize.titleize %>
+Has recibido una invitación de parte de <%= User.find(@convidado.anfitrion_id).name.to_s.humanize.titleize %>!
 ===============================================
 
-Queremos hacerte participe de la celebración del <%= @convidado.fiesta.nombre.humanize.titleize %>.
+Queremos invitarte a la celebración del <%= @convidado.fiesta.nombre.humanize.titleize %>.
 
-Te invitamos a registrarte para que puedas confirmar tu asistencia, ver los invitados, y ver la lista de regalos.
+Ingresa a nuestra <%= link_to "aplicación", @url %> y entre todos haremos que la entrega de regalos sea más divertida.
 
-Para ver los detalles de la fiesta, solo debes seguir este link: <%= link_to "regístrate", @url %>.
+Regístrate vía facebook o con tus datos personales, mira el detalle de los regalos y reserva el que más te guste.
 
-Te esperamos y que tengas un buen día!
+Espero que te facilite la vida esta nueva aplicación.
+
+Un abrazo,
+
+Gabo Sarmiento

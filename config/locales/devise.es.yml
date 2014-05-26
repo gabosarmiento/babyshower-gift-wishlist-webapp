@@ -2,8 +2,8 @@
 es:
   devise:
     confirmations:
-      confirmed: "Tu cuenta ya ha sido confirmada."
-      confirmed_and_signed_in: "Tu cuenta ya ha sido confirmada. Has sido identificado."
+      confirmed: "Tu cuenta ha sido confirmada."
+      confirmed_and_signed_in: "Tu cuenta ha sido confirmada. Has sido identificado."
       send_instructions: "Recibirás un correo electrónico en unos minutos con instrucciones sobre cómo restablecer tu contraseña."
       send_paranoid_instructions: "Si tu correo electrónico existe en nuestra base de datos recibirás un correo electrónico en unos minutos con instrucciones sobre cómo reiniciar tu contraseña."
     failure:

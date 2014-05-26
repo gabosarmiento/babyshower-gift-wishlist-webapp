@@ -4,13 +4,19 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h3>Has recibido una invitación de parte de <%= User.find(@convidado.anfitrion_id).name.to_s.humanize.titleize %></h3>
+    <h3>Has recibido una invitación de parte de <%= User.find(@convidado.anfitrion_id).name.to_s.humanize.titleize %>!</h3>
+
     <p>Queremos invitarte a la celebración del <strong><%= @convidado.fiesta.nombre.humanize.titleize%></strong>.</p>
-    <p>Debes registrarte para que puedas confirmar tu asistencia, ver los invitados, y ver la lista de regalos.</p>
     <p>
-      Solo debes seguir este link: <%= link_to "regístrate", @url %>.
+      Ingresa a nuestra <%= link_to "aplicación", @url %> y entre todos haremos que la entrega de regalos sea más divertida.</p></p>  
+
+    <p>Regístrate vía facebook o con tus datos personales, mira el detalle de los regalos y reserva el que más te guste.
     </p>
 
-    <p>Te esperamos y que tengas un buen día!</p>
+    <p>Espero que te facilite la vida esta nueva aplicación.</p>
+
+    <p>Saludos,</p>
+    <p><strong>Gabo Sarmiento</strong></p>
+
   </body>
 </html>

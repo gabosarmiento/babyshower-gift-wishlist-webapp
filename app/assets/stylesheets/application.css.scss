@@ -539,10 +539,14 @@ sm {
   margin-bottom: 2px;
 }
 
-#signup, #signin, #passwords, #confirmations, #registrations, #fiestas-container, #listas-container, #regalos-container, #alert-container , #convidados-container{
+#signup, #signin, #passwords, #confirmations, #registrations, #fiestas-container, #listas-container, #regalos-container , #convidados-container{
   margin-top: -50px;
   padding-top:120px;
 }
+
+ #alert-container {
+  margin-top: 60px;
+ }
 
 .btn-facebook {
   color: white;

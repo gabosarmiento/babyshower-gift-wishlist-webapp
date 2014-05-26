@@ -28,7 +28,8 @@ class ConvidadosController < ApplicationController
        # @convidado.invitado.invitaciones.push(@convidado)
        # @convidado.invitado.fiestas.push(@convidado.fiesta)
     else
-      ConvidadoMailer.nuevo_usuario_convidado(@convidado, new_user_registration_url(:convidado_token => @convidado.token)).deliver #enviar la invitación a nuestro mailer para que entregue el mailer
+      # ConvidadoMailer.nuevo_usuario_convidado(@convidado, new_user_registration_url(:convidado_token => @convidado.token)).deliver #enviar la invitación a nuestro mailer para que entregue el mailer
+      ConvidadoMailer.nuevo_usuario_convidado(@convidado, new_user_registration_url).deliver #enviar la invitación a nuestro mailer para que entregue el mailer
     end
       redirect_to fiesta_convidados_path(@fiesta), notice: "Invitación enviada exitosamente."
    else

@@ -2,10 +2,16 @@
 <h2>Regístrate</h2>
 <div class="row">
   <div class="col-md-8">
+    <%= link_to user_omniauth_authorize_path(:facebook), class: "btn btn-facebook" do %>
+      <span>Accede vía Facebook</span>
+        <% end %>
+      <div class="text-with-hr">
+        <span>o utiliza tus datos</span>
+      </div>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <% if @token != nil %>
-        <%= hidden_field_tag :convidado_token, @token %>
-      <% end %>
+      <%# if @token != nil %>
+        <%# hidden_field_tag :convidado_token, @token %>
+      <%# end %>
       <%= devise_error_messages! %>
       <div class="form-group">
         <%= f.label :name, "Nombre" %>
