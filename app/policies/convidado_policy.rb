@@ -1,6 +1,6 @@
 class ConvidadoPolicy < ApplicationPolicy
   def index?
-    true
+    user.present? 
   end
 
   def create?

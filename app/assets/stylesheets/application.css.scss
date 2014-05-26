@@ -543,3 +543,71 @@ sm {
   margin-top: -50px;
   padding-top:120px;
 }
+
+.btn-facebook {
+  color: white;
+  position: relative;
+  text-align: center;
+  height: 40px;
+  width: 100%;
+  font-family: 'FontAwesome';
+  font-weight: bold;
+  padding: 10px 0;
+}
+
+.btn-facebook:before {
+  position: absolute;
+  display: block;
+  height: 40px;
+  width: 40px;
+  top: 0;
+  left: 0;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  font-size: 20px;
+  padding: 6px 0;
+}
+
+.btn-facebook span {
+  margin-left: 40px;
+}
+
+.btn-facebook {
+  background: #3b5998;
+  border: 1px solid #3b5998;
+}
+
+.btn-facebook:before {
+  content: "\f09a";
+  background: #344e86;
+  margin: -1px;
+}
+.btn-facebook:hover {
+  background: #344e86;
+}
+.btn-facebook:hover:before {
+  background: #2d4373;
+}
+
+/* Text with HR Line
+=================================================================== */
+.text-with-hr {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.text-with-hr:before {
+  position: absolute;
+  content: '';
+  top: 20px;
+  left: 0px;
+  width: 100%;
+  border-bottom: 1px solid #e1e6ef;
+  z-index: -1;
+}
+.text-with-hr span {
+  display: inline-block;
+  background: white;
+  padding: 10px;
+}

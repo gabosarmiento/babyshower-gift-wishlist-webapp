@@ -26,7 +26,7 @@ es:
         subject: "Instrucciones de desbloqueo"
     omniauth_callbacks:
       failure: "No se te pudo autorizar de %{kind} debido a \"%{reason}\"."
-      success: "Identificado correctamente de %{kind}."
+      success: "Identificado correctamente por %{kind}."
     passwords:
       no_token: "No puedes acceder a esta página sino es por medio de un enlace para restablecer contraseña. Si accediste desde el enlace para restablecer la contraseña, asegúrate de que la URL esté completa."
       send_instructions: "Recibirás un correo electrónico con instrucciones sobre cómo restablecer tu contraseña en unos minutos."
@@ -34,7 +34,7 @@ es:
       updated: "Tu contraseña se cambió correctamente. Has sido identificado."
       updated_not_active: "Tu contraseña se cambió correctamente."
     registrations:
-      destroyed: "¡Adiós! Tu cuenta ha sido cancelada. Esperamos volver a verte pronto."
+      destroyed: "Tu cuenta ha sido cancelada. Esperamos volver a verte pronto."
       signed_up: "¡Bienvenido! Has sido identificado."
       signed_up_but_inactive: "Te has registrado correctamente, pero no has podido iniciar sesión porque no has activado tu cuenta."
       signed_up_but_locked: "Te has registrado correctamente, pero no has podido iniciar sesión porque tu cuenta está bloqueada."

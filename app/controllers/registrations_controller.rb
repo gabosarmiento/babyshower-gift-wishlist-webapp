@@ -9,7 +9,7 @@ class RegistrationsController < Devise::RegistrationsController
     @token = params[:convidado_token]
 
     build_resource(sign_up_params)
-    resource.skip_confirmation!
+    # resource.skip_confirmation!
     resource_saved = resource.save
     yield resource if block_given?
     if resource_saved

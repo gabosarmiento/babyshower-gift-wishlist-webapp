@@ -14,7 +14,7 @@ Eclist::Application.routes.draw do
     end
   end
   
-  devise_for :users, controllers: { registrations: 'registrations' }
+  devise_for :users, controllers: { registrations: 'registrations' , :omniauth_callbacks => "omniauth_callbacks"}
   devise_scope :user do
   get "ingresar", to: "devise/sessions#new"
   get "registrarse", to: "devise/registrations#new"

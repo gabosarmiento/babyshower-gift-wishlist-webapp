@@ -3,6 +3,12 @@
 
   <div class="row">
     <div class="col-md-8">
+      <%= link_to user_omniauth_authorize_path(:facebook), class: "btn btn-facebook" do %>
+      <span>Ingresa vía Facebook</span>
+        <% end %>
+      <div class="text-with-hr">
+        <span>o utiliza tu email y contraseña</span>
+      </div>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <%= devise_error_messages! %>
         <div class="form-group">
