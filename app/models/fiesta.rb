@@ -19,10 +19,10 @@ class Fiesta < ActiveRecord::Base
   extend FriendlyId
   friendly_id :nombre, use: [:slugged, :history]
 
-  has_many :rsvps
+  has_many :rsvps, dependent: :destroy
   has_many :users, through: :rsvps, source: :anfitrion
-  has_many :listas
-  has_many :convidados
+  has_many :listas, dependent: :destroy
+  has_many :convidados, dependent: :destroy
   
   validates :nombre, length: { minimum: 5 }, presence: true
   validates :descripcion, length: { minimum: 10 }, presence: true

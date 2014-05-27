@@ -41,7 +41,7 @@
             <% end %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <% if current_user.role?(:admin) %>
+            <% if current_user && current_user.role?(:admin) %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">funcionalidades en desarrollo<b class="caret"></b></a>
                 <ul class="dropdown-menu">

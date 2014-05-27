@@ -14,7 +14,7 @@ class Lista < ActiveRecord::Base
   extend FriendlyId
   friendly_id :nombre, use: [:slugged, :history]
   belongs_to :fiesta
-  has_many :regalos
+  has_many :regalos, dependent: :destroy
   
   validates :nombre, length: { minimum: 5 }, presence: true
    def should_generate_new_friendly_id?
