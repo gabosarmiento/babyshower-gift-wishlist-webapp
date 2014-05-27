@@ -41,7 +41,23 @@
             <% end %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <div class="user-info">
+            <!-- <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">funcionalidades en desarrollo<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">tips para fiestas</a></li>
+                  <li><a href="#">fotos de fiestas organizadas</a></li>
+                  <li><a href="#">to-do list para organizadores</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">buscador de regalos</a></li>
+                  <li><a href="#">buscador en tiendas</a></li>
+                  <li><a href="#">buscador de proveedores</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">tienes algún requerimiento especial?</a></li>
+                  <li class="divider"></li>
+
+                </ul>
+            </li> -->
+            <li><div class="user-info">
             <% if current_user %>
               Hola <%= link_to (current_user.name || current_user.email), edit_user_registration_path %>! <%= link_to destroy_user_session_path, method: :delete do %>
                Salir <i class="fa fa-power-off"></i>
@@ -50,6 +66,7 @@
               <%= link_to "Ya eres miembro? Ingresa", ingresar_path %> 
             <% end %>
             </div>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
