@@ -28,7 +28,7 @@ class CompromisosController < ApplicationController
   private
 
   def setup
-    @lista = Lista.find(params[:lista_id])
+    @lista = Lista.friendly.find(params[:lista_id])
     @regalo = @lista.regalos.find(params[:regalo_id])
     if @regalo.compromiso.nil?
       @compromiso = @regalo.create_compromiso

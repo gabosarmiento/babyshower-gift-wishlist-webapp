@@ -21,6 +21,8 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #  role                   :string(255)
+#  provider               :string(255)
+#  uid                    :string(255)
 #
 
 class User < ActiveRecord::Base

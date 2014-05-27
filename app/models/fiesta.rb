@@ -12,9 +12,13 @@
 #  updated_at          :datetime
 #  email_contacto      :string(255)
 #  telefono_contacto   :string(255)
+#  slug                :string(255)
 #
 
 class Fiesta < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :nombre, use: [:slugged, :history]
+
   has_many :rsvps
   has_many :users, through: :rsvps, source: :anfitrion
   has_many :listas
@@ -29,6 +33,7 @@ class Fiesta < ActiveRecord::Base
   validates_format_of :fecha_y_hora_inicio, :with => /\A(0[1-9]|1[012])[\/](0[1-9]|[12][0-9]|3[01])[\/](20)\d\d(\s)(0?[1-9]|1[012])(:[0-5]\d)(\s)([AP]M)\Z/
   validates :telefono_contacto, :allow_blank => true, presence: true
   validates :email_contacto, :allow_blank => true, presence: true
+
   def esta_invitado?(user)
     unless self.convidados.empty?
       self.convidados.each do |u|
@@ -41,5 +46,9 @@ class Fiesta < ActiveRecord::Base
 
   def fecha
     self.fecha_y_hora_inicio
+  end
+
+  def should_generate_new_friendly_id?
+   nombre_changed?
   end
 end

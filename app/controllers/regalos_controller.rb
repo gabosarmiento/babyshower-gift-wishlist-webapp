@@ -1,35 +1,35 @@
 class RegalosController < ApplicationController
   def index
-    @fiesta = Fiesta.find(params[:fiesta_id])
-    @lista = @fiesta.listas.find(params[:lista_id])
+    @fiesta = Fiesta.friendly.find(params[:fiesta_id])
+    @lista = @fiesta.listas.friendly.find(params[:lista_id])
     @regalos = @lista.regalos.order("position")
     authorize @regalos
   end
 
   def new
-    @fiesta = Fiesta.find(params[:fiesta_id])
-    @lista = Lista.find(params[:lista_id])
+    @fiesta = Fiesta.friendly.find(params[:fiesta_id])
+    @lista = Lista.friendly.find(params[:lista_id])
     @regalo = @lista.regalos.new
     authorize @regalo
   end
 
   def show
-    @fiesta = Fiesta.find(params[:fiesta_id])
-    @lista = Lista.find(params[:lista_id])
+    @fiesta = Fiesta.friendly.find(params[:fiesta_id])
+    @lista = Lista.friendly.find(params[:lista_id])
     @regalo = Regalo.find(params[:id])
     authorize @regalo
   end
 
   def edit
-    @fiesta = Fiesta.find(params[:fiesta_id])
-    @lista = Lista.find(params[:lista_id])
+    @fiesta = Fiesta.friendly.find(params[:fiesta_id])
+    @lista = Lista.friendly.find(params[:lista_id])
     @regalo = Regalo.find(params[:id])
     authorize @regalo
   end
 
   def update
-    @fiesta = Fiesta.find(params[:fiesta_id])
-    @lista = Lista.find(params[:lista_id])
+    @fiesta = Fiesta.friendly.find(params[:fiesta_id])
+    @lista = Lista.friendly.find(params[:lista_id])
     @regalo = Regalo.find(params[:id])
     authorize @regalo
      if @regalo.update_attributes(regalo_params)
@@ -41,8 +41,8 @@ class RegalosController < ApplicationController
   end
 
   def create
-    @fiesta = Fiesta.find(params[:fiesta_id])
-    @lista = @fiesta.listas.find(params[:lista_id])
+    @fiesta = Fiesta.friendly.find(params[:fiesta_id])
+    @lista = @fiesta.listas.friendly.find(params[:lista_id])
     @regalo = @lista.regalos.create(regalo_params)
     if @regalo.save 
       redirect_to fiesta_lista_regalo_path(@fiesta, @lista, @regalo), notice: "El Regalo ha sido guardado exitosamente"
@@ -53,8 +53,8 @@ class RegalosController < ApplicationController
   end
 
   def destroy
-    @fiesta = Fiesta.find(params[:fiesta_id])
-    @lista = Lista.find(params[:lista_id])
+    @fiesta = Fiesta.friendly.find(params[:fiesta_id])
+    @lista = Lista.friendly.find(params[:lista_id])
     @regalo = Regalo.find(params[:id])
     authorize @regalo
     if @regalo.destroy

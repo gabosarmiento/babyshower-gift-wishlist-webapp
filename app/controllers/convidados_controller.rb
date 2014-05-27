@@ -1,6 +1,6 @@
 class ConvidadosController < ApplicationController
   def index
-    @fiesta = Fiesta.find(params[:fiesta_id])
+    @fiesta = Fiesta.friendly.find(params[:fiesta_id])
     @convidados = @fiesta.convidados
     @convidado = Convidado.new
     @convidado.fiesta_id = @fiesta.id
@@ -17,7 +17,7 @@ class ConvidadosController < ApplicationController
   end
 
   def create
-   @fiesta = Fiesta.find(params[:fiesta_id])
+   @fiesta = Fiesta.friendly.find(params[:fiesta_id])
    @anfitrion = @fiesta.users.first
    @convidado = @fiesta.convidados.find_or_create_by!(convidado_params) # Añadir un nuevo Convidado
    @convidado.anfitrion = @anfitrion # asignar anfitrion como el usuario actual
@@ -42,7 +42,7 @@ class ConvidadosController < ApplicationController
   end
 
   def destroy
-    @fiesta = Fiesta.find(params[:fiesta_id])
+    @fiesta = Fiesta.friendly.find(params[:fiesta_id])
     @convidado = Convidado.find(params[:id])
     if @convidado.destroy
       flash[:notice] = "Eliminado de la lista de convidados"

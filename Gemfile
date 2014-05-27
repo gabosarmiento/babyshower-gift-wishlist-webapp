@@ -65,6 +65,7 @@ gem "font-awesome-rails"
 gem 'acts_as_list'
 gem 'jquery-ui-rails'
 gem 'omniauth-facebook'
+gem 'friendly_id'
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 

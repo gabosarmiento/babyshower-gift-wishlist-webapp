@@ -11,7 +11,7 @@ class FiestasController < ApplicationController
   end
 
   def edit
-    @fiesta = Fiesta.find(params[:id])
+    @fiesta = Fiesta.friendly.find(params[:id])
     @convidado = @fiesta.convidados.new
     authorize @fiesta
   end
@@ -28,13 +28,16 @@ class FiestasController < ApplicationController
   end
 
   def show
-    @fiesta = Fiesta.find(params[:id])
+    @fiesta = Fiesta.friendly.find(params[:id])
+    if request.path != fiesta_path(@fiesta)
+      redirect_to @fiesta, status: :moved_permanently
+    end
     @lista = @fiesta.listas.first if @fiesta.listas.first
     authorize @fiesta
   end
 
   def update
-    @fiesta = Fiesta.find(params[:id])
+    @fiesta = Fiesta.friendly.find(params[:id])
     authorize @fiesta
     if @fiesta.update_attributes(fiesta_params)
       redirect_to fiesta_path(@fiesta), notice: "Fiesta fue guardada exitosamente."
@@ -45,7 +48,7 @@ class FiestasController < ApplicationController
   end
 
   def destroy
-    @fiesta = Fiesta.find(params[:id])
+    @fiesta = Fiesta.friendly.find(params[:id])
     name = @fiesta.nombre
     authorize @fiesta
     if @fiesta.destroy
@@ -62,6 +65,6 @@ class FiestasController < ApplicationController
   end
   private
   def fiesta_params
-    params.require(:fiesta).permit(:nombre, :descripcion, :fecha_y_hora_inicio, :fecha_y_hora_cierre, :lugar, :email_contacto, :telefono_contacto)
+    params.require(:fiesta).permit(:nombre, :descripcion, :fecha_y_hora_inicio, :fecha_y_hora_cierre, :lugar, :email_contacto, :telefono_contacto, :slug)
   end
 end

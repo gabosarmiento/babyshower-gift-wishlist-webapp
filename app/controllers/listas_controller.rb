@@ -1,13 +1,16 @@
 class ListasController < ApplicationController
   def index
-    @fiesta = Fiesta.find(params[:fiesta_id])
+    @fiesta = Fiesta.friendly.find(params[:fiesta_id])
     @listas = current_user.listas
     authorize @listas
   end
 
   def show
-    @fiesta = Fiesta.find(params[:fiesta_id])
-    @lista = Lista.find(params[:id])
+    @fiesta = Fiesta.friendly.find(params[:fiesta_id])
+    @lista = Lista.friendly.find(params[:id])
+    if request.path != fiesta_lista_path(@fiesta, @lista)
+      redirect_to [@fiesta,@lista], status: :moved_permanently
+    end
     @disponibles = Regalo.where(lista_id: @lista.id).joins(:compromiso).merge(Compromiso.where(value: "disponible")).order("position")
     @reservados = Regalo.where(lista_id: @lista.id).joins(:compromiso).merge(Compromiso.where(value: "reservado")).order("position")
     @comprados =Regalo.where(lista_id: @lista.id).joins(:compromiso).merge(Compromiso.where(value: "comprado")).order("position")
@@ -15,21 +18,22 @@ class ListasController < ApplicationController
   end
 
   def new
-    @fiesta = Fiesta.find(params[:fiesta_id])
+    @fiesta = Fiesta.friendly.find(params[:fiesta_id])
     @lista = @fiesta.listas.new
     authorize @lista
   end
 
   def edit
-    @lista = Lista.find(params[:id])
+    @lista = Lista.friendly.find(params[:id])
     authorize @lista
   end
 
   def update
-    @lista = Lista.find(params[:id])
+    @lista = Lista.friendly.find(params[:id])
+    @fiesta = @lista.fiesta
     authorize @lista
     if @lista.update_attributes(lista_params)
-      redirect_to listas_path, notice: "Lista guardada exitosamente."
+      redirect_to @fiesta, notice: "Lista guardada exitosamente."
     else
       flash[:error] = "Error al guardar la lista. Intenta de nuevo"
       render :edit 
@@ -37,7 +41,7 @@ class ListasController < ApplicationController
   end
 
   def create
-    @fiesta = Fiesta.find(params[:fiesta_id])
+    @fiesta = Fiesta.friendly.find(params[:fiesta_id])
     @lista = @fiesta.listas.create(lista_params)
     authorize @lista
     if @lista.save
@@ -49,20 +53,21 @@ class ListasController < ApplicationController
   end
 
   def destroy
-    @lista = Lista.find(params[:id])
+    @lista = Lista.friendly.find(params[:id])
+    @fiesta = @lista.fiesta
     nombre = @lista.nombre
     authorize @lista
     if @lista.destroy
       flash[:notice] = "Lista #{nombre} borrada."
-      redirect_to listas_path
+      redirect_to @fiesta
    else
       flash[:error] = "Error al borrar la lista. Inténtalo de nuevo."
-      redirect_to listas_path
+      redirect_to @fiesta
     end
   end
 
   private
   def lista_params
-    params.require(:lista).permit(:nombre)
+    params.require(:lista).permit(:nombre, :slug)
   end
 end
