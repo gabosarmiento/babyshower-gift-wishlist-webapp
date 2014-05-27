@@ -21,8 +21,8 @@
           </div>
           <div class="row">
             <div class="col-sm-12">
-              <% unless @regalo.donde_lo_consigues.empty? %>
-              <p>dónde lo podrías conseguir..</p>
+              <% unless @regalo.donde_lo_consigues.nil? %>
+              <p>Dónde lo podrías conseguir:</p>
               <p><%= simple_format(@regalo.donde_lo_consigues) %></p>
               <% end %>
               <p><%= link_to 'link de referencia del producto', @regalo.url if @regalo.url? %> 

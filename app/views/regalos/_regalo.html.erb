@@ -10,9 +10,7 @@
           </div>
           <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 pull-left">
             <div>
-             <p>
               <small><strong><%= link_to regalo.titulo.to_s.humanize.titleize , [regalo.lista.fiesta, regalo.lista, regalo]%></strong></small>
-            </p>
             </div>
             <div class="controles">
               <%= render partial: "regalos/controles", locals: {regalo: regalo} %>
@@ -84,7 +82,7 @@
         <div class="modal-body">
               <p><%= simple_format(regalo.descripcion) %>
               </p>
-              <% if regalo.donde_lo_consigues %>
+              <% unless regalo.donde_lo_consigues.nil? %>
               <p>Tip del anfitrión:
               <i><%= simple_format(regalo.donde_lo_consigues) %></i></p>
               

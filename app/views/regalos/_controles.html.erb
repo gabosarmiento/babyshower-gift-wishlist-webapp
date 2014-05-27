@@ -4,7 +4,8 @@
       <%= link_to "lo quiero reservar", fiesta_lista_regalo_reservar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-info btn-xs", data: {toggle: "tooltip", placement: "top"}, title: "Resérvalo antes de que sea demasiado tarde." %>
     </div>
     <% when "reservado" %>
-    <% if current_user.id == regalo.compromiso.user_id ||policy(regalo).edit? %>
+    <% if current_user == regalo.compromiso.user || policy(regalo).edit? %>
+      <small>Reservado por <%= regalo.compromiso.user.name.humanize.titleize %></small>
     <div>
       <%= link_to "liberarlo", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-success btn-xs", data: {toggle: "tooltip", placement: "top"}, title: "Volverá a la lista de regalos disponibles" %>
     </div>
@@ -14,6 +15,7 @@
     <% else %>
       <div>
         <%= link_to "regalo reservado", "", class: "btn btn-default btn-xs disabled" %>
+        <br>
       </div>
     <% end %>
     <% when "comprado" %>
@@ -21,7 +23,8 @@
       <%= link_to "regalo comprado", "", class: "btn btn-success btn-xs disabled" %>
       </div>
       <% if policy(regalo).edit? %>
-          <div>comprado por <%= regalo.compromiso.user.name %>
+          <div>
+            <small>Comprado por <%= regalo.compromiso.user.name %></small>
           </div>
         <div>
         <%= link_to "liberar", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-default btn-xs" %>
