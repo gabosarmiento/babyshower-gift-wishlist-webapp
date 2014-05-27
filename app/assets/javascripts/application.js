@@ -17,6 +17,7 @@
 //= require bootstrap
 //= require moment
 //= require bootstrap-datetimepicker
+//= require bootstrap-datetimepicker.es
 //= require smooth-scroll
 //= require jquery.noty
 //= require_tree .

@@ -24,7 +24,7 @@
         <%= form_group_tag(fiesta.errors[:descripcion]) do %>
         <div class="form-group">
             <%= f.label :descripcion, "Descripción" %>
-            <%= f.text_area :descripcion, class: "form-control", placeholder: "Este es el mensaje que tus invitados veran al ingresar, pónle tu toque personal. Unas cuantas palabras autenticas bastarán." %>
+            <%= f.text_area :descripcion, class: "form-control", placeholder: "Este es el mensaje que tus invitados veran al ingresar, pónle tu toque personal. Unas cuantas palabras autenticas bastarán.", rows: "6" %>
         </div>
         <% end %>
       </div>
@@ -46,7 +46,7 @@
           <div class="form-group">
               <%= f.label :fecha_y_hora_inicio %>
               <div id="datetimepicker1" class="input-group date">
-              <%= f.text_field :fecha_y_hora_inicio, placeholder: "Selecciona la fecha y hora en el calendario" , class: "form-control", data: {format: "dd/MM/YYYY hh:mm"} %>
+              <%= f.text_field :fecha_y_hora_inicio, placeholder: "Selecciona la fecha y hora en el calendario" , class: "form-control" %>
               <span class="input-group-addon">
                 <i class="fa fa-calendar">
                 </i>
@@ -60,7 +60,7 @@
           <div class="form-group">
               <%= f.label :fecha_y_hora_cierre %>
               <div id="datetimepicker2" class="input-group date">
-              <%= f.text_field :fecha_y_hora_cierre, placeholder: "Selecciona la fecha y hora en el calendario" , class: "form-control" , data: {format: "dd/MM/YYYY hh:mm"}%>
+              <%= f.text_field :fecha_y_hora_cierre, placeholder: "Selecciona la fecha y hora en el calendario" , class: "form-control" %>
               <span class="input-group-addon">
                 <i class="fa fa-calendar">
                 </i>
@@ -114,7 +114,9 @@ ready = function() {
                     date: "fa fa-calendar",
                     up: "fa fa-arrow-up",
                     down: "fa fa-arrow-down"
-                }
+                }, 
+        format: 'DD/MM/YYYY hh:mm A', 
+        language: "es"
     });
     $('#datetimepicker2').datetimepicker({
         icons: {
@@ -122,7 +124,9 @@ ready = function() {
                     date: "fa fa-calendar",
                     up: "fa fa-arrow-up",
                     down: "fa fa-arrow-down"
-                }
+                }, 
+        format: 'DD/MM/YYYY hh:mm A', 
+        language: "es" 
     });
 };
 $(document).ready(ready);

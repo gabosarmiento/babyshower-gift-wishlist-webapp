@@ -3,7 +3,7 @@
     <div class="container">
       <h1><%= @fiesta.nombre.to_s.capitalize %></h1>
       <hr>
-      <p><%= @fiesta.users.first.name %> | <%= @fiesta.users.first.email %></p>
+      <p>Invita <%= @fiesta.users.first.name %></p>
       <% if policy(@fiesta).update? %>
     <span>
       <%= link_to "editar", edit_fiesta_path(@fiesta), class: "btn btn-primary btn-md" %></span>
@@ -40,7 +40,15 @@
       <h5>Fecha y Hora</h5>
     </div>
     <div class="col-lg-6">
-      <p><t>inicio - </t><time><%= @fiesta.fecha_y_hora_inicio %></time><br/>
+      <p>
+         <% if (@fiesta.fecha_y_hora_inicio.to_date - Date.today).to_i > 0 %>
+         <t>Faltan <%= pluralize((@fiesta.fecha_y_hora_inicio.to_date - Date.today).to_i, 'Día') %></t> <br>
+         <% elsif (@fiesta.fecha_y_hora_inicio.to_date - Date.today).to_i == 0 %>
+            <t>Hoy estamos de fiesta, Felicidades!</t> <br>
+         <% else %>
+         <t>Ya pasó la reunión.</t>
+         <% end %>
+         <t>inicio - </t><time><%= @fiesta.fecha_y_hora_inicio %></time><br/>
          <t>cierre - </t><time><%= @fiesta.fecha_y_hora_cierre %></time><br/>
       </p>
     </div>

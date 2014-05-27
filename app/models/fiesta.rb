@@ -25,12 +25,12 @@ class Fiesta < ActiveRecord::Base
   has_many :convidados
   
   validates :nombre, length: { minimum: 5 }, presence: true
-  validates :descripcion, length: { minimum: 20 }, presence: true
+  validates :descripcion, length: { minimum: 10 }, presence: true
   validates :lugar, length: {minimum: 10}, presence: true
   validates :fecha_y_hora_inicio, presence: true
   validates :fecha_y_hora_cierre, presence: true
-  validates_format_of :fecha_y_hora_cierre, :with => /\A(0[1-9]|1[012])[\/](0[1-9]|[12][0-9]|3[01])[\/](20)\d\d(\s)(0?[1-9]|1[012])(:[0-5]\d)(\s)([AP]M)\Z/
-  validates_format_of :fecha_y_hora_inicio, :with => /\A(0[1-9]|1[012])[\/](0[1-9]|[12][0-9]|3[01])[\/](20)\d\d(\s)(0?[1-9]|1[012])(:[0-5]\d)(\s)([AP]M)\Z/
+  validates_format_of :fecha_y_hora_cierre, :with => /\A(0[1-9]|[12][0-9]|3[01])[\/](0[1-9]|1[012])[\/](20)\d\d(\s)(0?[1-9]|1[012])(:[0-5]\d)(\s)([AP]M)\Z/
+  validates_format_of :fecha_y_hora_inicio, :with => /\A(0[1-9]|[12][0-9]|3[01])[\/](0[1-9]|1[012])[\/](20)\d\d(\s)(0?[1-9]|1[012])(:[0-5]\d)(\s)([AP]M)\Z/
   validates :telefono_contacto, :allow_blank => true, presence: true
   validates :email_contacto, :allow_blank => true, presence: true
 
@@ -42,10 +42,6 @@ class Fiesta < ActiveRecord::Base
         end
       end
     end
-  end
-
-  def fecha
-    self.fecha_y_hora_inicio
   end
 
   def should_generate_new_friendly_id?
