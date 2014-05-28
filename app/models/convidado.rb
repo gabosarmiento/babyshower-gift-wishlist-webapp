@@ -10,6 +10,7 @@
 #  fiesta_id    :integer
 #  created_at   :datetime
 #  updated_at   :datetime
+#  asistencia   :boolean
 #
 
 class Convidado < ActiveRecord::Base

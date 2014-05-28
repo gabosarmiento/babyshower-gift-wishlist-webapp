@@ -8,10 +8,10 @@
         Fiestas en las que esperan tu presencia.
       </span>
       </div>
-      <% unless @invitaciones_ids.empty? %>
-        <% @invitaciones_ids.each do |id| %>
+      <% unless @fiestas_ids.empty? %>
+        <% @fiestas_ids.each do |id| %>
         <div id="invitacion-<%= id %>" class="lista-fiestas">
-          <span><small><strong>[
+          <div><small><strong>[
             <% if (Fiesta.find(id).fecha_y_hora_inicio.to_date - Date.today).to_i > 0 %>
               Faltan <%= pluralize((Fiesta.find(id).fecha_y_hora_inicio.to_date - Date.today).to_i, 'Día') %>
             <% elsif (Fiesta.find(id).fecha_y_hora_inicio.to_date - Date.today).to_i == 0 %>
@@ -19,9 +19,33 @@
             <% else %>
               Finalizada.
             <% end %>]
-          </strong></small></span>
+          </strong></small></div>
           <span><strong><%= link_to Fiesta.find(id).nombre, fiesta_path(Fiesta.find(id)) %></strong></span>
           <span><small>Invita <%= Fiesta.find(id).users.first.email %></small></span>
+          <% if Fiesta.find(id).listas.first %>
+          <div><%= link_to "ver lista de regalos", fiesta_lista_path(Fiesta.find(id), Fiesta.find(id).listas.first), class: "btn btn-primary btn-xs" %></div>
+          <% end %>
+          <div>
+          <%# if policy(Fiesta.new).update? %>
+          <% if Fiesta.find(id).convidados.where(invitado_id: current_user.id).first.asistencia.nil? %>
+          <span><small>No has confirmado tu presencia </small><%= link_to "confirmar asistencia", fiesta_convidado_confirmar_path(Fiesta.find(id), Fiesta.find(id).convidados.where(invitado_id: current_user.id).first ), class: "btn btn-success btn-xs" %>
+            <%= link_to "declinar asistencia", fiesta_convidado_declinar_path(Fiesta.find(id), Fiesta.find(id).convidados.where(invitado_id: current_user.id).first ), class: "btn btn-danger btn-xs" %>
+          </span>
+          <% else %>
+
+          <% if Fiesta.find(id).convidados.where(invitado_id: current_user.id).first.asistencia == true %>
+          <span>
+          <%= link_to "Confirmado!", "", class: "btn btn-xs btn-success"  %>
+           <%= link_to "cambiar de parecer", fiesta_convidado_declinar_path(Fiesta.find(id), Fiesta.find(id).convidados.where(invitado_id: current_user.id).first ), class: "btn btn-xs btn-default"  %></span>
+          <% else %>
+          <span>
+            <%= link_to "No asistirás", "", class: "btn btn-xs btn-danger"  %>
+            <%= link_to "cambiar de parecer", fiesta_convidado_confirmar_path(Fiesta.find(id), Fiesta.find(id).convidados.where(invitado_id: current_user.id).first ), class: "btn btn-xs btn-default"  %>
+          </span>
+          <% end %>
+          <% end %>
+          <%# end %>
+          </div>
         </div>
         <% end %>
       <% else %>

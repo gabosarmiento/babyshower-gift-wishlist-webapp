@@ -15,6 +15,7 @@
           <tr>
             <th>Nombre</th>
             <th>Correo</th>
+            <th>Confirma asistencia?</th>
             <% if policy(@convidado).destroy? %>
             <th>Cancelar</th>
             <% end %>
@@ -29,6 +30,17 @@
             <td>No registrado aún</td>
             <% end %>
             <td><%= convidado.email %></td>
+            <th>
+              <%if convidado.asistencia.nil? %>
+              No ha confirmado asistencia
+              <% else %>
+              <% if convidado.asistencia == true %>
+              <%= link_to "Confirmado!", "", class: "btn btn-xs btn-success"  %>
+              <% else %>
+              <%= link_to "No asistirá", "", class: "btn btn-xs btn-danger"  %>
+              <% end %>
+              <% end %>
+            </th>
             <% if policy(@convidado).destroy? %>
             <td><%= link_to "Cancelar invitación", [@fiesta, convidado], method: :delete %></td>
             <% end %>

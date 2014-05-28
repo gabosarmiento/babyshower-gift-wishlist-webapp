@@ -73,8 +73,30 @@ class ConvidadosController < ApplicationController
     end
   end
 
+  def confirmar
+    @fiesta = Fiesta.friendly.find(params[:fiesta_id])
+    @convidado = Convidado.find(params[:convidado_id])
+    if @convidado.update_attribute(:asistencia, true)
+    redirect_to :back, notice: "Tu asistencia ha sido confirmada."
+    else
+      redirect_to :back
+      flash[:error] = "No pudimos confimar tu asistencia. Intenta nuevamente."
+    end
+  end
+
+  def declinar
+    @fiesta = Fiesta.friendly.find(params[:fiesta_id])
+    @convidado = Convidado.find(params[:convidado_id])
+    if @convidado.update_attribute(:asistencia, false)
+    redirect_to :back, notice: "Tu asistencia ha sido declinada."
+    else
+      redirect_to :back
+      flash[:error] = "No pudimos confimar tu asistencia. Intenta nuevamente."
+    end
+  end
+
   private
   def convidado_params
-    params.require(:convidado).permit(:email)
+    params.require(:convidado).permit(:email, :asistencia)
   end
 end

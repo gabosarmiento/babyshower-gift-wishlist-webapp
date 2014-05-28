@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140527015832) do
+ActiveRecord::Schema.define(version: 20140528110723) do
 
   create_table "compromisos", force: true do |t|
     t.integer  "user_id"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20140527015832) do
     t.integer  "fiesta_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "asistencia"
   end
 
   add_index "convidados", ["fiesta_id"], name: "index_convidados_on_fiesta_id"

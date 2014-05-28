@@ -61,7 +61,7 @@ class FiestasController < ApplicationController
   end
 
   def invitaciones
-     @invitaciones_ids = current_user.invitaciones.pluck(:fiesta_id)
+     @fiestas_ids = current_user.invitaciones.pluck(:fiesta_id)
   end
   private
   def fiesta_params
