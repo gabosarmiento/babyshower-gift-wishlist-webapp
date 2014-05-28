@@ -56,7 +56,7 @@
               <% end %>
             <% else %>
               <li role="presentation" class="text-center">
-                <span>No tienes listas aún </span><% if policy(@fiesta).create? %>
+                <span>No tienes listas aún </span><% if policy(Fiesta.new).create? %>
                 <span><%= link_to new_fiesta_path(@fiesta), class: "btn btn-xs btn-primary", role: "menuitem", tabindex: "-1" do %>
                 agrega tu fiesta <i class="fa  fa-plus-circle"></i> 
                 <% end %></span><% end %>
