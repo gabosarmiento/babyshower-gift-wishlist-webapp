@@ -25,10 +25,23 @@
         <div class="col-lg-6">
           <%= simple_format(@fiesta.descripcion) %>
         </div>
-       <!--  <div class="col-lg-3">
-          <p><a href="#"><i class="fa fa-check"></i></a> <sm>Confirmar asistencia</sm></p>
-        </div> -->
-        
+        <% if policy(@fiesta).show? %>
+        <div class="col-lg-3">
+            <sm>
+            <% if @fiesta.convidados.where(invitado_id: current_user.id).first.asistencia.nil? %>
+            <span><%= link_to "confirmar asistencia", fiesta_convidado_confirmar_path(@fiesta, @fiesta.convidados.where(invitado_id: current_user.id).first ), class: "btn btn-success btn-xs" %></span>
+            <span><%= link_to "declinar asistencia", fiesta_convidado_declinar_path(@fiesta, @fiesta.convidados.where(invitado_id: current_user.id).first ), class: "btn btn-danger btn-xs" %></span>
+            <% else %>
+              <% if @fiesta.convidados.where(invitado_id: current_user.id).first.asistencia == true %>
+              Asistirás <i class="fa fa-check" style="font-size:12px;"></i> 
+              <% else %>
+              No asistirás <i class="fa fa-times" style="font-size:12px;"></i> 
+              <% end %>
+            <% end %>
+          </sm>
+          <p><imp style=" padding: 6px; color: white;background: #34495e;"><sm>RSVP</sm></imp></p>
+        </div>
+        <% end %>
       </div><!--/.row -->
     </div><!--/.container -->
   </div><!--/ #intro -->
@@ -41,22 +54,26 @@
     </div>
     <div class="col-lg-6">
       <p>
-         <% if (@fiesta.fecha_y_hora_inicio.to_date - Date.today).to_i > 0 %>
-         <t>Faltan <%= pluralize((@fiesta.fecha_y_hora_inicio.to_date - Date.today).to_i, 'Día') %></t> <br>
-         <% elsif (@fiesta.fecha_y_hora_inicio.to_date - Date.today).to_i == 0 %>
-            <t>Hoy estamos de fiesta, Felicidades!</t> <br>
-         <% else %>
-         <t>Ya pasó la reunión.</t>
-         <% end %>
          <%= time_tag(@fiesta.fecha_y_hora_inicio.to_date) %> <t> inicio - </t><%= (Time.parse(@fiesta.fecha_y_hora_inicio.to_s)).strftime('%l:%M %P') %><br/>
          <%= time_tag(@fiesta.fecha_y_hora_cierre.to_date) %><t> cierre - </t><%= (Time.parse(@fiesta.fecha_y_hora_cierre.to_s)).strftime('%l:%M %P') %><br/>
       </p>
     </div>
-    <!-- <div class="col-lg-3">
-      <p><sm>DD:HH:MM:SS</sm><br/>
-      <imp><sm>Tiempo restante</sm></imp>
+    <div class="col-lg-3">
+      <p>
+        <sm>
+          <% if (@fiesta.fecha_y_hora_inicio.to_date - Date.today).to_i > 0 %>
+         Faltan <%= pluralize((@fiesta.fecha_y_hora_inicio.to_date - Date.today).to_i, 'Día') %>
+         <% elsif (@fiesta.fecha_y_hora_inicio.to_date - Date.today).to_i == 0 %>
+            Hoy estamos de fiesta, Felicidades!
+         <% else %>
+         Ya pasó la reunión.
+         <% end %>
+        </sm>
+        <br/>
+        <imp><sm>Tiempo restante</sm></imp>
+        
       </p>
-    </div> -->
+    </div>
   </div>
   <br>
     <hr>
@@ -85,27 +102,27 @@
     <div class="col-lg-9">
       <% if @fiesta.listas.empty? %>
         <% if policy(@fiesta).update? %>
-        <div><%= link_to "Crear lista de regalos", new_fiesta_lista_path(@fiesta), class: "btn btn-primary btn-lg" %></div>
+        <div><%= link_to "crear lista de regalos", new_fiesta_lista_path(@fiesta), class: "btn btn-primary btn-lg" %></div>
         <% else %>
         <div>No hay listas de regalos disponibles aún. </div>
         <% end %>
         <% else %>
-        <span>
+        <div>
           <span><%= link_to "ver lista de regalos", fiesta_lista_path(@fiesta, @lista), class: "btn btn-lg btn-info" %></span>
           <% if policy(@fiesta).update? %>
-          <br>
-          <span>
-          <%= link_to "cambiar nombre", edit_fiesta_lista_path(@fiesta, @lista), class: "btn btn-primary btn-sm" %>
-          </span>
-          <span>
-          <%= link_to "borrar", [@fiesta, @lista], method: :delete, class: "btn btn-danger btn-sm", data: {confirm: "Estas seguro de borrar esta lista?"} %>
-          </span>
-        
+            <br>
+            <span>
+            <%= link_to "cambiar nombre", edit_fiesta_lista_path(@fiesta, @lista), class: "btn btn-primary btn-sm" %>
+            </span>
+            <span>
+            <%= link_to "borrar", [@fiesta, @lista], method: :delete, class: "btn btn-danger btn-sm", data: {confirm: "Estas seguro de borrar esta lista?"} %>
+            </span>
           <% end %>
-        </span>
+        </div>
         <% end %>
-        <span><%= link_to "ver lista de invitados", fiesta_convidados_path(@fiesta) , class: "btn btn-lg btn-primary"%>
-        </span>
+        <br>
+        <div><%= link_to "ver lista de invitados", fiesta_convidados_path(@fiesta) , class: "btn btn-lg btn-primary"%>
+        </div>
     </div>
     </div>
     <br>
@@ -121,11 +138,14 @@
         <small>No has confirmado tu presencia </small>
         <% end %>
     </div>
-    <div class="col-lg-6"> 
+    <div class="col-lg-6 well"> 
       <% if @fiesta.convidados.where(invitado_id: current_user.id).first.asistencia.nil? %>
-        <span><%= link_to "confirmar asistencia", fiesta_convidado_confirmar_path(@fiesta, @fiesta.convidados.where(invitado_id: current_user.id).first ), class: "btn btn-success btn-lg" %>
+        <div><%= link_to "confirmar asistencia", fiesta_convidado_confirmar_path(@fiesta, @fiesta.convidados.where(invitado_id: current_user.id).first ), class: "btn btn-success btn-lg" %>
+        </div>
+        <br>
+        <div>
           <%= link_to "declinar asistencia", fiesta_convidado_declinar_path(@fiesta, @fiesta.convidados.where(invitado_id: current_user.id).first ), class: "btn btn-danger btn-lg" %>
-        </span>
+        </div>
       <% else %>
         <% if @fiesta.convidados.where(invitado_id: current_user.id).first.asistencia == true %>
           <span>
