@@ -5,12 +5,12 @@
       <hr>
       <p>Invita <%= @fiesta.users.first.name %></p>
       <% if policy(@fiesta).update? %>
-    <span>
-      <%= link_to "editar", edit_fiesta_path(@fiesta), class: "btn btn-primary btn-md" %></span>
-    <span>
-    <%= link_to "borrar", @fiesta, method: :delete, data: {confirm: "Estas seguro de borrar esta fiesta?"}, class: "btn btn-danger btn-md" %>
-    </span>
-<% end %>
+        <span>
+        <%= link_to "editar", edit_fiesta_path(@fiesta), class: "btn btn-primary btn-md" %></span>
+        <span>
+        <%= link_to "borrar", @fiesta, method: :delete, class: "btn btn-danger btn-md", data: {confirm: "Se eliminarán listas, regalos e invidatos, Estas seguro de borrar esta fiesta?"} %>
+        </span>
+      <% end %>
     </div><!-- container -->
   </section><!-- section -->
 
@@ -85,17 +85,26 @@
     <div class="col-lg-3">
       <% if @fiesta.listas.empty? %>
         <% if policy(@fiesta).update? %>
-        <span><%= link_to "Crear lista de regalos", new_fiesta_lista_path(@fiesta), class: "btn btn-primary btn-lg" %></span>
+        <div><%= link_to "Crear lista de regalos", new_fiesta_lista_path(@fiesta), class: "btn btn-primary btn-lg" %></div>
         <% else %>
-        <span>No hay listas de regalos disponibles aún. </span>
+        <div>No hay listas de regalos disponibles aún. </div>
         <% end %>
         <% else %>
-        <span><%= link_to "ver lista de regalos", fiesta_lista_path(@fiesta, @lista), class: "btn btn-lg btn-info" %></span>
+        <div><%= link_to "ver lista de regalos", fiesta_lista_path(@fiesta, @lista), class: "btn btn-lg btn-info" %></div>
+        <% if policy(@fiesta).update? %>
+        <br>
+        <span>
+        <%= link_to "cambiar nombre", edit_fiesta_lista_path(@fiesta, @lista), class: "btn btn-primary btn-sm" %>
+        </span>
+        <span>
+        <%= link_to "borrar", [@fiesta, @lista], method: :delete, class: "btn btn-danger btn-sm", data: {confirm: "Estas seguro de borrar esta lista?"} %>
+        </span>
+      <% end %>
         <% end %>
     </div>
     <div class="col-lg-3">
-      <span><%= link_to "ver lista de invitados", fiesta_convidados_path(@fiesta) , class: "btn btn-lg btn-primary"%>
-      </span>
+      <div><%= link_to "ver lista de invitados", fiesta_convidados_path(@fiesta) , class: "btn btn-lg btn-primary"%>
+      </div>
     </div>
     </div>
     <br>

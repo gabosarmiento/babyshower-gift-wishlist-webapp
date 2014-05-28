@@ -14,7 +14,7 @@
         <%= form_group_tag(fiesta.errors[:nombre]) do %>
         <div class="form-group">
             <%= f.label :nombre %>
-            <%= f.text_field :nombre, class: "form-control", :autofocus => true, placeholder: "ingresa el nombre de la fiesta, baby shower, shower de apartamento, matrimonio, lo que quieras..." %>
+            <%= f.text_field :nombre, class: "form-control", :autofocus => true, placeholder: "por ejemplo baby shower de.., matrimonio, mi cumpleaños, shower de apartamento, fiesta de..." %>
         </div>
         <% end %>
       </div>
@@ -76,7 +76,7 @@
         <%= form_group_tag(fiesta.errors[:telefono_contacto]) do %>
         <div class="form-group">
             <%= f.label :telefono_contacto, "teléfono de contacto" %>
-            <%= f.text_field :telefono_contacto, class: "form-control", placeholder: "ingresa el teléfono o móvil" %>
+            <%= f.text_field :telefono_contacto, class: "form-control", placeholder: "Incluyelo sólo so quieres que te contacten al teléfono o celular" %>
         </div>
         <% end %>
       </div>
@@ -86,7 +86,7 @@
         <%= form_group_tag(fiesta.errors[:email_contacto]) do %>
         <div class="form-group">
             <%= f.label :email_contacto %>
-            <%= f.text_field :email_contacto, class: "form-control", placeholder: "ingresa el mail de contacto. Dejar en blanco si es el mismo de tu cuenta." %>
+            <%= f.text_field :email_contacto, class: "form-control", placeholder: "Dejar en blanco si es el mismo de tu cuenta." %>
         </div>
         <% end %>
       </div>

@@ -9,14 +9,14 @@
     <%= form_group_tag(regalo.errors[:titulo]) do %>
       <div class="form-group">
         <%= f.label :titulo %>
-        <%= f.text_field :titulo, class: 'form-control', placeholder: "Ingresa el nombre del regalo" %>
+        <%= f.text_field :titulo, class: 'form-control', placeholder: "Hazlo corto" %>
       </div>
     <% end %>
 
      <%= form_group_tag(regalo.errors[:descripcion]) do %>
       <div class="form-group">
         <%= f.label :descripcion, "Descripción" %>
-        <%= f.text_area :descripcion, class: 'form-control', placeholder: "Cuéntales la importancia, hazlos parte de la experiencia, hazlos reír, que la razón de comprarlo no sea el objeto sino su utilidad.", rows: "3" %>
+        <%= f.text_area :descripcion, class: 'form-control', placeholder: "Dales una buena razón para que lo reserven. Hazlos sonreir. ", rows: "3" %>
       </div>
     <% end %>
     
@@ -24,25 +24,25 @@
     <div><%= image_tag(regalo.imagen.normal.url) if regalo.imagen? %>
     </div>
       <div class="form-group">
-        <%= f.label :imagen, "Subir una imagen" %>
+        <%= f.label :imagen, "Subir una foto" %>
         <%= f.file_field :imagen %>
       </div>
 
       <div class="form-group">
         <%= f.label :remote_imagen_url, "o haz copy/paste  de la dirección(URL) de la foto" %><br />
-        <%= f.text_field :remote_imagen_url, class: "form-control", placeholder: "http://example.com/image.jpg" %>
+        <%= f.text_field :remote_imagen_url, class: "form-control", placeholder: "http://google.com/imagen.jpg" %>
       </div>
       <% end %>
        <%= form_group_tag(regalo.errors[:donde_lo_consigues]) do %>
       <div class="form-group">
-        <%= f.label :donde_lo_consigues, "Dónde lo consigues? tips?" %>
-        <%= f.text_area :donde_lo_consigues, class: 'form-control', placeholder: "Si quieres dar  indicaciones para explicar mejor tu producto, adelante!", rows: "2" %>
+        <%= f.label :donde_lo_consigues, "algún tip? o dónde lo consigue?" %>
+        <%= f.text_area :donde_lo_consigues, class: 'form-control', placeholder: "Si quieres dar indicaciones para explicar mejor tu producto, adelante!", rows: "2" %>
       </div>
       <% end %>
       <%= form_group_tag(regalo.errors[:url]) do %>
       <div class="form-group">
-        <%= f.label :url, "o si prefieres compartir una página con información adicional?"%>
-        <%= f.text_field :url, class: 'form-control', placeholder: "http:// o https:// " %>
+        <%= f.label :url, "o si prefieres compartir una página con información adicional?(opcional)"%>
+        <%= f.text_field :url, class: 'form-control', placeholder: "http:// " %>
       </div>
       <% end %>
 

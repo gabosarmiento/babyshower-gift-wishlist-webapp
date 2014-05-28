@@ -24,11 +24,48 @@
       <!-- Fixed navbar -->
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
+        <% if current_user %>
+        <div class="navbar-header dropdown">
+          <%= link_to "#", class: "navbar-brand hidden-xs hidden-sm dropdown-toggle", data: {toggle: "dropdown"} do %>
+          <span class="fa fa-book" style="font-size:25px; color:#fff;"> La lista</span>
+          <span class="caret"></span>
+          <% end %>
+          <ul class="dropdown-menu">
+            <li class="dropdown-menu-header text-center">Mis Listas de regalos</li>
+            <% if current_user.fiestas %>
+              <% current_user.fiestas.each do |fiesta| %>
+                <% if fiesta.listas.first %>
+                  <li><%= link_to fiesta.listas.first.nombre, [fiesta, fiesta.listas.first] %></li>
+                <% else %>
+                  <li class="disabled"><%= link_to fiesta do %> <%= fiesta.nombre %> no tiene lista de regalos aún<% end %></li>
+                <% end %>
+              <% end %>
+            <% else %>
+              <li>
+                No tienes listas aún  <% if policy(@fiesta).create? %>
+                <%= link_to new_fiesta_path(@fiesta), class: "btn btn-xs btn-primary" do %>
+                añadir fiesta <i class="fa  fa-plus-circle"></i> 
+                <% end %><% end %>
+              </li>  
+            <% end %>
+            <li class="dropdown-menu-header text-center">Listas de regalos de mis invitaciones</li>
+            <% if current_user.invitaciones %>
+              <% current_user.invitaciones.each do |invitacion| %>
+                <li><%= link_to invitacion.fiesta.listas.first.nombre, [invitacion.fiesta, invitacion.fiesta.listas.first] %>
+                </li>
+              <% end %>
+            <% else %>
+              <li>Aún no recibes invitaciones.</li>
+            <% end %>
+          </ul>
+        </div>
+        <% else %>
         <div class="navbar-header">
           <%= link_to root_path, class: "navbar-brand hidden-xs hidden-sm" do %>
           <span class="fa fa-book" style="font-size:25px; color:#fff;"> La lista</span>
           <% end %>
         </div>
+        <% end %>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <% if current_user %>
