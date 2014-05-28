@@ -32,7 +32,7 @@
           <% end %>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
             <li role="presentation" class="dropdown-menu-header text-center">Mis Listas de regalos</li>
-            <% if current_user.fiestas %>
+            <% if current_user.fiestas.present? %>
               <% current_user.fiestas.each do |fiesta| %>
                 <% if fiesta.listas.first %>
                   <li><%= link_to fiesta.listas.first.nombre, [fiesta, fiesta.listas.first], role: "menuitem", tabindex: "-1" %></li>
@@ -41,16 +41,16 @@
                 <% end %>
               <% end %>
             <% else %>
-              <li>
-                No tienes listas aún  <% if policy(@fiesta).create? %>
-                <%= link_to new_fiesta_path(@fiesta), class: "btn btn-xs btn-primary", role: "menuitem", tabindex: "-1" do %>
-                añadir fiesta <i class="fa  fa-plus-circle"></i> 
-                <% end %><% end %>
+              <li role="presentation" class="text-center">
+                <span>No tienes listas aún </span><% if policy(@fiesta).create? %>
+                <span><%= link_to new_fiesta_path(@fiesta), class: "btn btn-xs btn-primary", role: "menuitem", tabindex: "-1" do %>
+                agrega tu fiesta <i class="fa  fa-plus-circle"></i> 
+                <% end %></span><% end %>
               </li>  
             <% end %>
             <li role="presentation" class="divider"></li>
             <li role="presentation" class="dropdown-menu-header text-center">Listas de mis invitaciones</li>
-            <% if current_user.invitaciones %>
+            <% if current_user.invitaciones.present? %>
               <% current_user.invitaciones.each do |invitacion| %>
                 <% if invitacion.fiesta.listas.first %>
                 <li><%= link_to invitacion.fiesta.listas.first.nombre, [invitacion.fiesta, invitacion.fiesta.listas.first], role: "menuitem", tabindex: "-1" %>
@@ -60,7 +60,7 @@
                 <% end %>
               <% end %>
             <% else %>
-              <li class="disabled">Aún no recibes invitaciones.</li>
+              <li class="disabled text-center">Aún no recibes invitaciones.</li>
             <% end %>
           </ul>
         </div>
