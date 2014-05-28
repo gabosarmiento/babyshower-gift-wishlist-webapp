@@ -20,13 +20,12 @@
         <% if policy(regalo).edit? %>
         <div class="Controles Editor">
         <div class="row">
-          <div class="col-lg-4 col-md-5 col-sm-4 col-xs-4 pull-left">
-            
+          <div class="col-sm-12 pull-left">
             <span>
               <%= link_to "Editar", edit_fiesta_lista_regalo_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-primary btn-xs" %>
             </span>
             <span >
-              <%= link_to "eliminar de la lista", fiesta_lista_regalo_compromiso_path(regalo.lista.fiesta, regalo.lista, regalo, regalo.compromiso), method: :delete, class: "btn btn-warning btn-xs" %>
+              <%= link_to "ocultar de la lista", fiesta_lista_regalo_compromiso_path(regalo.lista.fiesta, regalo.lista, regalo, regalo.compromiso), method: :delete, class: "btn btn-warning btn-xs" %>
             </span>
             <span>
                 <%= link_to "Borrar regalo", [regalo.lista.fiesta, regalo.lista, regalo], method: :delete, class: "btn btn-danger btn-xs" %>
@@ -51,19 +50,23 @@
           <div class="col-lg-8 col-md-7 col-sm-8 col-xs-9 pull-left">
             <div>
              <p>
-              <small><strong><%= regalo.titulo.to_s.humanize.titleize %></strong></small>
+              <small><strong><%= link_to regalo.titulo.to_s.humanize.titleize , [regalo.lista.fiesta, regalo.lista, regalo]%></strong></small>
             </p>
             </div>
-            <div class="controles">
-              <span>
-              <%= link_to "publicar en la lista", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-success btn-xs" %>
-              </span>
-              <span>
-                <%= link_to "Editar", edit_fiesta_lista_regalo_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-primary btn-xs" %>
-              </span>
-              <span>
-                <%= link_to "Eliminar", [regalo.lista.fiesta, regalo.lista, regalo], method: :delete, class: "btn btn-danger btn-xs" %>
-              </span>
+            <div class="controles Editor">
+              <div class="row">
+                <div class="col-sm-12 pull-left">
+                  <span>
+                  <%= link_to "publicar en la lista", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-success btn-xs" %>
+                  </span>
+                  <span>
+                    <%= link_to "Editar", edit_fiesta_lista_regalo_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-primary btn-xs" %>
+                  </span>
+                  <span>
+                    <%= link_to "Eliminar", [regalo.lista.fiesta, regalo.lista, regalo], method: :delete, class: "btn btn-danger btn-xs" %>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
          </div><!-- /row -->
@@ -94,9 +97,10 @@
               <%= image_tag(regalo.imagen.normal.url) if regalo.imagen? %></div>
         </div>
         <div class="modal-footer">
+        <% unless regalo.compromiso.nil? %>
           <% case regalo.compromiso.value %>
             <% when "disponible" %>
-              <%= link_to "Resérvalo!", fiesta_lista_regalo_reservar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-info text-center" %>
+              <%= link_to "Confirmar Reserva!", fiesta_lista_regalo_reservar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-info text-center" %>
             <% when "reservado" %>
             <%= link_to "regalo reservado", "", class: "btn btn-default disabled" %>
             <% if current_user == regalo.compromiso.user || policy(regalo).edit? %>
@@ -108,6 +112,7 @@
               <% if policy(regalo).edit? %>
               <%= link_to "liberar", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-default" %>
               <% end %>
+            <% end %>
             <% end %>
         </div>
       </div><!-- /.modal-content -->

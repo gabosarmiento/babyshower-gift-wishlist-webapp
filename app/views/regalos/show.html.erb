@@ -31,6 +31,40 @@
           </div>
         </div>
       </div>
+      
+      <div class="row">
+        <div class="col-sm-12">
+          <% if policy(@regalo).edit? %>
+            <div class="controles">
+              <% if @regalo.compromiso.nil? %>
+              <div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>Estado</strong>
+                Regalo se encuentra oculto. 
+              </div>
+              <span>
+              <%= link_to "publicarlo en la lista", fiesta_lista_regalo_liberar_path(@regalo.lista.fiesta, @regalo.lista, @regalo), class: "btn btn-success btn-xs" %>
+              </span>
+              <% else %>
+              <div class="alert alert-info">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>Estado</strong>
+                Regalo público. 
+              </div>
+              <span>
+              <%= link_to "ocultar de la lista", fiesta_lista_regalo_compromiso_path(@regalo.lista.fiesta, @regalo.lista, @regalo, @regalo.compromiso), method: :delete, class: "btn btn-warning btn-xs" %>
+              </span>
+              <% end %>
+              <span>
+                <%= link_to "Editar", edit_fiesta_lista_regalo_path(@regalo.lista.fiesta, @regalo.lista, @regalo), class: "btn btn-primary btn-xs" %>
+              </span>
+              <span>
+                <%= link_to "Borrar regalo", [@regalo.lista.fiesta, @regalo.lista, @regalo], method: :delete, class: "btn btn-danger btn-xs" %>
+              </span>
+            </div>
+            <% end %>
+        </div>
+      </div>
     </div>
   </div>
 
