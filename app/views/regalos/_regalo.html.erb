@@ -94,7 +94,21 @@
               <%= image_tag(regalo.imagen.normal.url) if regalo.imagen? %></div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <% case regalo.compromiso.value %>
+            <% when "disponible" %>
+              <%= link_to "Resérvalo!", fiesta_lista_regalo_reservar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-info text-center" %>
+            <% when "reservado" %>
+            <%= link_to "regalo reservado", "", class: "btn btn-default disabled" %>
+            <% if current_user == regalo.compromiso.user || policy(regalo).edit? %>
+              <%= link_to "liberarlo", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-success", data: {toggle: "tooltip", placement: "top"}, title: "Volverá a la lista de regalos disponibles" %>
+              <%= link_to "lo he comprado", fiesta_lista_regalo_comprar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-info", data: {toggle: "tooltip", placement: "top"}, title: "Notifica al anfitrión de tu compra" %>
+            <% end %>
+            <% when "comprado" %>
+              <%= link_to "regalo comprado", "", class: "btn btn-success disabled" %>
+              <% if policy(regalo).edit? %>
+              <%= link_to "liberar", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-default" %>
+              <% end %>
+            <% end %>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

@@ -13,8 +13,7 @@
       <% unless @compromisos.empty? %>
         <% @compromisos.each do |compromiso| %>
           <div class="lista-compromisos"> 
-          <%= link_to compromiso.regalo.lista.fiesta.nombre, compromiso.regalo.lista.fiesta %>
-          <%= compromiso.regalo.lista.fiesta.fecha %>
+          <small><i>Regalo de la fiesta <%= link_to compromiso.regalo.lista.fiesta.nombre, compromiso.regalo.lista.fiesta %></i></small>
           <%= render compromiso.regalo %>
           </div>
         <% end %>

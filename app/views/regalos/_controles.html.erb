@@ -1,7 +1,7 @@
 <% case regalo.compromiso.value %>
     <% when "disponible" %>
     <div>
-      <%= link_to "lo quiero reservar", fiesta_lista_regalo_reservar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-info btn-xs", data: {toggle: "tooltip", placement: "top"}, title: "Resérvalo antes de que sea demasiado tarde." %>
+      <%= link_to "lo quiero reservar", "#", class: "btn btn-info btn-xs btn-modal", "data-toggle" => "modal", "data-target" => "#modal-regalo-#{regalo.id}", rel: "tooltip", title: "Resérvalo antes de que sea demasiado tarde." %>
     </div>
     <% when "reservado" %>
     <% if current_user == regalo.compromiso.user || policy(regalo).edit? %>

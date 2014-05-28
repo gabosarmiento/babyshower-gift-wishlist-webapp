@@ -3,7 +3,7 @@
     <!-- Fiestas a las que te invitan -->
     <div class="col-sm-12">
       <div class="well">
-      <h3>Próximas fiestas <span class="badge badge-info"><%= @invitaciones_ids.count if @invitaciones_ids %></span></h3>
+      <h3>Próximas fiestas</h3>
       <span class="help-block">
         Fiestas en las que esperan tu presencia.
       </span>
@@ -21,11 +21,11 @@
             <% end %>]
           </strong></small></span>
           <span><strong><%= link_to Fiesta.find(id).nombre, fiesta_path(Fiesta.find(id)) %></strong></span>
-          <span><small>Invitado por: <%= Fiesta.find(id).users.first.email %></small></span>
+          <span><small>Invita <%= Fiesta.find(id).users.first.email %></small></span>
         </div>
         <% end %>
       <% else %>
-        Algún día te sorprenderá. No pierdas la fe. Ya llegará!
+        Algún día te sorprenderá. No pierdas la fe. Ya llegará la invitación!
       <% end %>
     </div>
 
