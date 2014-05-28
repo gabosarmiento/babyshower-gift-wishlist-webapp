@@ -31,6 +31,20 @@
           <span class="caret"></span>
           <% end %>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <li role="presentation" class="dropdown-menu-header text-center">Listas de regalos de mis invitaciones</li>
+            <% if current_user.invitaciones.present? %>
+              <% current_user.invitaciones.each do |invitacion| %>
+                <% if invitacion.fiesta.listas.first %>
+                <li><%= link_to invitacion.fiesta.listas.first.nombre, [invitacion.fiesta, invitacion.fiesta.listas.first], role: "menuitem", tabindex: "-1" %>
+                </li>
+                <% else %>
+                <li><%= link_to invitacion.fiesta, role: "menuitem", tabindex: "-1", rel: "tooltip", title: "ver fiesta" do %> <%= invitacion.fiesta.nombre %> no tiene lista de regalos aún<% end %></li>
+                <% end %>
+              <% end %>
+            <% else %>
+              <li class="disabled text-center">Aún no recibes invitaciones.</li>
+            <% end %>
+            <li role="presentation" class="divider"></li>
             <li role="presentation" class="dropdown-menu-header text-center">Mis Listas de regalos</li>
             <% if current_user.fiestas.present? %>
               <% current_user.fiestas.each do |fiesta| %>
@@ -47,20 +61,6 @@
                 agrega tu fiesta <i class="fa  fa-plus-circle"></i> 
                 <% end %></span><% end %>
               </li>  
-            <% end %>
-            <li role="presentation" class="divider"></li>
-            <li role="presentation" class="dropdown-menu-header text-center">Listas de mis invitaciones</li>
-            <% if current_user.invitaciones.present? %>
-              <% current_user.invitaciones.each do |invitacion| %>
-                <% if invitacion.fiesta.listas.first %>
-                <li><%= link_to invitacion.fiesta.listas.first.nombre, [invitacion.fiesta, invitacion.fiesta.listas.first], role: "menuitem", tabindex: "-1" %>
-                </li>
-                <% else %>
-                <li><%= link_to invitacion.fiesta, role: "menuitem", tabindex: "-1", rel: "tooltip", title: "ver fiesta" do %> <%= invitacion.fiesta.nombre %> no tiene lista de regalos aún<% end %></li>
-                <% end %>
-              <% end %>
-            <% else %>
-              <li class="disabled text-center">Aún no recibes invitaciones.</li>
             <% end %>
           </ul>
         </div>
