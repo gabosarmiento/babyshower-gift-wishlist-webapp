@@ -1,0 +1,36 @@
+ <div id="navbar-main">
+      <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <%= render "layouts/brand" %>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <% if current_user %>
+            <li> <%= link_to fiestas_path do %>
+              <i class="fa fa-ticket"></i> Fiestas
+             <% end %></li>
+            <li> <%= link_to invitaciones_path do %><i class="fa fa-envelope"></i> Invitaciones<% end %></li>
+            <li> <%= link_to regalos_reservados_path do %>
+              <i class="fa fa-gift"></i> Regalos<% end %></li>
+            <% end %>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <% if current_user %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hola <%= current_user.name || current_user.email %><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Editar cuenta", edit_user_registration_path %></li>
+                  <li class="divider"></li>
+                  <li><%= link_to destroy_user_session_path, method: :delete do %>Salir <i class="fa fa-power-off" style="font-size:15px; color:#ccc;"></i>
+                  <% end %>
+                  </li>
+                </ul>
+            </li>
+            <% else %>
+              <li><%= link_to "Ya eres miembro? Ingresa", ingresar_path %> </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>

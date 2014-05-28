@@ -1,0 +1,53 @@
+<% if current_user %>
+  <div class="navbar-header dropdown">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+    <span class="fa fa-book" style="font-size:30px; color:#3498db;"></span>
+    </button>
+    <%= link_to "#", class: "navbar-brand hidden-xs dropdown-toggle", data: {toggle: "dropdown"} do %>
+    <span class="fa fa-book" style="font-size:25px; color:#fff;"> La lista</span>
+    <span class="caret"></span>
+    <% end %>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+      <li role="presentation" class="dropdown-menu-header text-center">Listas de regalos de mis invitaciones</li>
+      <% if current_user.invitaciones.present? %>
+        <% current_user.invitaciones.each do |invitacion| %>
+          <% if invitacion.fiesta.listas.first %>
+          <li><%= link_to invitacion.fiesta.listas.first.nombre, [invitacion.fiesta, invitacion.fiesta.listas.first], role: "menuitem", tabindex: "-1" %>
+          </li>
+          <% else %>
+          <li><%= link_to invitacion.fiesta, role: "menuitem", tabindex: "-1", rel: "tooltip", title: "ver fiesta" do %> <%= invitacion.fiesta.nombre %> no tiene lista de regalos aún<% end %></li>
+          <% end %>
+        <% end %>
+      <% else %>
+        <li class="disabled text-center">Aún no recibes invitaciones.</li>
+      <% end %>
+      <li role="presentation" class="divider"></li>
+      <li role="presentation" class="dropdown-menu-header text-center">Mis Listas de regalos</li>
+      <% if current_user.fiestas.present? %>
+        <% current_user.fiestas.each do |fiesta| %>
+          <% if fiesta.listas.first %>
+            <li><%= link_to fiesta.listas.first.nombre, [fiesta, fiesta.listas.first], role: "menuitem", tabindex: "-1" %></li>
+          <% else %>
+            <li><%= link_to fiesta, role: "menuitem", tabindex: "-1", rel: "tooltip", title: "ver fiesta" do %> <%= fiesta.nombre %> no tiene lista de regalos aún<% end %></li>
+          <% end %>
+        <% end %>
+      <% else %>
+        <li role="presentation" class="text-center">
+          <span>No tienes listas aún </span><% if policy(Fiesta.new).create? %>
+          <span><%= link_to new_fiesta_path(@fiesta), class: "btn btn-xs btn-primary", role: "menuitem", tabindex: "-1" do %>
+          agrega tu fiesta <i class="fa  fa-plus-circle"></i> 
+          <% end %></span><% end %>
+        </li>  
+      <% end %>
+    </ul>
+  </div>
+  <% else %>
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+    <span class="fa fa-book" style="font-size:30px; color:#3498db;"></span>
+    </button>
+    <%= link_to root_path, class: "navbar-brand hidden-xs hidden-sm" do %>
+    <span class="fa fa-book" style="font-size:25px; color:#fff;"> La lista</span>
+    <% end %>
+  </div>
+  <% end %>
