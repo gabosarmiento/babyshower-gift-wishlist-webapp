@@ -33,7 +33,7 @@ class ConvidadosController < ApplicationController
       @convidado = @fiesta.convidados.find_or_create_by!(email: email) # Añadir un nuevo Convidado
       @convidado.anfitrion = @anfitrion # asignar anfitrion como el usuario actual
       authorize @convidado
-      unless @convidado.save
+      if @convidado.save
         if @convidado.invitado != nil
            ConvidadoMailer.usuario_existente_convidado(@convidado).deliver
            # @convidado.invitado.invitaciones.push(@convidado)
