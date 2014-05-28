@@ -48,8 +48,8 @@
          <% else %>
          <t>Ya pasó la reunión.</t>
          <% end %>
-         <t>inicio - </t><time><%= @fiesta.fecha_y_hora_inicio %></time><br/>
-         <t>cierre - </t><time><%= @fiesta.fecha_y_hora_cierre %></time><br/>
+         <%= time_tag(@fiesta.fecha_y_hora_inicio.to_date) %> <t> inicio - </t><%= (Time.parse(@fiesta.fecha_y_hora_inicio.to_s)).strftime('%l:%M %P') %><br/>
+         <%= time_tag(@fiesta.fecha_y_hora_cierre.to_date) %><t> cierre - </t><%= (Time.parse(@fiesta.fecha_y_hora_cierre.to_s)).strftime('%l:%M %P') %><br/>
       </p>
     </div>
     <!-- <div class="col-lg-3">
