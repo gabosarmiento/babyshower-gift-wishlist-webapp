@@ -17,25 +17,45 @@ class ConvidadosController < ApplicationController
   end
 
   def create
-   @fiesta = Fiesta.friendly.find(params[:fiesta_id])
-   @anfitrion = @fiesta.users.first
-   @convidado = @fiesta.convidados.find_or_create_by!(convidado_params) # Añadir un nuevo Convidado
-   @convidado.anfitrion = @anfitrion # asignar anfitrion como el usuario actual
-   authorize @convidado
-   if @convidado.save
-    if @convidado.invitado != nil
-       ConvidadoMailer.usuario_existente_convidado(@convidado).deliver
-       # @convidado.invitado.invitaciones.push(@convidado)
-       # @convidado.invitado.fiestas.push(@convidado.fiesta)
-    else
-      # ConvidadoMailer.nuevo_usuario_convidado(@convidado, new_user_registration_url(:convidado_token => @convidado.token)).deliver #enviar la invitación a nuestro mailer para que entregue el mailer
-      ConvidadoMailer.nuevo_usuario_convidado(@convidado, new_user_registration_url).deliver #enviar la invitación a nuestro mailer para que entregue el mailer
+    @fiesta = Fiesta.friendly.find(params[:fiesta_id])
+    @anfitrion = @fiesta.users.first
+    @emails_txt = params[:convidado][:email]
+    @emails = @emails_txt.split(/\s*,\s*/)
+    @val = []
+    @emails.each do |email|
+      if email =~  /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
+        @val << email
+      end
     end
-      redirect_to fiesta_convidados_path(@fiesta), notice: "Invitación enviada exitosamente."
-   else
-      flash[:error] = "Hubo en error enviando la invitación. Intenta nuevamente"
-      render :new
-   end
+    @todo_ok = true
+    @errores = []
+    @val.each do |email|
+      @convidado = @fiesta.convidados.find_or_create_by!(email: email) # Añadir un nuevo Convidado
+      @convidado.anfitrion = @anfitrion # asignar anfitrion como el usuario actual
+      authorize @convidado
+      unless @convidado.save
+        if @convidado.invitado != nil
+           ConvidadoMailer.usuario_existente_convidado(@convidado).deliver
+           # @convidado.invitado.invitaciones.push(@convidado)
+           # @convidado.invitado.fiestas.push(@convidado.fiesta)
+        else
+          # ConvidadoMailer.nuevo_usuario_convidado(@convidado, new_user_registration_url(:convidado_token => @convidado.token)).deliver #enviar la invitación a nuestro mailer para que entregue el mailer
+          ConvidadoMailer.nuevo_usuario_convidado(@convidado, new_user_registration_url).deliver #enviar la invitación a nuestro mailer para que entregue el mailer
+        end
+        # redirect_to fiesta_convidados_path(@fiesta), notice: "Invitación enviada exitosamente."
+      else
+        @todo_ok = "false"
+        @errores << @convidado.errors  
+        # flash[:error] = "Hubo en error enviando la invitación. Intenta nuevamente"
+        # redirect_to fiesta_convidados_path(@fiesta)
+      end
+    end
+    if @todo_ok == "false"
+      redirect_to fiesta_convidados_path(@fiesta)
+       flash[:error] = "Hubo errores al crear los invitados. Intenta nuevamente"
+    else
+      redirect_to fiesta_convidados_path(@fiesta), notice: "#{@val.count.to_i} invitaciones enviadas exitosamente."
+    end
   end
 
   def update

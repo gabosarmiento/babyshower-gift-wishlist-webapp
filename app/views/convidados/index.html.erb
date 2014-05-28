@@ -16,7 +16,7 @@
             <th>Nombre</th>
             <th>Correo</th>
             <% if policy(@convidado).destroy? %>
-            <th>Eliminar</th>
+            <th>Cancelar</th>
             <% end %>
           </tr>
         </thead>
@@ -38,12 +38,21 @@
       </table>
       </div>
       <% if policy(@convidado).create? %>
-      <h3 class="extra-margin-top">Invitar usuarios</h3>
-      <%= form_for [@fiesta, @convidado] do |f| %>
-      <%= f.label :email, placeholder: "email" %>
-      <%= f.email_field :email %>
-      <%= f.submit 'Invitar amigos' , class: "btn-primary"%>
-      <% end %>
+      <div class="well">
+
+        <h3 class="extra-margin-top">Enviar invitaciones vía email</h3>
+        <%= form_for [@fiesta, @convidado] do |f| %>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+            <%= f.label :email, "Ingresa el email o los email" %>
+            <%= f.text_area :email, class: "form-control", rows: "2", placeholder: "Emails separados por coma" %>
+            </div>
+          </div>
+        </div>
+        <%= f.submit 'Invitar amigos' , class: "btn-primary"%>
+        <% end %>
+        </div>
       <% end %>
     </div>
   </div>

@@ -20,6 +20,9 @@ class Convidado < ActiveRecord::Base
   belongs_to :fiesta
   belongs_to :anfitrion, :class_name => 'User'
   belongs_to :invitado, :class_name => 'User'
+
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }                    
   
   def generate_token
    self.token = Digest::SHA1.hexdigest([self.fiesta_id, Time.now, rand].join)
