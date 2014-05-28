@@ -82,7 +82,7 @@
     <div class="col-lg-2 col-lg-offset-1">
       <h5>Listas</h5>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-9">
       <% if @fiesta.listas.empty? %>
         <% if policy(@fiesta).update? %>
         <div><%= link_to "Crear lista de regalos", new_fiesta_lista_path(@fiesta), class: "btn btn-primary btn-lg" %></div>
@@ -90,26 +90,63 @@
         <div>No hay listas de regalos disponibles aún. </div>
         <% end %>
         <% else %>
-        <div><%= link_to "ver lista de regalos", fiesta_lista_path(@fiesta, @lista), class: "btn btn-lg btn-info" %></div>
-        <% if policy(@fiesta).update? %>
-        <br>
         <span>
-        <%= link_to "cambiar nombre", edit_fiesta_lista_path(@fiesta, @lista), class: "btn btn-primary btn-sm" %>
+          <span><%= link_to "ver lista de regalos", fiesta_lista_path(@fiesta, @lista), class: "btn btn-lg btn-info" %></span>
+          <% if policy(@fiesta).update? %>
+          <br>
+          <span>
+          <%= link_to "cambiar nombre", edit_fiesta_lista_path(@fiesta, @lista), class: "btn btn-primary btn-sm" %>
+          </span>
+          <span>
+          <%= link_to "borrar", [@fiesta, @lista], method: :delete, class: "btn btn-danger btn-sm", data: {confirm: "Estas seguro de borrar esta lista?"} %>
+          </span>
+        
+          <% end %>
         </span>
-        <span>
-        <%= link_to "borrar", [@fiesta, @lista], method: :delete, class: "btn btn-danger btn-sm", data: {confirm: "Estas seguro de borrar esta lista?"} %>
-        </span>
-      <% end %>
         <% end %>
-    </div>
-    <div class="col-lg-3">
-      <div><%= link_to "ver lista de invitados", fiesta_convidados_path(@fiesta) , class: "btn btn-lg btn-primary"%>
-      </div>
+        <span><%= link_to "ver lista de invitados", fiesta_convidados_path(@fiesta) , class: "btn btn-lg btn-primary"%>
+        </span>
     </div>
     </div>
     <br>
 
   </div>
+<% if policy(@fiesta).show? %>
+<section id="rsvp" name="rsvp"></section>
+<div class="container desc">
+  <div class="row">
+    <div class="col-lg-2 col-lg-offset-1">
+      <h5>Asistirás?</h5>
+      <% if @fiesta.convidados.where(invitado_id: current_user.id).first.asistencia.nil? %>
+        <small>No has confirmado tu presencia </small>
+        <% end %>
+    </div>
+    <div class="col-lg-6"> 
+      <% if @fiesta.convidados.where(invitado_id: current_user.id).first.asistencia.nil? %>
+        <span><%= link_to "confirmar asistencia", fiesta_convidado_confirmar_path(@fiesta, @fiesta.convidados.where(invitado_id: current_user.id).first ), class: "btn btn-success btn-lg" %>
+          <%= link_to "declinar asistencia", fiesta_convidado_declinar_path(@fiesta, @fiesta.convidados.where(invitado_id: current_user.id).first ), class: "btn btn-danger btn-lg" %>
+        </span>
+      <% else %>
+        <% if @fiesta.convidados.where(invitado_id: current_user.id).first.asistencia == true %>
+          <span>
+            <p><t>Si Asistirás!</t></p>
+          </span>
+          <span>
+          <%= link_to "cambiar de parecer", fiesta_convidado_declinar_path(@fiesta, @fiesta.convidados.where(invitado_id: current_user.id).first ), class: "btn btn-md btn-primary" , data: {confirm: "estas seguro de cancelar tu asistencia?"} %></span>
+        <% else %>
+          <span>
+            <p><t>No asistirás.</t></p>
+          </span>
+          <span>
+          <%= link_to "cambiar de parecer", fiesta_convidado_confirmar_path(@fiesta, @fiesta.convidados.where(invitado_id: current_user.id).first ), class: "btn btn-md btn-primary" , data: {confirm: "deseas reconfirmar tu asistencia?"}%>
+          </span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>
+<br>
 <section id="contacto" name="contacto"></section>
 <!--FOOTER DESCRIPTION -->
   <div id="footwrap">
