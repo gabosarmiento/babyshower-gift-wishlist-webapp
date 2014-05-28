@@ -11,7 +11,7 @@
       <% unless @fiestas_ids.empty? %>
         <% @fiestas_ids.each do |id| %>
         <div id="invitacion-<%= id %>" class="lista-fiestas">
-          <div><small><strong>[
+          <div><span><small><strong>[
             <% if (Fiesta.find(id).fecha_y_hora_inicio.to_date - Date.today).to_i > 0 %>
               Faltan <%= pluralize((Fiesta.find(id).fecha_y_hora_inicio.to_date - Date.today).to_i, 'Día') %>
             <% elsif (Fiesta.find(id).fecha_y_hora_inicio.to_date - Date.today).to_i == 0 %>
@@ -19,7 +19,7 @@
             <% else %>
               Finalizada.
             <% end %>]
-          </strong></small></div>
+          </strong></small></span></div>
           <span><strong><%= link_to Fiesta.find(id).nombre, fiesta_path(Fiesta.find(id)) %></strong></span>
           <span><small>Invita <%= Fiesta.find(id).users.first.email %></small></span>
           <% if Fiesta.find(id).listas.first %>
@@ -35,12 +35,12 @@
 
           <% if Fiesta.find(id).convidados.where(invitado_id: current_user.id).first.asistencia == true %>
           <span>
-          <%= link_to "Confirmado!", "", class: "btn btn-xs btn-success"  %>
-           <%= link_to "cambiar de parecer", fiesta_convidado_declinar_path(Fiesta.find(id), Fiesta.find(id).convidados.where(invitado_id: current_user.id).first ), class: "btn btn-xs btn-default"  %></span>
+          <%= link_to "Asistirás!", "", class: "btn btn-xs btn-success"  %>
+           <%= link_to "cambiar de parecer", fiesta_convidado_declinar_path(Fiesta.find(id), Fiesta.find(id).convidados.where(invitado_id: current_user.id).first ), class: "btn btn-xs btn-default" , data: {confirm: "estas seguro de cancelar tu asistencia?"} %></span>
           <% else %>
           <span>
             <%= link_to "No asistirás", "", class: "btn btn-xs btn-danger"  %>
-            <%= link_to "cambiar de parecer", fiesta_convidado_confirmar_path(Fiesta.find(id), Fiesta.find(id).convidados.where(invitado_id: current_user.id).first ), class: "btn btn-xs btn-default"  %>
+            <%= link_to "cambiar de parecer", fiesta_convidado_confirmar_path(Fiesta.find(id), Fiesta.find(id).convidados.where(invitado_id: current_user.id).first ), class: "btn btn-xs btn-default" , data: {confirm: "deseas reconfirmar tu asistencia?"}%>
           </span>
           <% end %>
           <% end %>

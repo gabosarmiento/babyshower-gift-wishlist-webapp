@@ -15,7 +15,7 @@
           <tr>
             <th>Nombre</th>
             <th>Correo</th>
-            <th>Confirma asistencia?</th>
+            <th>Confirma asistencia? <span class="help-block">Si <span class="label label-success"><%= @fiesta.convidados.where(asistencia: true).count %></span>/ No <span class="label label-default"><%= @fiesta.convidados.where(asistencia: false).count %></span></span></th>
             <% if policy(@convidado).destroy? %>
             <th>Cancelar</th>
             <% end %>
@@ -37,7 +37,7 @@
               <% if convidado.asistencia == true %>
               <%= link_to "Confirmado!", "", class: "btn btn-xs btn-success"  %>
               <% else %>
-              <%= link_to "No asistirá", "", class: "btn btn-xs btn-danger"  %>
+              <%= link_to "No asistirá", "", class: "btn btn-xs btn-default"  %>
               <% end %>
               <% end %>
             </th>
