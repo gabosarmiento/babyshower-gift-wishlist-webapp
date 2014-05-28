@@ -30,32 +30,37 @@
           <span class="fa fa-book" style="font-size:25px; color:#fff;"> La lista</span>
           <span class="caret"></span>
           <% end %>
-          <ul class="dropdown-menu">
-            <li class="dropdown-menu-header text-center">Mis Listas de regalos</li>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <li role="presentation" class="dropdown-menu-header text-center">Mis Listas de regalos</li>
             <% if current_user.fiestas %>
               <% current_user.fiestas.each do |fiesta| %>
                 <% if fiesta.listas.first %>
-                  <li><%= link_to fiesta.listas.first.nombre, [fiesta, fiesta.listas.first] %></li>
+                  <li><%= link_to fiesta.listas.first.nombre, [fiesta, fiesta.listas.first], role: "menuitem", tabindex: "-1" %></li>
                 <% else %>
-                  <li class="disabled"><%= link_to fiesta do %> <%= fiesta.nombre %> no tiene lista de regalos aún<% end %></li>
+                  <li><%= link_to fiesta, role: "menuitem", tabindex: "-1", rel: "tooltip", title: "ver fiesta" do %> <%= fiesta.nombre %> no tiene lista de regalos aún<% end %></li>
                 <% end %>
               <% end %>
             <% else %>
               <li>
                 No tienes listas aún  <% if policy(@fiesta).create? %>
-                <%= link_to new_fiesta_path(@fiesta), class: "btn btn-xs btn-primary" do %>
+                <%= link_to new_fiesta_path(@fiesta), class: "btn btn-xs btn-primary", role: "menuitem", tabindex: "-1" do %>
                 añadir fiesta <i class="fa  fa-plus-circle"></i> 
                 <% end %><% end %>
               </li>  
             <% end %>
-            <li class="dropdown-menu-header text-center">Listas de regalos de mis invitaciones</li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation" class="dropdown-menu-header text-center">Listas de mis invitaciones</li>
             <% if current_user.invitaciones %>
               <% current_user.invitaciones.each do |invitacion| %>
-                <li><%= link_to invitacion.fiesta.listas.first.nombre, [invitacion.fiesta, invitacion.fiesta.listas.first] %>
+                <% if invitacion.fiesta.listas.first %>
+                <li><%= link_to invitacion.fiesta.listas.first.nombre, [invitacion.fiesta, invitacion.fiesta.listas.first], role: "menuitem", tabindex: "-1" %>
                 </li>
+                <% else %>
+                <li><%= link_to invitacion.fiesta, role: "menuitem", tabindex: "-1", rel: "tooltip", title: "ver fiesta" do %> <%= invitacion.fiesta.nombre %> no tiene lista de regalos aún<% end %></li>
+                <% end %>
               <% end %>
             <% else %>
-              <li>Aún no recibes invitaciones.</li>
+              <li class="disabled">Aún no recibes invitaciones.</li>
             <% end %>
           </ul>
         </div>
