@@ -26,7 +26,20 @@
           <%= simple_format(@fiesta.descripcion) %>
         </div>
         <% if policy(@fiesta).update? %>
-          <%= link_to "ver lista de invitados", fiesta_convidados_path(@fiesta) , class: "btn btn-xs btn-primary"%>
+        <div class="col-lg-3">
+          <div>
+            <sm>Asistirán <%= @fiesta.convidados.where(asistencia: true).count %></sm>
+          </div>
+          <div>
+            <sm>No asisten <%= @fiesta.convidados.where(asistencia: false).count %></sm>
+          </div>
+          <div>
+            <sm>Invitados <%= @fiesta.convidados.count %></sm>
+          </div>
+          <div>
+            <%= link_to "ver lista de invitados", fiesta_convidados_path(@fiesta) , class: "btn btn-xs btn-primary"%>
+          </div>
+        </div>
         <% else %>
         <% if policy(@fiesta).show? %>
         <div class="col-lg-3">
