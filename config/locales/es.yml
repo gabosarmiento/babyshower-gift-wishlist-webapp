@@ -1,4 +1,12 @@
 es: 
+  activerecord:
+    models:
+      Lista:
+        one: 'lista'
+        other: 'listas'
+      Fiesta:
+        one: 'fiesta'
+        other: 'fiestas'
   will_paginate:
     next_label: siguiente →
     page_gap: '&hellip;'
@@ -15,11 +23,3 @@ es:
         one: Mostrando <b>1</b> %{model}
         other: Mostrando en <b>total&nbsp;%{count}</b> %{model}
         zero: No se encontraron %{model}
-  activerecord:
-    models:
-      Lista:
-        one: 'lista'
-        other: 'listas'
-      Fiesta:
-        one: 'fiesta'
-        other: 'fiestas'
