@@ -1,6 +1,6 @@
-Has recibido un regalo de <%= User.find(@compromiso.user_id).name.to_s.humanize.titleize %>
+Has recibido un regalo de tu fiesta <%= @fiesta.nombre %>!
 ===============================================
-Te compró el regalo: <%= @regalo.titulo.to_s.humanize.titleize %>.
+Te compraron el regalo: <%= @regalo.titulo.to_s.humanize.titleize %>.
 
 Para ver el estado de los regalos de tu <%= @fiesta.nombre %>, sigue este link y <%= link_to "accede al portal", ingresar_url %> con tus datos.
 
