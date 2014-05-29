@@ -66,7 +66,7 @@ gem 'acts_as_list'
 gem 'jquery-ui-rails'
 gem 'omniauth-facebook'
 gem 'friendly_id'
-gem 'will_paginate', '~> 3.0'
+gem 'will_paginate'
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
