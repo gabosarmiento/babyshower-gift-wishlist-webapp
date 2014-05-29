@@ -1,18 +1,19 @@
 <div class="container" id="tiendas-container">
   <h3>Directorio</h3>
+  <span class="help-block">Ayúdanos a construir un mejor directorio.</span>
   <div class="col-lg-12">
     <% if policy(Tienda.new).create? %>
     <div>
-      <%= link_to "Añadir tienda", new_tienda_path, class: "btn btn-lg btn-primary" %>
+      <%= link_to "añade una tienda", new_tienda_path, class: "btn btn-md btn-primary" %>
     </div>
     <% end %>
     <div class="tiendas">
       <table class="table table-striped">
         <thead>
-          <th>Nombre</th>
+          <th width="200">Nombre</th>
           <th>Acerca De La Tienda</th>
           <th>Dirección al portal</th>
-          <th>Locacion</th>
+          <th>Locación</th>
         </thead>
         <tbody>
            <% @tiendas.each do |tienda| %>

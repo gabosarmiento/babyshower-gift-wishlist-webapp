@@ -16,13 +16,13 @@
       <div class="responsive">
       <table class="table table-striped">
         <thead>
-          <th>Nombre</th>
+          <th width="200">Nombre</th>
           <th>Acerca De La Tienda</th>
           <th>Dirección al portal</th>
-          <th>Locacion</th>
+          <th>Locación</th>
         </thead>
         <tbody>
-          <tr><td><%= @tienda.nombre %></td><td><%= @tienda.acerca_de %></td><td><%= @tienda.url %></td><td><%= @tienda.locacion %></td></tr>
+          <tr><td><%= @tienda.nombre %></td><td><%= @tienda.acerca_de %></td><td><%= link_to @tienda.url, @tienda.url %></td><td><%= @tienda.locacion %></td></tr>
         </tbody>
       </table>
       </div>
