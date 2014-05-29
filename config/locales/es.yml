@@ -7,6 +7,9 @@ es:
       Fiesta:
         one: 'fiesta'
         other: 'fiestas'
+      Tienda:
+        one: 'tienda'
+        other: 'tiendas'
   will_paginate:
     next_label: siguiente →
     page_gap: '&hellip;'

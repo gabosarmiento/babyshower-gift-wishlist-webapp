@@ -67,6 +67,7 @@ gem 'jquery-ui-rails'
 gem 'omniauth-facebook'
 gem 'friendly_id'
 gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 

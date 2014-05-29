@@ -21,7 +21,7 @@
         </tbody>
       </table>
       <div class="pagination_como_digg">
-        <%= will_paginate @tiendas %>
+        <%= will_paginate @tiendas , renderer: BootstrapPagination::Rails %>
       </div>
     </div>
   </div>
