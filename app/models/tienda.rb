@@ -13,6 +13,7 @@
 #
 
 class Tienda < ActiveRecord::Base
+  has_paper_trail
   validates :nombre, length: {minimum: 4}, presence: true
   validates :locacion, :allow_blank => true, presence: true
   validates :url, :allow_blank => true, :format => URI::regexp(%w(http https))
