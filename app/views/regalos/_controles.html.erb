@@ -5,12 +5,12 @@
     </span>
     <% when "reservado" %>
     <% if current_user == regalo.compromiso.user || policy(regalo).edit? %>
-      <small>Reservado por <%= regalo.compromiso.user.name.humanize.titleize %></small>
+      <!-- <small>Reservado por <%= regalo.compromiso.user.name.humanize.titleize %></small> -->
     <span>
       <%= link_to "liberarlo", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-success btn-xs", data: {toggle: "tooltip", placement: "top"}, title: "Volverá a la lista de regalos disponibles" %>
     </span>
     <span>
-      <%= link_to "lo he comprado", fiesta_lista_regalo_comprar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-info btn-xs", data: {toggle: "tooltip", placement: "top"}, title: "Notifica al anfitrión de tu compra" %>
+      <%= link_to "lo he comprado", fiesta_lista_regalo_comprar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-info btn-xs", data: {toggle: "tooltip", placement: "top"}, title: "Notifica al anfitrión de tu compra de manera anónima" %>
     </span>
     <% else %>
       <span>
@@ -23,9 +23,9 @@
       <%= link_to "regalo comprado", "", class: "btn btn-success btn-xs disabled" %>
       </span>
       <% if policy(regalo).edit? %>
-          <span>
+          <!-- <span>
             <small>Comprado por <%= regalo.compromiso.user.name %></small>
-          </span>
+          </span> -->
         <span>
         <%= link_to "liberar", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-default btn-xs" %>
         </span>
