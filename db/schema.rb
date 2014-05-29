@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140528110723) do
+ActiveRecord::Schema.define(version: 20140529055601) do
 
   create_table "compromisos", force: true do |t|
     t.integer  "user_id"
@@ -99,6 +99,15 @@ ActiveRecord::Schema.define(version: 20140528110723) do
 
   add_index "rsvps", ["fiesta_id"], name: "index_rsvps_on_fiesta_id"
   add_index "rsvps", ["user_id"], name: "index_rsvps_on_user_id"
+
+  create_table "tiendas", force: true do |t|
+    t.string   "nombre"
+    t.string   "locacion"
+    t.string   "url"
+    t.text     "acerca_de"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"

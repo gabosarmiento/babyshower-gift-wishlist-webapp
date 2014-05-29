@@ -18,4 +18,5 @@
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'fiesta', 'fiestas'
   inflect.irregular 'lista', 'listas'
+  inflect.irregular 'tienda', 'tiendas'
 end
