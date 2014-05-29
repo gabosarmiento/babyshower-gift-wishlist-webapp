@@ -25,6 +25,9 @@
         <div class="col-lg-6">
           <%= simple_format(@fiesta.descripcion) %>
         </div>
+        <% if policy(@fiesta).update? %>
+          <%= link_to "ver lista de invitados", fiesta_convidados_path(@fiesta) , class: "btn btn-xs btn-primary"%>
+        <% else %>
         <% if policy(@fiesta).show? %>
         <div class="col-lg-3">
             <sm>
@@ -41,6 +44,7 @@
           </sm>
           <p><imp style=" padding: 6px; color: white;background: #34495e;"><sm>RSVP</sm></imp></p>
         </div>
+        <% end %>
         <% end %>
       </div><!--/.row -->
     </div><!--/.container -->
@@ -128,6 +132,7 @@
     <br>
 
   </div>
+<% unless policy(@fiesta).update? %>
 <% if policy(@fiesta).show? %>
 <section id="rsvp" name="rsvp"></section>
 <div class="container desc">
@@ -165,6 +170,7 @@
     </div>
   </div>
 </div>
+<% end %>
 <% end %>
 <br>
 <section id="contacto" name="contacto"></section>
