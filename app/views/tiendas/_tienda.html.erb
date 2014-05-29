@@ -1,0 +1,17 @@
+<div class="tienda">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="tienda-nombre">
+        <p><%= tienda.nombre %></p>
+      </div>
+      <div class="tienda-cuerpo">
+        <div class="tienda-acerca-de">
+          <%= simple_format(tienda.acerca_de) %>
+        </div>
+        <span><%= simple_format(tienda.url) %></span>
+        <hr>
+        <span><small><% simple_format(tienda.locacion) %></small></span>
+      </div>
+    </div>
+  </div>
+</div>

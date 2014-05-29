@@ -1,2 +1,6 @@
-<h1>Tiendas#new</h1>
-<p>Find me in app/views/tiendas/new.html.erb</p>
+<div class="container" id="tiendas-container">
+
+  <h1>Nueva tienda</h1>
+
+  <%= render partial: "form", locals: {tienda: @tienda} %>
+</div>

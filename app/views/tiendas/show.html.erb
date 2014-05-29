@@ -1,2 +1,31 @@
-<h1>Tiendas#show</h1>
-<p>Find me in app/views/tiendas/show.html.erb</p>
+<div class="container" id="tiendas-container">
+  <ol class="breadcrumb">
+  <li><%= link_to "Tiendas", tiendas_path %> / <%= @tienda.nombre %>
+  </li>
+  </ol>
+  <div class="panel panel-default">
+    <% if policy(@tienda).edit? %>
+    <div class="panel-heading">
+    <span><%= link_to "Editar", edit_tienda_path(@tienda), class: "btn btn-primary"%></span>
+    <% if policy(@tienda).destroy? %>
+     <span><%= link_to "Borrar", @tienda, method: :delete, class: "btn btn-danger", data: {confirm: "Estas seguro de borrar la tienda?"} %></span>
+    <% end %>
+    </div>
+    <% end %>
+    <div class="panel-body">
+      <div class="responsive">
+      <table class="table table-striped">
+        <thead>
+          <th>Nombre</th>
+          <th>Acerca De La Tienda</th>
+          <th>Dirección al portal</th>
+          <th>Locacion</th>
+        </thead>
+        <tbody>
+          <tr><td><%= @tienda.nombre %></td><td><%= @tienda.acerca_de %></td><td><%= @tienda.url %></td><td><%= @tienda.locacion %></td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>

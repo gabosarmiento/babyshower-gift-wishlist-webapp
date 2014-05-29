@@ -1,2 +1,28 @@
-<h1>Tiendas#index</h1>
-<p>Find me in app/views/tiendas/index.html.erb</p>
+<div class="container" id="tiendas-container">
+  <h3>Directorio</h3>
+  <div class="col-lg-12">
+    <% if policy(Tienda.new).create? %>
+    <div>
+      <%= link_to "Añadir tienda", new_tienda_path, class: "btn btn-lg btn-primary" %>
+    </div>
+    <% end %>
+    <div class="tiendas">
+      <table class="table table-striped">
+        <thead>
+          <th>Nombre</th>
+          <th>Acerca De La Tienda</th>
+          <th>Dirección al portal</th>
+          <th>Locacion</th>
+        </thead>
+        <tbody>
+           <% @tiendas.each do |tienda| %>
+            <tr><td><%= link_to tienda.nombre, tienda %></td><td><%= simple_format(tienda.acerca_de) %></td><td><%= link_to tienda.url, tienda.url %></td><td><%= tienda.locacion %></td></tr>
+             <% end %>
+        </tbody>
+      </table>
+      <div class="pagination_como_digg">
+        <%= will_paginate @tiendas %>
+      </div>
+    </div>
+  </div>
+</div>

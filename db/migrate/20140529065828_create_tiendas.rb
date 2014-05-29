@@ -5,6 +5,7 @@ class CreateTiendas < ActiveRecord::Migration
       t.string :locacion
       t.string :url
       t.text :acerca_de
+      t.boolean :pagos_online
 
       t.timestamps
     end

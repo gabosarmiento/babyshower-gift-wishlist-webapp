@@ -1,0 +1,64 @@
+<%= form_for tienda do |f| %>
+<div class="col-md-12">
+  <!-- notificaciones de errores -->
+  <% if tienda.errors.any? %>
+    <div class="alert alert-danger">
+      <% tienda.errors.full_messages.each do |msg| %>
+        <div><%= msg %></div>
+      <% end %>
+    </div>
+  <% end %>
+  <!-- notificaciones de errores fin -->
+    <div class="row">
+      <div class="col-sm-12">
+        <%= form_group_tag(tienda.errors[:nombre]) do %>
+        <div class="form-group">
+            <%= f.label :nombre %>
+            <%= f.text_field :nombre, class: "form-control", :autofocus => true %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <%= form_group_tag(tienda.errors[:acerca_de]) do %>
+        <div class="form-group">
+            <%= f.label :acerca_de, "Acerca de la tienda" %>
+            <%= f.text_area :acerca_de, class: "form-control", placeholder: "Describe un poco qué ofrece la tienda", rows: "2" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <%= form_group_tag(tienda.errors[:locacion]) do %>
+        <div class="form-group">
+            <%= f.label :locacion %>
+            <%= f.text_field :locacion, class: "form-control", placeholder: "Ingresa el país" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <%= form_group_tag(tienda.errors[:url]) do %>
+        <div class="form-group">
+          <%= f.label :url, "ingresa la página o portal de la tienda"%>
+          <%= f.text_field :url, class: 'form-control', placeholder: "http:// " %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <br>
+         <%= f.submit class: "btn btn-md btn-primary" do %>
+          <i class="fa fa-dot-circle-o"></i> Crear
+          <% end %>
+        </div>
+      </div>
+    </div> 
+</div> <!-- /col finaliza -->
+<% end %> <!-- /forma finaliza -->
