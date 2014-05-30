@@ -29,11 +29,11 @@ class FiestasController < ApplicationController
 
   def show
     @fiesta = Fiesta.friendly.find(params[:id])
+    authorize @fiesta
     if request.path != fiesta_path(@fiesta)
       redirect_to @fiesta, status: :moved_permanently
     end
     @lista = @fiesta.listas.first if @fiesta.listas.first
-    authorize @fiesta
   end
 
   def update

@@ -8,13 +8,13 @@ class ListasController < ApplicationController
   def show
     @fiesta = Fiesta.friendly.find(params[:fiesta_id])
     @lista = Lista.friendly.find(params[:id])
+    authorize @lista
     if request.path != fiesta_lista_path(@fiesta, @lista)
       redirect_to [@fiesta,@lista], status: :moved_permanently
     end
     @disponibles = Regalo.where(lista_id: @lista.id).joins(:compromiso).merge(Compromiso.where(value: "disponible")).order("position")
     @reservados = Regalo.where(lista_id: @lista.id).joins(:compromiso).merge(Compromiso.where(value: "reservado")).order("position")
     @comprados =Regalo.where(lista_id: @lista.id).joins(:compromiso).merge(Compromiso.where(value: "comprado")).order("position")
-    authorize @lista
   end
 
   def new

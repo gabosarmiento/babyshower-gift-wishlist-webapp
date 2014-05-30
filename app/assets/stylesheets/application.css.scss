@@ -408,13 +408,20 @@ margin-top: 15px;
   color: #767676
 }
 
-#footerwrap {
+.footer {
+  border-top: 1px solid #eaeaea;
+  color: #999;
+
+  .navbar {
+    margin-bottom: 0;
+  }
+
   a {
-    color: #767676;
+    color: #555;
   }
 
   a:hover {
-    color: white;
+    color: #222;
     span {
     color: red;
     }
@@ -596,6 +603,7 @@ sm {
   margin-top: -50px;
   padding-top:120px;
   padding-bottom: 70px;
+  height: 100%;
 }
 
  #alert-container {

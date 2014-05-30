@@ -35,13 +35,7 @@ class Fiesta < ActiveRecord::Base
   validates :email_contacto, :allow_blank => true, presence: true
 
   def esta_invitado?(user)
-    unless self.convidados.empty?
-      self.convidados.each do |u|
-        if u.invitado_id == user.id 
-          true
-        end
-      end
-    end
+    self.convidados.where(invitado: user).present? 
   end
 
   def should_generate_new_friendly_id?
