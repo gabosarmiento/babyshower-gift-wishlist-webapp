@@ -344,6 +344,13 @@ margin-top: 15px;
   margin-bottom: 10px;
 }
 
+#linkwrap {
+  margin-bottom: 70px;
+  margin-top: 0px;
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
+
 #footwrap {
   background: #2f2f2f;
   padding-top: 50px;
@@ -399,6 +406,19 @@ margin-top: 15px;
 
 .service .text {
   color: #767676
+}
+
+#footerwrap {
+  a {
+    color: #767676;
+  }
+
+  a:hover {
+    color: white;
+    span {
+    color: red;
+    }
+  }
 }
 /* ==========================================================================
    MEDIA QUERIES
@@ -572,9 +592,10 @@ sm {
   margin-bottom: 2px;
 }
 
-#signup, #signin, #passwords, #confirmations, #registrations, #fiestas-container, #listas-container, #regalos-container , #convidados-container, #tiendas-container, #tours-container{
+#signup, #signin, #passwords, #confirmations, #registrations, #fiestas-container, #listas-container, #regalos-container , #convidados-container, #tiendas-container, #tours-container, #sobre-container{
   margin-top: -50px;
   padding-top:120px;
+  padding-bottom: 70px;
 }
 
  #alert-container {

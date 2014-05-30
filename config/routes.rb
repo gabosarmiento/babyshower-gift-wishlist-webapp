@@ -27,6 +27,8 @@ Eclist::Application.routes.draw do
   get "ingresar", to: "devise/sessions#new"
   get "registrarse", to: "devise/registrations#new"
   end
+  
+  match "sobre" => "bienvenida#sobre", via: :get
   get "inicio" => "bienvenida#inicio"
   # Change root path if user is authenticated
   authenticated :user do
