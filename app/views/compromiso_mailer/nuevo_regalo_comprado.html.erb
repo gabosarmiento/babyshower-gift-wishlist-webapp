@@ -4,11 +4,11 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h3>Has recibido un regalo de tu fiesta <%= @fiesta.nombre %>!</h3>
+    <h3>Has recibido un regalo en tu fiesta <%= @fiesta.nombre %>!</h3>
 
-    <p> Te compraron el regalo: <%= @regalo.titulo.to_s.humanize.titleize %> </p>
+    <p> Uno de tus invitados confirmó la compra del regalo: <%= @regalo.titulo.to_s.humanize.titleize %>.</p>
     <p>
-      Para ver el estado de los regalos de tu <%= @fiesta.nombre %>, sigue este link y <%= link_to "accede al portal", ingresar_url %> con tus datos.
+      Para ver el estado de los regalos de tu <%= @fiesta.nombre %>,<%= link_to "accede al portal", ingresar_url %> con tus datos.
     </p>
 
     <p>Que tengas un buen día!</p>

@@ -1,7 +1,8 @@
-Has recibido un regalo de tu fiesta <%= @fiesta.nombre %>!
+Has recibido un regalo en tu fiesta <%= @fiesta.nombre %>!
 ===============================================
-Te compraron el regalo: <%= @regalo.titulo.to_s.humanize.titleize %>.
 
-Para ver el estado de los regalos de tu <%= @fiesta.nombre %>, sigue este link y <%= link_to "accede al portal", ingresar_url %> con tus datos.
+Uno de tus invitados confirmó la compra del regalo: <%= @regalo.titulo.to_s.humanize.titleize %>.
+
+Para ver el estado de los regalos de tu <%= @fiesta.nombre %>, <%= link_to "accede al portal", ingresar_url %> con tus datos.
 
 Que tengas un buen día!
