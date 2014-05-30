@@ -1,35 +1,109 @@
-<div class="container" id="tours-container">
-  <div class="row">
-    <div class="col-lg-5 col-lg-offset-1">
-      <h3>Cómo funciona las listas?</h3>
-        <ol>
-          <li>Tienes listas de tus fiestas y en las invitaciones que te han llegado. 
-          </li>
-          <li>Ingresa a la fiesta para ver la lista. 
-          </li>
-          <li>Haz click en LA LISTA para ver todas las listas.</li>
-          <li>Las listas tienen regalos que están separados en 3 categorias.</li>
-          <li>Los regalos disponibles puedes hacer click sobre la imagen y ver el detalle que el anfitrión ha dejado.</li>
-          <li>Al escoger el regalo que deseas puedes hacer click sobre el botón de 'lo quiero reservar'. Este botón envía los regalos a la lista de reservados </li>
-          <li>Los regalos reservados te dan tiempo a ti para que puedas comprarlo y así los demás invitados escogerán otros regalos para que no hayan repetidos.</li>
-          <li>Un regalo reservado es un estado intermedio, notifica al anfitrión de tu compra.</li>
-          <li>Puedes consultar tus regalos reservados en cualquier momento ingresando al link de Regalos en la barra de navegación.</li>
-          <li>Libera los regalos que no quieres comprar para que otros usuarios los puedan reservar.</li>
-        </ol>
-    </div>
-    <div class="col-lg-5">
-      <h3>Si eres el anfitrión</h3>
-      <ol>
-        <li>Crea una lista de regalos con textos llamativos.</li>
-        <li>Escoge fotos agradables de los productos. Googlea las imagenes y busca las direcciones.</li>
-        <li>Revisa la ortografía</li>
-        <li>No olvides dejar tips de lo que te gusta o conoces. </li>
-        <li>Recibirás un correo por cada regalo comprado.</li>
-        <li>Trata de encontrar las direcciones de los productos para que sea más fácil para los invitados encontrar el regalo de tu preferencia.</li>
-        <li>Revisa tu lista constantemente y conversa con tus invitados.</li>
-      </ol>
-    </div>
-  </div>
-  <%= link_to "atras", tour_fiestas_path, class: "btn btn-lg btn-primary" %>
-  <%= link_to "siguiente", tour_regalos_path, class: "btn btn-lg btn-primary" %>
-</div>
+  <! -- SECCION LISTAS -->
+  <section id="services" name="services"></section>
+  <div id="servicewrap">
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-lg-8-offset-2 centered">
+          <h1>LISTAS DE REGALOS</h1>
+          <h3>Tendrás listas en tus fiestas y en las invitaciones que te han llegado</h3>
+          <p>Opciones que tienes en cada lista</p>
+        </div><!-- /col-lg-8 -->
+      </div><! --/row -->
+      
+      <div class="row mt">
+        <div class="col-lg-3 service">
+          <i class="fa  fa-magic"></i><p>AÑADE REGALOS<br/><small>Nombre, descripción, fotos y más </small></p>
+          <p class="text">Cada regalo es una experiencia y tendrás todos los datos para facilitar su compra. Escoge fotos llamativas, Googlea las imagenes y añade sus direcciones.</p>
+        </div>
+        <div class="col-lg-3 service">
+          <i class="fa fa-exclamation-triangle"></i><p>CONOCE EL ESTADO<br/><small>Disponible, Reservado o Comprado</small></p>
+          <p class="text">Cada regalo tiene un estado el cual puede cambiar cuando cada invitado de la fiesta notifica su intención de compra. Este es público para todos.</p>
+        </div>
+        <div class="col-lg-3 service">
+          <i class="fa fa-gift"></i><p>RESERVA EL REGALO<br/><small>Es un estado intermedio</small></p>
+          <p class="text">Los regalos reservados te dan tiempo a ti para que puedas comprarlo y así los demás invitados escogerán otros regalos para que no hayan repetidos.</p>
+        </div>
+         <div class="col-lg-3 service">
+          <i class="fa fa-trophy"></i><p>NOTIFICA TU COMPRA<br/><small>De manera anónima</small></p>
+          <p class="text">El anfitrión recibirá un correo por cada regalo comprado sin tus datos, así se mantiene en secreto hasta el día de la fiesta.</p>
+        </div>
+      </div><! --/row -->
+      <div class="row mt">
+        <div class="col-lg-3 service">
+          <i class="fa fa-folder-open-o"></i><p>CONSULTA TUS RESERVAS<br/><small>En el link de Regalos de la barra</small></p>
+          <p class="text">Al escoger el regalo que deseas puedes hacer click sobre el botón de 'lo quiero reservar'. Este botón envía los regalos a la lista de reservados.</p>
+        </div>
+        <div class="col-lg-3 service">
+          <i class="fa  fa-unlock"></i><p>LIBERA LAS RESERVAS<br/><small>Solo deja los que más te gusten</small></p>
+          <p class="text">Mientras están reservados nadie puede comprarlos. Libera los regalos que no quieres comprar para que otros usuarios los puedan reservar.</p>
+        </div>
+        <div class="col-lg-3 service">
+          <i class="fa fa-globe"></i><p>PRODUCTOS REALES<br/><small>Ubica las tiendas online</small></p>
+          <p class="text">Cada regalo tiene un link de referencia. Trata de encontrar las direcciones de los productos para que sea más fácil encontrar el regalo de tu preferencia.</p>
+        </div>
+        <div class="col-lg-3 service">
+          <i class="fa fa-lightbulb-o"></i><p>TIPS DE COMPRA<br/><small>Dónde lo consigues</small></p>
+          <p class="text">Cada regalo tiene una descripción para que tengas presente a la hora de comprar el regalo. Puedes hacer click sobre la imagen y ver el detalle que el anfitrión ha dejado para ti.</p>
+        </div>
+        
+        
+      </div><! --/row -->
+      <% if current_user %>
+      <div class="row">
+        <div class="col-lg-8-offset-2 centered">
+          <span class="help-block">Empieza a reservar!</span>
+          <div class="btn-group dropup">
+          <%= link_to "", class: "btn btn-lg btn-success dropdown-toggle", data: {toggle: "dropdown"} do %>
+          Ver mis listas de regalos <span class="fa fa-caret-up"></span>
+          <% end %>
+          <ul class="dropdown-menu" role="menu">
+            <li role="presentation" class="dropdown-menu-header text-center">Listas de regalos de mis invitaciones</li>
+            <% if current_user.invitaciones.present? %>
+              <% current_user.invitaciones.each do |invitacion| %>
+                <% if invitacion.fiesta.listas.first %>
+                <li><%= link_to invitacion.fiesta.listas.first.nombre, [invitacion.fiesta, invitacion.fiesta.listas.first], role: "menuitem", tabindex: "-1" %>
+                </li>
+                <% else %>
+                <li><%= link_to invitacion.fiesta, role: "menuitem", tabindex: "-1", rel: "tooltip", title: "ver fiesta" do %> <%= invitacion.fiesta.nombre %> no tiene lista de regalos aún<% end %></li>
+                <% end %>
+              <% end %>
+            <% else %>
+              <li class="disabled text-center">Aún no recibes invitaciones.</li>
+            <% end %>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation" class="dropdown-menu-header text-center">Mis Listas de regalos</li>
+            <% if current_user.fiestas.present? %>
+              <% current_user.fiestas.each do |fiesta| %>
+                <% if fiesta.listas.first %>
+                  <li><%= link_to fiesta.listas.first.nombre, [fiesta, fiesta.listas.first], role: "menuitem", tabindex: "-1" %></li>
+                <% else %>
+                  <li><%= link_to fiesta, role: "menuitem", tabindex: "-1", rel: "tooltip", title: "ver fiesta" do %> <%= fiesta.nombre %> no tiene lista de regalos aún<% end %></li>
+                <% end %>
+              <% end %>
+            <% else %>
+              <li role="presentation" class="text-center">
+                <span>No tienes listas aún </span><% if policy(Fiesta.new).create? %>
+                <span><%= link_to new_fiesta_path(@fiesta), class: "btn btn-xs btn-primary", role: "menuitem", tabindex: "-1" do %>
+                agrega tu fiesta <i class="fa  fa-plus-circle"></i> 
+                <% end %></span><% end %>
+              </li>  
+            <% end %>
+          </ul>
+        </div>
+        </div><!-- /col-lg-8 -->
+      </div>
+      <% end %>
+      <div class="row">
+        <span><%= link_to tour_fiestas_path, class: "btn btn-lg btn-primary pull-left" do %>
+          <i class="fa fa-chevron-left"></i> atrás: fiestas 
+          <% end %>
+        </span>
+        <span><%= link_to tour_regalos_path, class: "btn btn-lg btn-primary pull-right" do %>
+          siguiente: regalos <i class="fa fa-chevron-right"></i>
+          <% end %>
+        </span>
+      </div>
+    </div><! --/container -->
+  </div><! --/servicewrap -->
+

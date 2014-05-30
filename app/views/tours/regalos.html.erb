@@ -1,17 +1,42 @@
-<div class="container" id="tours-container">
-  <div class="row">
-    <div class="col-lg-5 col-lg-offset-1">
-      <h3>Finalmente los regalos.</h3>
-      <ol>
-        <li>Queremos que la entrega de regalos sea especial.</li>
-        <li>Recomendamos primero salir a 'vitriniar'. Salir de la rutina e imaginar que es lo que quieren tus invitados.</li>
-        <li> Lleva tu lista contigo en tu celular o tablet.</li>
-        <li>Monitorea tus regalos reservados no vaya a ser que sean liberados por permanecer mucho tiempo reservados.</li>
-        <li>El precio es lo de menos el detalle es lo que importa, así que no te compliques con la marca o el precio.</li>
-        <li>Tranquilo que los regalos comprados son notificados al usuario de manera anónima. Es decir, el anfitrión sabe que regalo le compraron pero no sabrá quién se lo compró hasta el día de la fiesta cuando se lo entregues.</li>
-      </ol>
-    </div>
-  </div>
-   <%= link_to "atrás", tour_listas_path, class: "btn btn-lg btn-primary" %>
-  <%= link_to "terminar", root_path, class: "btn btn-lg btn-primary" %>
-</div>
+
+  <! -- SECCION REGALOS -->
+  <section id="services" name="services"></section>
+  <div id="servicewrap">
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-lg-8-offset-2 centered">
+          <h1>MANIFIESTO DE LOS REGALOS</h1>
+          <h3>En esto confiamos</h3>
+          <p>Una propuesta de LA LISTA</p>
+        </div><!-- /col-lg-8 -->
+      </div><! --/row -->
+      
+      <div class="row mt">
+        <div class="col-lg-6 col-lg-offset-3">
+          <ol>
+            <li>Los regalos son parte de un ritual y como tal debe haber un espacio para abrir y entregar los regalos.</li>
+            <li>Los regalos los debe entregar en las manos el invitado, a no ser que no te encuentres en la ciudad y solo ahí se vale contratar la empresa de transporte de mercancías.</li>
+            <li>Un regalo material siempre estará por debajo del emocional, pero un regalo deseado vale más que ningún regalo.</li>
+            <li>Preferimos que no tengas que usar las lista en una tienda o almacén, preferimos que cada cuál escoja el lugar donde lo desea comprar.</li>
+            <li>No creemos en las lluvias de sobres o dinero en efectivo. Pero si lo deseas no es difícil habilitar el botón de donaciones.</li>
+            <li>Los regalos nacieron para ser usados no para volverse a regalar. Un regalo duplicado solo debe pasar cuando sea deseado de resto no pases por la pena de regalar el mismo regalo que otra persona compró.</li>
+            <li>Comprar online es práctico pero salir a 'vitriniar', para cambiar la rutina e imaginar como sorprender a tu invitado es lo recomendado. Lleva tu lista contigo en tu celular o tablet, pero siempre ten en cuenta que los regalos no siempre viven en la lista y puedes añadir el que tu quieras.</li>
+            <li>El regalo reservado es un provilegio del cuál no hay que abusar. Tampoco es necesario reservarlos todos. Monitorea tus regalos reservados no vaya a ser que sean liberados por permanecer mucho tiempo reservados.</li>
+            <li>Aunque haya una lista el comprador debe permanecer anónimo hasta el momento de su entrega. También los regalos comprados deben ser notificados al anfitrión de manera anónima. Es decir, el anfitrión sabe que regalo le compraron pero no sabrá quién se lo compró hasta el día de la fiesta cuando se lo entregues.</li>
+            <li>El precio es lo de menos el detalle es lo que importa, así que no te compliques con la marca o el precio.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="row">
+       <span><%= link_to tour_listas_path, class: "btn btn-lg btn-primary pull-left" do %>
+          <i class="fa fa-chevron-left"></i> atrás: listas 
+          <% end %>
+        </span>
+        <span><%= link_to root_path, class: "btn btn-lg btn-primary pull-right" do %>
+          terminar <i class="fa fa-chevron-right"></i>
+          <% end %>
+        </span>
+      </div>
+    </div><! --/container -->
+  </div><! --/servicewrap -->

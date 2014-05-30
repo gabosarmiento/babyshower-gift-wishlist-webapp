@@ -15,16 +15,16 @@
             <% end %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <% if current_user %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Ayudas <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to "listado de tiendas", tiendas_path %></li>
-                <li><%= link_to "mini guia del sitio", tour_fiestas_path %></li>
+                <li><%= link_to "mini tour del sitio", tour_fiestas_path %></li>
               </ul>
             </li>
+            <% if current_user %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hola <%= current_user.name || current_user.email %><b class="caret"></b></a>
                 <ul class="dropdown-menu">
