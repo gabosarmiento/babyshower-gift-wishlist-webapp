@@ -2,6 +2,9 @@
 @import "bootstrap-datetimepicker";
 @import "font-awesome";
 
+* {
+    margin: 0;
+}
 
 /* ==========================================================================
    Base Styles and Bootstrap Modifications
@@ -427,6 +430,17 @@ margin-top: 15px;
     }
   }
 }
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -50px; /* the bottom margin is the negative value of the footer's height */
+}
+.footer, .push {
+    height: 50px; /* .push must be the same height as .footer */
+}
+
 /* ==========================================================================
    MEDIA QUERIES
    ========================================================================== */
@@ -599,7 +613,7 @@ sm {
   margin-bottom: 2px;
 }
 
-#signup, #signin, #passwords, #confirmations, #registrations, #fiestas-container, #listas-container, #regalos-container , #convidados-container, #tiendas-container, #tours-container, #sobre-container{
+#signup, #signin, #passwords, #confirmations, #registrations, #fiestas-container, #listas-container, #regalos-container , #convidados-container, #tiendas-container, #tours-container, #sobres-container{
   margin-top: -50px;
   padding-top:120px;
   padding-bottom: 70px;

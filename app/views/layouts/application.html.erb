@@ -22,7 +22,12 @@
 <body>
   <%= render 'layouts/navigation' %>
   <%= render 'layouts/messages' %>
+  <div class="wrapper">
   <%= yield %>
+  <div class="push"></div>
+  </div>
+  <div class="footer">
   <%= render 'layouts/footer' %>
+  </div>
 </body>
 </html>
