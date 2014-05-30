@@ -1,5 +1,5 @@
 class ConvidadoMailer < ActionMailer::Base
-  default from: "invitaciones@lalistaderegalos.com"
+  default from: "invitaciones@lalistaderegalos.co"
   def nuevo_usuario_convidado(record, url)
     @convidado = record
     @url = url

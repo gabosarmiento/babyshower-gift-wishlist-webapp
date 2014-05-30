@@ -1,5 +1,5 @@
 class CompromisoMailer < ActionMailer::Base
-  default from: "regalos@lalista.herokuapp.com"
+  default from: "regalos@lalistaderegalos.co"
   def nuevo_regalo_comprado(record)
     @compromiso = record
     @regalo = @compromiso.regalo
