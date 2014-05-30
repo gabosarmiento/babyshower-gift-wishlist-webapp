@@ -79,5 +79,5 @@ Eclist::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { :host => 'lalista.herokuapp.com' }  
+  config.action_mailer.default_url_options = { :host => 'lalistaderegalos.co' }  
 end
