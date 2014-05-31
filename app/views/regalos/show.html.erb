@@ -75,7 +75,7 @@
 var ready;
 ready = function() {
   $("img").lazyload({
-    placeholder: "grey.gif",
+    placeholder: "<%= asset_path 'grey.gif' %>",
     effect : "fadeIn"
   });
 };

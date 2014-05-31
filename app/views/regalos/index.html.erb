@@ -34,15 +34,11 @@
 <script>
 var ready;
 ready = function() {
-  $(".p_outer_content").each(function() {
-    var tthis = $(this);
-    $(this).find('img').lazyload({
-        container: tthis
-        placeholder: "/assets/grey.gif",
-        effect : "fadeIn"
-    });
+  $("img").lazyload({
+    placeholder: "<%= asset_path 'grey.gif' %>",
+    effect : "fadeIn", 
+    failure_limit   : 5
   });
-
   $('.btn').tooltip();
    $('#regalos').sortable({
     axis: 'y',
