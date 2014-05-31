@@ -4,7 +4,8 @@ class CompromisoMailer < ActionMailer::Base
     @compromiso = record
     @regalo = @compromiso.regalo
     @fiesta = @regalo.lista.fiesta
-    mail(to: @fiesta.users.first.email, subject: "#{User.find(@compromiso.user_id).name.to_s.humanize.titleize} ha comprado un regalo")
+    mail(to: @fiesta.users.first.email, subject: "Uno de tus regalos fue comprado!")
+    # mail(to: @fiesta.users.first.email, subject: "#{User.find(@compromiso.user_id).name.to_s.humanize.titleize} ha comprado un regalo")
   end
 
 end

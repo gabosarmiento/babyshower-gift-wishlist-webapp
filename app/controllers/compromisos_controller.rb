@@ -8,8 +8,7 @@ class CompromisosController < ApplicationController
 
   def comprar
     actualizar_compromiso("comprado")
-    CompromisoMailer.nuevo_regalo_comprado(@compromiso).deliver
-    redirect_to :back
+    redirect_to :back, notice: "Regalo comprado exitosamente. Hemos notificado al anfitrión anónimamente."
   end
 
   def liberar
@@ -40,6 +39,9 @@ class CompromisosController < ApplicationController
   def actualizar_compromiso(new_value)
       if new_value == "disponible" 
         @compromiso.update_attributes(:value => new_value, :user_id => nil)
+      elsif new_value == "comprado" 
+        @compromiso.update_attributes(:value => new_value, :user_id => current_user.id)
+        CompromisoMailer.nuevo_regalo_comprado(@compromiso).deliver
       else
          @compromiso.update_attributes(:value => new_value, :user_id => current_user.id)
       end
