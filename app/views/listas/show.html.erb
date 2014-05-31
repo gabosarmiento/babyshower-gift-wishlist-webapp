@@ -96,8 +96,9 @@
 var ready;
 ready = function() {
   $("img").lazyload({
-    placeholder : "img/grey.gif",
-    effect : "fadeIn"
+    placeholder: "/assets/grey.gif",
+    effect : "fadeIn", 
+    failure_limit   : 5
   });
   $('.btn').tooltip();
   $('.btn-modal').click(function(e){
