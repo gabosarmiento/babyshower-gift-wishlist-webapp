@@ -104,17 +104,17 @@
         <% unless regalo.compromiso.nil? %>
           <% case regalo.compromiso.value %>
             <% when "disponible" %>
-              <%= link_to "Confirmar Reserva!", fiesta_lista_regalo_reservar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-info text-center" %>
+              <%= link_to "Confirmar Reserva!", fiesta_lista_regalo_reservar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-info text-center ", id: "reservado" %>
             <% when "reservado" %>
-            <%= link_to "regalo reservado", "", class: "btn btn-default disabled" %>
+            <%= link_to "regalo reservado", "", class: "btn btn-default disabled"   %>
             <% if current_user == regalo.compromiso.user || policy(regalo).edit? %>
-              <%= link_to "liberarlo", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-success", data: {toggle: "tooltip", placement: "top"}, title: "Volverá a la lista de regalos disponibles" %>
-              <%= link_to "lo he comprado", fiesta_lista_regalo_comprar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-info", data: {toggle: "tooltip", placement: "top"}, title: "Notifica al anfitrión de tu compra" %>
+              <%= link_to "liberarlo", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-success", data: {toggle: "tooltip", placement: "top"}, title: "Volverá a la lista de regalos disponibles" , id: "liberado"%>
+              <%= link_to "lo he comprado", fiesta_lista_regalo_comprar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-info", data: {toggle: "tooltip", placement: "top"}, title: "Notifica al anfitrión de tu compra", id: "comprado" %>
             <% end %>
             <% when "comprado" %>
               <%= link_to "regalo comprado", "", class: "btn btn-success disabled" %>
               <% if policy(regalo).edit? %>
-              <%= link_to "liberar", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-default" %>
+              <%= link_to "liberar", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-default", id: "liberado" %>
               <% end %>
             <% end %>
             <% end %>

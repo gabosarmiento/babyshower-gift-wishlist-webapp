@@ -100,6 +100,9 @@ ready = function() {
     threshold: 100
   });
   $('.btn').tooltip();
+  $('#reservado, #liberado, #comprado').click(function(){
+    $(this).addClass('disabled');
+  })
   $('.btn-modal').click(function(e){
     e.preventDefault();
     var selector = "#" + $(this).attr('data-selector');
@@ -129,6 +132,7 @@ ready = function() {
         $(this).find('#ver-modal').css({"opacity": "0"}); 
         $(this).find('.btn-modal').css('box-shadow', 'none');
     });
+   
 };
 $(document).ready(ready);
 $(document).on('page:load', ready);
