@@ -91,9 +91,7 @@
 var ready;
 ready = function() {
   $(".p_outer_content").each(function() {
-    var tthis = $(this);
     $('img').lazyload({
-        container: tthis,
         placeholder : "<%= asset_path 'grey.gif' %>",
         effect : "fadeIn"
     });
