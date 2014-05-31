@@ -98,7 +98,7 @@
                  <img src="/assets/grey.gif"></img>
               </div>  
               <div class="imagen text-center">
-              <%= image_tag(regalo.imagen.normal.url) if regalo.imagen? %></div>
+              <%= image_tag(regalo.imagen.normal.url, class: "lazy") if regalo.imagen? %></div>
               </div>
         <div class="modal-footer">
         <% unless regalo.compromiso.nil? %>

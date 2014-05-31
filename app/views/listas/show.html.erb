@@ -95,7 +95,10 @@
 <script>
 var ready;
 ready = function() {
-  $("img").lazyload();
+  $("img").lazyload({
+    placeholder : "img/grey.gif",
+    effect : "fadeIn"
+  });
   $('.btn').tooltip();
   $('.btn-modal').click(function(e){
     e.preventDefault();
@@ -114,7 +117,7 @@ ready = function() {
         }
       });
       $.when.apply($, deferreds).done(function(){
-        $('.modal-body').find('#ajaxloader').hide();
+        $(selector).find('#ajaxloader').hide();
       });
     });
   });
