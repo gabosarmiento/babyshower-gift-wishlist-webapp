@@ -2,3 +2,15 @@
 <h1>Editar regalo</h1>
 <%= render partial: "form", locals: {fiesta: @fiesta, lista: @lista, regalo: @regalo} %>
 </div>
+
+<script>
+var ready;
+ready = function() {
+  $("img").lazyload({
+    placeholder: "<%= asset_path 'grey.gif' %>",
+    effect : "fadeIn"
+  });
+};
+$(document).ready(ready);
+$(document).on('page:load', ready);
+</script>
