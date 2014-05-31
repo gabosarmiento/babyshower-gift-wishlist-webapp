@@ -35,12 +35,12 @@ class ConvidadosController < ApplicationController
       authorize @convidado
       if @convidado.save
         if @convidado.invitado != nil
-           ConvidadoMailer.usuario_existente_convidado(@convidado).deliver
+           ConvidadoMailer.delay.usuario_existente_convidado(@convidado)
            # @convidado.invitado.invitaciones.push(@convidado)
            # @convidado.invitado.fiestas.push(@convidado.fiesta)
         else
           # ConvidadoMailer.nuevo_usuario_convidado(@convidado, new_user_registration_url(:convidado_token => @convidado.token)).deliver #enviar la invitación a nuestro mailer para que entregue el mailer
-          ConvidadoMailer.nuevo_usuario_convidado(@convidado, new_user_registration_url).deliver #enviar la invitación a nuestro mailer para que entregue el mailer
+          ConvidadoMailer.delay.nuevo_usuario_convidado(@convidado, new_user_registration_url) #enviar la invitación a nuestro mailer para que entregue el mailer
         end
         # redirect_to fiesta_convidados_path(@fiesta), notice: "Invitación enviada exitosamente."
       else

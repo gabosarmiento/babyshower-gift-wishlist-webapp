@@ -42,7 +42,7 @@ class CompromisosController < ApplicationController
         @compromiso.update_attributes(:value => new_value, :user_id => nil)
       elsif new_value == "comprado" 
         @compromiso.update_attributes(:value => new_value, :user_id => current_user.id)
-        CompromisoMailer.nuevo_regalo_comprado(@compromiso).deliver
+        CompromisoMailer.delay.nuevo_regalo_comprado(@compromiso)
       else
          @compromiso.update_attributes(:value => new_value, :user_id => current_user.id)
       end
