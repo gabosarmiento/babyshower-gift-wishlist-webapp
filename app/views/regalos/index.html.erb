@@ -34,6 +34,11 @@
 <script>
 var ready;
 ready = function() {
+  $("img").lazyload({
+    placeholder: "grey.gif",
+    effect : "fadeIn", 
+    failure_limit   : 5
+  });
    $('#regalos').sortable({
     axis: 'y',
     update: function() {
