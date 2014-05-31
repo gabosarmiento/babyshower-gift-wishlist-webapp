@@ -27,7 +27,7 @@
           Regalos disponibles <span class="badge"><%= @disponibles.count %></span>
         </div>
         <div class="panel-body">
-          <div class="todos-list">
+          <div class="p_outer_content">
             
               <% @disponibles.each do |regalo| %>
               <div class="hover">
@@ -49,7 +49,7 @@
           Regalos reservados <span class="badge"><%= @reservados.count %></span>
         </div>
         <div class="panel-body">
-          <div class="reservados-list">
+          <div class="p_outer_content">
             <% @reservados.each do |regalo| %>
               <div class="hover">
                 <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista, regalo: regalo} %>
@@ -69,7 +69,7 @@
          Regalos comprados <span class="badge"><%= @comprados.count %></span>
         </div>
         <div class="panel-body">
-          <div class="comprados-list">
+          <div class="p_outer_content">
           <% @comprados.each do |regalo| %>
             <div class="hover">
             <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista, regalo: regalo} %>
