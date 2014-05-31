@@ -95,11 +95,30 @@
 <script>
 var ready;
 ready = function() {
+  $("img").lazyload();
+  $('.btn').tooltip();
   $('.btn-modal').click(function(e){
     e.preventDefault();
     var selector = "#" + $(this).attr('data-selector');
     $(selector).modal('show');
+    $('.modal').on('shown.bs.modal', function(){
+      var deferreds = [];
+      var imgs = $('.imagen', this).find('img');
+      imgs.each(function(){
+        var self = $(this);
+        var datasrc = self.attr('data-original');
+        if (datasrc) {
+          var d = $.Deferred();
+          self.one('load', d.resolve).attr("src", datasrc).attr('data-src', '');
+          deferreds.push(d.promise());
+        }
+      });
+      $.when.apply($, deferreds).done(function(){
+        $('.modal-body').find('#ajaxloader').hide();
+      });
+    });
   });
+ 
   $(".hover").hover(function (e) {
         $(this).find('#ver-modal').css({"opacity": "0.9"});
         $(this).find('.btn-modal').css('box-shadow', '1px 1px 1px #888888');

@@ -69,6 +69,7 @@ gem 'friendly_id'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'paper_trail', '~> 3.0.2'
+gem "lazyload-rails"
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
