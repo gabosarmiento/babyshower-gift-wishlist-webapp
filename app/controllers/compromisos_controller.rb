@@ -3,7 +3,8 @@ class CompromisosController < ApplicationController
 
   def reservar
     actualizar_compromiso("reservado")
-    redirect_to :back 
+    redirect_to :back, notice: "Regalo reservado exitósamente de manera anónima."
+
   end
 
   def comprar
@@ -13,7 +14,7 @@ class CompromisosController < ApplicationController
 
   def liberar
     actualizar_compromiso("disponible")
-    redirect_to :back
+    redirect_to :back, notice: "El regalo fue liberado exitosamente."
   end
 
   def destroy

@@ -2,11 +2,6 @@
 <ol class="breadcrumb">
     <li><%= link_to @fiesta.nombre, @fiesta %> / <%= @lista.nombre %></li>
   </ol>
-  <div class="alert alert-warning">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-    <strong>Nota:</strong>
-    No te preocupes que ni el anfitrión ni los invitados podrán saber que regalo reservaste. Solo tu sabes que compraste y el día de la fiesta se revelará.
-  </div>
   <% if @lista.regalos.empty? %>
   <div class="col-sm-12">
   <%= link_to "Añadir tu primer regalo", new_fiesta_lista_regalo_path(@fiesta,@lista), class: "btn btn-primary" %>
@@ -102,7 +97,7 @@ ready = function() {
   $('.btn').tooltip();
   $('#reservado, #liberado, #comprado').click(function(){
     $(this).addClass('disabled');
-  })
+  });
   $('.btn-modal').click(function(e){
     e.preventDefault();
     var selector = "#" + $(this).attr('data-selector');
