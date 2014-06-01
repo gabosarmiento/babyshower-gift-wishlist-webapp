@@ -40,7 +40,7 @@
       <div class="well well-sm">
           <strong>Regalos Disponibles </strong>
       </div>
-      <div id="regalos" class="row list-group clearfix visible-*">
+      <div id="regalos" class="row multi-columns-row">
         <% @disponibles.each do |regalo| %>
           <div class="hover">
             <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista,regalo: regalo} %>
