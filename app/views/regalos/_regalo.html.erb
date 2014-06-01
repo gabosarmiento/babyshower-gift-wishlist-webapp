@@ -1,79 +1,51 @@
- <% unless regalo.compromiso.nil? %>
-  <div class="regalo regalo-<%= regalo.id %> hovsw">
-    <div class="regalo-body">
+  <div class="item regalo-<%= regalo.id %> hovsw  col-xs-4 col-lg-4">
+    <div class="thumbnail">
+      <label class="badge alert-success posicion-regalo"><%= regalo.position %></label>
+      <div class="pic">
+      <a href="" class="btn-modal" data-selector="<%= "modal-regalo-#{regalo.id}" %>"><span class="fa fa-search-plus" id="ver-modal"></span>
+      <%= image_tag(regalo.imagen.normal.url, class: "lazy group list-group-image") if regalo.imagen? %>
+      </a>
+      </div>
+      <div class="caption">
+        <h4 class="group inner list-group-item-heading"><%= link_to regalo.titulo.to_s.humanize.titleize , [regalo.lista.fiesta, regalo.lista, regalo]%></h4>
+        <p class="group inner list-group-item-text">
+          <%= simple_format(regalo.descripcion) %>
+        </p>
         <div class="row">
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 pull-left">
-            <a href="" class="btn btn-default btn-modal" data-selector="<%= "modal-regalo-#{regalo.id}" %>">
-              <span class="fa fa-search-plus" id="ver-modal"></span>
-            <%= image_tag(regalo.imagen.thumb.url, class: "lazy") if regalo.imagen? %>
-            </a>
-          </div>
-          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 pull-left">
-            <div>
-              <small><strong><%= link_to regalo.titulo.to_s.humanize.titleize , [regalo.lista.fiesta, regalo.lista, regalo]%></strong></small>
-            </div>
-            <div class="controles">
-              <%= render partial: "regalos/controles", locals: {regalo: regalo} %>
-            </div><!-- /controles-->
-          </div><!-- /col -->
-        </div><!-- /row -->
-        <% if policy(regalo).edit? %>
-        <div class="Controles Editor">
-        <div class="row">
-          <div class="col-sm-12 pull-left">
-            <span>
-              <%= link_to "Editar", edit_fiesta_lista_regalo_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-primary btn-xs" %>
-            </span>
-            <span >
-              <%= link_to "ocultar de la lista", fiesta_lista_regalo_compromiso_path(regalo.lista.fiesta, regalo.lista, regalo, regalo.compromiso), method: :delete, class: "btn btn-warning btn-xs" %>
-            </span>
-            <span>
-                <%= link_to "Borrar regalo", [regalo.lista.fiesta, regalo.lista, regalo], method: :delete, class: "btn btn-danger btn-xs" %>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <% if policy(regalo).edit? %>
+              <p class="lead">
+                <span>
+                <%= link_to "Editar", edit_fiesta_lista_regalo_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-primary btn-md" %>
               </span>
+              <% unless regalo.compromiso.nil? %>
+                <span >
+                  <%= link_to "Quitar de la lista", fiesta_lista_regalo_compromiso_path(regalo.lista.fiesta, regalo.lista, regalo, regalo.compromiso), method: :delete, class: "btn btn-warning btn-md hidden-xs" %>
+
+                   <%= link_to "Quitar ", fiesta_lista_regalo_compromiso_path(regalo.lista.fiesta, regalo.lista, regalo, regalo.compromiso), method: :delete, class: "btn btn-warning btn-md visible-xs" %>
+                </span>
+              <% else %>
+                <span>
+                  <%= link_to "Publicar en lista", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-success btn-md hidden-xs" %>
+                  <%= link_to "Publicar", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-success btn-md visible-xs" %>
+                </span>
+              <% end %>
+              <span>
+                  <%= link_to "Borrar", [regalo.lista.fiesta, regalo.lista, regalo], method: :delete, class: "btn btn-danger btn-md" %>
+                </span>
+              </p>
+            <% end %>
           </div>
+          <% unless regalo.compromiso.nil? %>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+             <%= render partial: "regalos/controles", locals: {regalo: regalo} %>
+          </div>
+          <% end %>
         </div>
-        </div>
-        <% end %>
+      </div><!-- /caption-->
     </div>
-  </div><!-- /regalo-->
-  <!-- /controles-->
-  <% else %>
-  <% if policy(regalo).edit? %>
-  <div class="regalo regalo-<%= regalo.id %> hovsw">
-    <div class="regalo-body">
-        <div class="row">
-          <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4 pull-left">
-            <a href="" class="btn btn-default btn-modal" data-selector="<%= "modal-regalo-#{regalo.id}" %>">
-            <%= image_tag(regalo.imagen.thumb.url, class: "lazy") if regalo.imagen? %>
-            </a>
-          </div>
-          <div class="col-lg-8 col-md-7 col-sm-8 col-xs-8 pull-left">
-            <div>
-             <p>
-              <small><strong><%= link_to regalo.titulo.to_s.humanize.titleize , [regalo.lista.fiesta, regalo.lista, regalo]%></strong></small>
-            </p>
-            </div>
-            <div class="controles Editor">
-              <div class="row">
-                <div class="col-sm-12 pull-left">
-                  <span>
-                  <%= link_to "publicar en la lista", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-success btn-xs" %>
-                  </span>
-                  <span>
-                    <%= link_to "Editar", edit_fiesta_lista_regalo_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-primary btn-xs" %>
-                  </span>
-                  <span>
-                    <%= link_to "Eliminar", [regalo.lista.fiesta, regalo.lista, regalo], method: :delete, class: "btn btn-danger btn-xs" %>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-         </div><!-- /row -->
-       </div>
-  </div>
-  <% end %>
-<% end %>
+  </div><!-- /item -->
+
 <!-- modal begins -->
 <%= content_tag :div, class: 'modal fade', id: "modal-regalo-#{regalo.id}",role: "dialog"  do %>
     <div class="modal-dialog">

@@ -1,107 +1,96 @@
 <div class="container" id="listas-container">
-<ol class="breadcrumb">
+  <ol class="breadcrumb">
     <li><%= link_to @fiesta.nombre, @fiesta %> / <%= @lista.nombre %></li>
   </ol>
-  <% if @lista.regalos.empty? %>
-  <div class="col-sm-12">
-  <%= link_to "Añadir tu primer regalo", new_fiesta_lista_regalo_path(@fiesta,@lista), class: "btn btn-primary" %>
+   <% if policy(@lista).update? %>
+  <div class="row">
+  <span><%= link_to "Añadir regalo a la lista", new_fiesta_lista_regalo_path(@fiesta, @lista), class: "btn btn-primary" %></span>
+  <span><%= link_to "Ver listado completo de regalos", fiesta_lista_regalos_path(@fiesta, @lista), class: "btn btn-success"  %></span>
+  <span class="help-block"> <sm>Recuerda que debes cambiar el estado de los regalos para que aparezcan aquí. Para publicarlos entra a ver el listado compledo de regalos.</sm></span>
   </div>
-  <% else %>
-  <div class="col-sm-12">
-  <% if policy(@lista).update? %>
-  <div class="alert alert-warning">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-    <strong>Nota:</strong>
-    Debes hacer públicos los regalos para que aparezcan aquí. Entra a ver todos los regalos.
-  </div>
-  <%= link_to "Añade un regalo", new_fiesta_lista_regalo_path(@fiesta, @lista), class: "btn btn-primary" %>
-  <%= link_to "Ver todos los regalos", fiesta_lista_regalos_path(@fiesta, @lista), class: "btn btn-success"  %>
   <% end %>
+  <div class="row">
 
-  <% end %>
-  <div class="clearfix"></div>
-  <div id="listas">
-    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" id="disponibles"> 
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          Regalos disponibles <span class="badge"><%= @disponibles.count %></span>
-        </div>
-        <div class="panel-body">
-          <div class="p_outer_content">
-            
-              <% @disponibles.each do |regalo| %>
-              <div class="hover">
-                <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista,regalo: regalo} %>
-              </div>
-             <div class="text-with-hr">
-                <span></span>
-              </div>
-              <% end %>
-            
-          </div>
-        </div>
+    <ul class="nav nav-tabs" id="myTab">
+      <li class="col-xs-4 col-sm-4 col-md-4 col-lg-4 active"><%= link_to "#lista-disponibles", data: {toggle: "tab"} do %>
+        <span class="fa fa-star-o"></span>
+        <p>Disponibles</p>
+        <% end %>
+      </li>
+      <li class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><%= link_to "#lista-reservados", data: {toggle: "tab"} do %>
+        <span class="fa fa-star-half-full"></span>
+        <p>Reservados</p>
+        <% end %></li>
+      <li class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><%= link_to "#lista-comprados", data: {toggle: "tab"}  do %>
+        <span class="fa  fa-star"></span>
+        <p>Comprados</p>
+        <% end %></li>
+    </ul>
+  </div>
+
+  <div class="row text-center">
+
+     <div class="btn-group">
+        <button id="lista" type="button" class="btn btn-default"><i class="glyphicon glyphicon-th-list"></i> Lista</button>
+        <button id="grilla" type="button" class="btn btn-default"><i class="glyphicon glyphicon-th"></i> Grilla</button>
       </div>
-      <div class="clearfix"></div>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" id="reservados"> 
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          Regalos reservados <span class="badge"><%= @reservados.count %></span>
-        </div>
-        <div class="panel-body">
-          <div class="p_outer_content">
-            <% @reservados.each do |regalo| %>
-              <div class="hover">
-                <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista, regalo: regalo} %>
-              </div>
-              <div class="text-with-hr">
-                <span></span>
-              </div>
-              <% end %>
-          </div>
-        </div>
+  </div>
+  <div class="tab-content">
+    <div class="tab-pane active" id="lista-disponibles">
+      <div class="well well-sm">
+          <strong>Regalos Disponibles </strong>
       </div>
-      <div class="clearfix"></div>
+      <div id="regalos" class="row list-group">
+        <% @disponibles.each do |regalo| %>
+          <div class="hover">
+            <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista,regalo: regalo} %>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" id="comprados"> 
-      <div class="panel panel-default">
-        <div class="panel-heading">
-         Regalos comprados <span class="badge"><%= @comprados.count %></span>
-        </div>
-        <div class="panel-body">
-          <div class="p_outer_content">
-          <% @comprados.each do |regalo| %>
-            <div class="hover">
+    <div class="tab-pane" id="lista-reservados">
+       <div class="well well-sm">
+          <strong>Regalos Reservados </strong>
+      </div>
+      <div id="regalos" class="row list-group">
+        <% @reservados.each do |regalo| %>
+          <div class="hover">
             <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista, regalo: regalo} %>
-            </div>
-            <div class="text-with-hr">
-              <span></span>
-            </div>
-          <% end %>
           </div>
-        </div>
+        <% end %>
       </div>
-      <div class="clearfix"></div>
+    </div>
+    <div class="tab-pane" id="lista-comprados">
+      <div class="well well-sm">
+          <strong>Regalos Comprados </strong>
+      </div>
+      <div id="regalos" class="row list-group">
+        <% @comprados.each do |regalo| %>
+          <div class="hover">
+            <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista,regalo: regalo} %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
-  <div>
 </div>
-</div>
+  
+  
 <script>
 var ready;
 ready = function() {
-  $(".p_outer_content").each(function() {
-    var tthis = $(this);
-    $('img').lazyload({
-        container: tthis,
+  // Función carga de imágenes asincrónica por tabs
+  $('img').lazyload({
         placeholder : "<%= asset_path 'grey.gif' %>",
         effect : "fadeIn"
-    });
   });
+  // Función mostrar tooltips
   $('.btn').tooltip();
+  // Función prevenir múltiples clicks sobre un botón
   $('#reservado, #liberado, #comprado').click(function(){
     $(this).addClass('disabled');
   });
+  // Función mostrar el modal de cada regalo
   $('.btn-modal').click(function(e){
     e.preventDefault();
     var selector = "#" + $(this).attr('data-selector');
@@ -123,7 +112,7 @@ ready = function() {
       });
     });
   });
- 
+  // Función hover botón
   $(".hover").hover(function (e) {
         $(this).find('#ver-modal').css({"opacity": "0.9"});
         $(this).find('.btn-modal').css('box-shadow', '1px 1px 1px #888888');
@@ -131,7 +120,31 @@ ready = function() {
         $(this).find('#ver-modal').css({"opacity": "0"}); 
         $(this).find('.btn-modal').css('box-shadow', 'none');
     });
-   
+  // Función tabla de navegacion
+   $('#myTab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+    });
+
+   // Función para grabar la selección de la tabla de navegación
+    $("ul.nav-tabs > li > a").on("shown.bs.tab", function (e) {
+        var id = $(e.target).attr("href").substr(1);
+        window.location.hash = id;
+    });
+     // al cargar ir a la tabla seleccionada
+    var hash = window.location.hash;
+    $('#myTab a[href="' + hash + '"]').tab('show');
+
+   // Función toggle vistas lista y grilla
+    $('#lista').click(function(event){event.preventDefault();
+      $('#regalos .item').addClass('list-group-item');
+    });
+
+    $('#grilla').click(function(event){event.preventDefault();
+      $('#regalos .item').removeClass('list-group-item');
+      $('#regalos .item').addClass('grid-group-item');
+    });
+
 };
 $(document).ready(ready);
 $(document).on('page:load', ready);
