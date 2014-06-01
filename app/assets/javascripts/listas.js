@@ -1,7 +1,4 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-`
+
 /* fix so that rows that have a ton of columns clear the first item in each row. */
 jQuery(document).ready(function($) {
   var resizeTimer = null, $doc = $(document);
@@ -42,4 +39,4 @@ jQuery(document).ready(function($) {
     }
     resizeTimer = setTimeout(rowPolyfill, 400);
   });
-});`
+});
