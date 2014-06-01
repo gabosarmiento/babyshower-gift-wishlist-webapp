@@ -20,7 +20,6 @@
 //= require smooth-scroll
 //= require jquery.noty
 //= require jquery.lazyload
-//= require masonry/jquery.masonry
 //= require turbolinks
 //= require_tree .
 // $(document).ready(function(){
