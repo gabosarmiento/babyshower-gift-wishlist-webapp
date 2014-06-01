@@ -9,18 +9,18 @@
     </div>
     <div class="panel-body">
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-lg-4">
 
         <%= image_tag(@regalo.imagen.normal.url, class: "lazy") if @regalo.imagen? %>
         </div>
-        <div class="col-sm-8">
+        <div class="col-lg-8">
           <div class="row">
-            <div class="col-sm-12">
+            <div class="col-lg-12">
             <%= simple_format(@regalo.descripcion) %>
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-12">
+            <div class="col-lg-12">
               <% unless @regalo.donde_lo_consigues.nil? %>
               <p>Dónde lo podrías conseguir:</p>
               <p><%= simple_format(@regalo.donde_lo_consigues) %></p>
@@ -33,7 +33,7 @@
       </div>
       
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-lg-12">
           <% if policy(@regalo).edit? %>
             <div class="controles">
               <% if @regalo.compromiso.nil? %>
