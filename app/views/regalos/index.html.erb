@@ -68,13 +68,11 @@ ready = function() {
     });
   });
     $(".hover").hover(function (e) {
-        $(this).find('.hovsw').css('cursor', 'move');
-        $(this).find('.hovsw').css('background-color', '#ccc');
-        $(this).find('.hovsw').css('box-shadow', '1px 1px 1px #888888');
+        $(this).find('#ver-modal').css({"opacity": "0.9"});
+        $(this).find('.btn-modal').css('box-shadow', '1px 1px 1px #888888');
     }, function (e) {
-        $(this).find('.hovsw').css('cursor', 'auto');
-        $(this).find('.hovsw').css('background-color', 'none'); 
-        $(this).find('.hovsw').css('box-shadow', 'none');
+        $(this).find('#ver-modal').css({"opacity": "0"}); 
+        $(this).find('.btn-modal').css('box-shadow', 'none');
     });
   
 };
