@@ -40,7 +40,7 @@
       <div class="well well-sm">
           <strong>Regalos Disponibles </strong>
       </div>
-      <div id="regalos" class="row list-group clearfix visible-* multi-columns-row">
+      <div id="regalos" class="row list-group">
         <% @disponibles.each do |regalo| %>
           <div class="hover">
             <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista,regalo: regalo} %>
@@ -52,7 +52,7 @@
        <div class="well well-sm">
           <strong>Regalos Reservados </strong>
       </div>
-      <div id="regalos" class="row list-group clearfix visible-* multi-columns-row">
+      <div id="regalos" class="row list-group">
         <% @reservados.each do |regalo| %>
           <div class="hover">
             <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista, regalo: regalo} %>
@@ -64,7 +64,7 @@
       <div class="well well-sm">
           <strong>Regalos Comprados </strong>
       </div>
-      <div id="regalos" class="row list-group clearfix visible-* multi-columns-row">
+      <div id="regalos" class="row list-group">
         <% @comprados.each do |regalo| %>
           <div class="hover">
             <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista,regalo: regalo} %>
