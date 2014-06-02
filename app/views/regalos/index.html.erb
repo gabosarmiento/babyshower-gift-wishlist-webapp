@@ -1,4 +1,4 @@
-<div class="container" id="regalos-container">
+<div class="container" id="regalos-index-container">
 <ol class="breadcrumb">
     <li><%= link_to @fiesta.nombre, @fiesta %> / <%= link_to @lista.nombre, [@fiesta, @lista] %> / regalos </li>
   </ol>
@@ -13,39 +13,44 @@
 <%= link_to "añade un regalo a la lista", new_fiesta_lista_regalo_path(@fiesta, @lista), class: "btn btn-primary" %>
 </div>
 <br>
-<div class="row list-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-  <ul id="regalos" data-update-url="<%= ordenar_fiesta_lista_regalos_url(@fiesta, @lista) %>">
+<div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <ol id="sortable" data-update-url="<%= ordenar_fiesta_lista_regalos_url(@fiesta, @lista) %>">
     <% @regalos.each do |regalo| %>
       <%= content_tag_for :li, regalo do %>
-      <span class="handle hover">
-      <%= render regalo %>
-      </span>
+        <%= render partial: "regalos/lista_regalos", locals: {regalo: regalo} %>
       <% end %>
     <% end %>
-  </ul>
+  </ol>
 </div>
 <% else %>
-<hr>
-<div class="row list-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-<%= render @regalos %>
+<div class="row col-lg-6 col-md-6 col-sm-6 col-xs-12">
+ <ul id="lista-regalos">
+    <% @regalos.each do |regalo| %>
+      <%= content_tag_for :li, regalo do %>
+        <%= render partial: "regalos/lista_regalos", locals: {regalo: regalo} %>
+        <%= render partial: "regalos/controles", locals: {regalo: regalo} %>
+      <% end %>
+      <br>
+    <% end %>
+  </ul>
 </div>
 <% end %>
 <script>
 var ready;
 ready = function() {
-  $('#regalos .item').addClass('list-group-item');
-  $("img").lazyload({
+   $("img").lazyload({
     placeholder: "<%= asset_path 'grey.gif' %>",
     effect : "fadeIn", 
     failure_limit   : 5
   });
   $('.btn').tooltip();
-   $('#regalos').sortable({
+   $('#sortable').sortable({
     axis: 'y',
     update: function() {
       $.post($(this).data('update-url'), $(this).sortable('serialize'));
     }
   });
+   $( "#sortable" ).disableSelection(); 
   $('.btn-modal').click(function(e){
     e.preventDefault();
     var selector = "#" + $(this).attr('data-selector');

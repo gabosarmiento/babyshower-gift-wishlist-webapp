@@ -20,6 +20,8 @@
 //= require smooth-scroll
 //= require jquery.noty
 //= require jquery.lazyload
+//= require imagesloaded.pkgd.min
+//= require masonry.pkgd.min
 //= require turbolinks
 //= require_tree .
 // $(document).ready(function(){

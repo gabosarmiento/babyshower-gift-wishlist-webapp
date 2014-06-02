@@ -2,26 +2,29 @@
   <ol class="breadcrumb">
     <li><%= link_to @fiesta.nombre, @fiesta %> / <%= @lista.nombre %></li>
   </ol>
-   <% if policy(@lista).update? %>
-  <div class="row">
-  <span><%= link_to "Añadir regalo a la lista", new_fiesta_lista_regalo_path(@fiesta, @lista), class: "btn btn-primary" %></span>
-  <span><%= link_to "Ver listado completo de regalos", fiesta_lista_regalos_path(@fiesta, @lista), class: "btn btn-success"  %></span>
-  <span class="help-block"> <sm>Recuerda que debes cambiar el estado de los regalos para que aparezcan aquí. Para publicarlos entra a ver el listado compledo de regalos.</sm></span>
-  </div>
-  <% end %>
   <div class="row">
 
     <ul class="nav nav-tabs" id="myTab">
-      <li class="col-xs-4 col-sm-4 col-md-4 col-lg-4 active"><%= link_to "#lista-disponibles", data: {toggle: "tab"} do %>
+      <li class="hidden-xs col-sm-4 col-md-4 col-lg-4 active"><%= link_to "#lista-disponibles", data: {toggle: "tab"} do %>
         <span class="fa fa-star-o"></span>
         <p>Disponibles</p>
         <% end %>
       </li>
-      <li class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><%= link_to "#lista-reservados", data: {toggle: "tab"} do %>
+      <li class="visible-xs col-xs-4"><%= link_to "#lista-disponibles", class: "btn btn-info btn-md", data: {toggle: "tab"} do %><span class="fa fa-star-o"></span>
+        <p>Disponibles</p>
+        <% end %></li>
+      <li class="hidden-xs col-sm-4 col-md-4 col-lg-4"><%= link_to "#lista-reservados", data: {toggle: "tab"} do %>
         <span class="fa fa-star-half-full"></span>
         <p>Reservados</p>
         <% end %></li>
-      <li class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><%= link_to "#lista-comprados", data: {toggle: "tab"}  do %>
+      <li class="visible-xs col-xs-4"><%= link_to "#lista-reservados", class: "btn btn-warning btn-md", data: {toggle: "tab"} do %><span class="fa fa-star-half-full"></span>
+        <p>Reservados</p>
+        <% end %></li>
+      <li class="hidden-xs col-sm-4 col-md-4 col-lg-4"><%= link_to "#lista-comprados", data: {toggle: "tab"}  do %>
+        <span class="fa  fa-star"></span>
+        <p>Comprados</p>
+        <% end %></li>
+        <li class="visible-xs col-xs-4"><%= link_to "#lista-comprados", class: "btn btn-success btn-md",  data: {toggle: "tab"} do %>
         <span class="fa  fa-star"></span>
         <p>Comprados</p>
         <% end %></li>
@@ -31,8 +34,9 @@
   <div class="row text-center">
 
      <div class="btn-group">
-        <button id="lista" type="button" class="btn btn-default"><i class="glyphicon glyphicon-th-list"></i> Lista</button>
-        <button id="grilla" type="button" class="btn btn-default"><i class="glyphicon glyphicon-th"></i> Grilla</button>
+      <%= link_to fiesta_lista_regalos_path(@fiesta, @lista), class: "btn btn-success"  do %>
+      <i class="glyphicon glyphicon-th-list"></i> Ver listado completo de regalos
+      <% end %>
       </div>
   </div>
   <div class="tab-content">
@@ -42,9 +46,7 @@
       </div>
       <div id="regalos" class="row list-group">
         <% @disponibles.each do |regalo| %>
-          <div class="hover">
             <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista,regalo: regalo} %>
-          </div>
         <% end %>
       </div>
     </div>
@@ -54,9 +56,7 @@
       </div>
       <div id="regalos" class="row list-group">
         <% @reservados.each do |regalo| %>
-          <div class="hover">
             <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista, regalo: regalo} %>
-          </div>
         <% end %>
       </div>
     </div>
@@ -66,9 +66,7 @@
       </div>
       <div id="regalos" class="row list-group">
         <% @comprados.each do |regalo| %>
-          <div class="hover">
             <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista,regalo: regalo} %>
-          </div>
         <% end %>
       </div>
     </div>
@@ -79,11 +77,19 @@
 <script>
 var ready;
 ready = function() {
-  // Función carga de imágenes asincrónica por tabs
-  $('img').lazyload({
-        placeholder : "<%= asset_path 'grey.gif' %>",
-        effect : "fadeIn"
+  var $container = $('#regalos');
+  $container.imagesLoaded(function(){
+    $container.masonry({
+        itemSelector: '.item',
+         // set columnWidth a fraction of the container width
+        
+    });
+    $('.item img').lazyload({
+        effect: 'fadeIn'
+    });
+    $('.item img').trigger('scroll');
   });
+  
   // Función mostrar tooltips
   $('.btn').tooltip();
   // Función prevenir múltiples clicks sobre un botón
@@ -121,11 +127,11 @@ ready = function() {
         $(this).find('.btn-modal').css('box-shadow', 'none');
     });
   // Función tabla de navegacion
-   $('#myTab a').click(function (e) {
+   $('#myTab a').on('click', function (e) {
     e.preventDefault();
     $(this).tab('show');
     });
-
+   
    // Función para grabar la selección de la tabla de navegación
     $("ul.nav-tabs > li > a").on("shown.bs.tab", function (e) {
         var id = $(e.target).attr("href").substr(1);
@@ -136,14 +142,14 @@ ready = function() {
     $('#myTab a[href="' + hash + '"]').tab('show');
 
    // Función toggle vistas lista y grilla
-    $('#lista').click(function(event){event.preventDefault();
-      $('#regalos .item').addClass('list-group-item');
-    });
+    // $('#lista').click(function(event){event.preventDefault();
+    //   $('#regalos .item').addClass('list-group-item');
+    // });
 
-    $('#grilla').click(function(event){event.preventDefault();
-      $('#regalos .item').removeClass('list-group-item');
-      $('#regalos .item').addClass('grid-group-item');
-    });
+    // $('#grilla').click(function(event){event.preventDefault();
+    //   $('#regalos .item').removeClass('list-group-item');
+    //   $('#regalos .item').addClass('grid-group-item');
+    // });
 
 };
 $(document).ready(ready);

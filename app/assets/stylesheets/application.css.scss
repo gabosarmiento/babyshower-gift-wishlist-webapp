@@ -605,15 +605,16 @@ sm {
   border-bottom: 1px solid #ccc;
 }
 
-#regalos li {
-  list-style: none;
-}
-
 #listas .btn {
   margin-bottom: 2px;
 }
 
-#signup, #signin, #passwords, #confirmations, #registrations, #fiestas-container, #listas-container, #regalos-container , #convidados-container, #tiendas-container, #tours-container, #sobres-container{
+#signup, #signin, #passwords, 
+#confirmations, #registrations, 
+#fiestas-container, #listas-container, 
+#regalos-container , #convidados-container, 
+#tiendas-container, #tours-container, 
+#sobres-container, #regalos-index-container{
   margin-top: -50px;
   padding-top:120px;
   padding-bottom: 70px;
@@ -717,6 +718,10 @@ sm {
 /* Listas 
 ================================ */
 
+#regalos:hover .thumbnail:not(:hover) {
+  opacity: 0.8;
+}
+
 .thumbnail
 {
     margin-bottom: 20px;
@@ -724,18 +729,55 @@ sm {
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 0px;
+    border: 2px solid #FAFAFA;
+    box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
     .pic {
       text-align: center;
+       width: 200px;
+       height: 200px;
+       margin-left: auto;
+       margin-right: auto;
     }
     
 }
 
+@media (max-width: 767px) { 
+  .thumbnail {
+    margin-bottom: 5px;
+    .pic {
+      width: 50px;
+      height: 50px;
+    }
+    .btn-modal{
+     span{
+      margin-left: auto;
+       margin-right: auto;
+      padding-top: 10px;
+      font-size: 12px;
+     }
+    }
+    h4 {
+      font-size: 14px;
+    }
+  }
+  .col-xs-4{
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  .col-md-4{
+    padding-bottom: 5px;
+  }
+  .descripcion-xs {
+    font-size: 9px;
+  }
+}
 .item.list-group-item
 {
     float: none;
     width: 100%;
     background-color: #fff;
     margin-bottom: 10px;
+    zoom: 1;
 }
 .item.list-group-item:nth-of-type(odd):hover,.item.list-group-item:hover
 {
@@ -773,10 +815,7 @@ sm {
 
 .item.list-group-item img
 {
-   
-    display: block;
-  margin-left: auto;
-  margin-right: auto;
+  display: block;
 }
 .item.list-group-item:after
 {
@@ -785,6 +824,13 @@ sm {
 .list-group-item-text
 {
     margin: 0 0 11px;
+    font-size: 13px;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    p {
+      line-height: 18px;
+    }
 }
 
 
@@ -842,20 +888,51 @@ sm {
   border: 0;
 }
 
-#regalos-container {
-  img {
-    height: 90px; 
+// Vista index de lista de regalos
+#regalos-index-container {
+  .regalo {
+    cursor: move;
+    padding: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: 2px solid #FAFAFA;
+    box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
   }
+  
+  img {
+    height: 50px; 
+  }
+  .modal-dialog {
+   .lazy {
+    height: 200px; 
+    }
+    #ajaxloader {
+      img{
+        height: 16px;
+      } 
+    }
+  }
+ 
   .btn-modal{
      span{
-      padding-top: 35px;
-      font-size: 20px;
+      margin-left: auto;
+       margin-right: auto;
+      padding-top: 20px;
+      font-size: 10px;
      }
   }
-  .posicion-regalo {
-    display: block;
+  .lazy {
+    text-align: center; 
+  }
+  #lista-regalos{
+    li {
+      list-style: none; 
+    }
+    .regalo {
+      cursor: auto;
+    }
+    
   }
 }
-.posicion-regalo {
-    display: none;
-  }
+

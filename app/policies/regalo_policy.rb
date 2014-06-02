@@ -2,7 +2,7 @@ class RegaloPolicy < ApplicationPolicy
   def index?
     user.present? && (user.role?(:admin)) 
     unless record.empty?
-      record.first.lista.fiesta.users.first == user || user.role?(:admin)
+      record.first.lista.fiesta.users.first == user || user.role?(:admin) || record.first.lista.fiesta.esta_invitado?(user)
     end
   end
   
