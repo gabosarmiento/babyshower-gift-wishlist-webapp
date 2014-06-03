@@ -40,31 +40,31 @@
       </div>
   </div>
   <div class="tab-content">
-    <div class="tab-pane active" id="lista-disponibles">
+    <div class="tab-pane active" id="lista-disponibles" data-selector="regalos">
       <div class="well well-sm">
           <strong>Regalos Disponibles </strong>
       </div>
-      <div id="regalos" class="row list-group">
+      <div id="regalos-disponibles" class="row list-group">
         <% @disponibles.each do |regalo| %>
             <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista,regalo: regalo} %>
         <% end %>
       </div>
     </div>
-    <div class="tab-pane" id="lista-reservados">
+    <div class="tab-pane" id="lista-reservados" data-selector="regalos-reservados">
        <div class="well well-sm">
           <strong>Regalos Reservados </strong>
       </div>
-      <div id="regalos" class="row list-group">
+      <div id="regalos-reservados" class="row list-group">
         <% @reservados.each do |regalo| %>
             <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista, regalo: regalo} %>
         <% end %>
       </div>
     </div>
-    <div class="tab-pane" id="lista-comprados">
+    <div class="tab-pane" id="lista-comprados" data-selector="regalos-comprados">
       <div class="well well-sm">
           <strong>Regalos Comprados </strong>
       </div>
-      <div id="regalos" class="row list-group">
+      <div id="regalos-comprados" class="row list-group">
         <% @comprados.each do |regalo| %>
             <%= render partial: "regalos/regalo", locals: {fiesta: @fiesta, lista: @lista,regalo: regalo} %>
         <% end %>
@@ -77,12 +77,10 @@
 <script>
 var ready;
 ready = function() {
-  var $container = $('#regalos');
+  var $container = $('#regalos-disponibles');
   $container.imagesLoaded(function(){
     $container.masonry({
-        itemSelector: '.item',
-         // set columnWidth a fraction of the container width
-        
+        itemSelector: '.item'
     });
     $('.item img').lazyload({
         effect: 'fadeIn'
@@ -130,6 +128,18 @@ ready = function() {
    $('#myTab a').on('click', function (e) {
     e.preventDefault();
     $(this).tab('show');
+    var $container = $('#regalos-reservados');
+      $container.masonry({
+      itemSelector: '.item'
+    });
+    var $container = $('#regalos-comprados');
+      $container.masonry({
+      itemSelector: '.item'
+    });
+    var $container = $('#regalos-disponibles');
+        $container.masonry({
+        itemSelector: '.item'
+      });
     });
    
    // Función para grabar la selección de la tabla de navegación
