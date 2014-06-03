@@ -129,16 +129,14 @@ ready = function() {
     e.preventDefault();
     $(this).tab('show');
     // Cargar Masonry para cada tab
-    var $container = $('#regalos-comprados');
-      $container.masonry({
-      itemSelector: '.item'
-    });
-
-    var $container = $('#regalos-disponibles');
-        $container.masonry({
+      var $containercomprados = $('#regalos-comprados');
+        $containercomprados.masonry({
         itemSelector: '.item'
       });
-
+      var $containerreservados = $('#regalos-reservados');
+        $containerreservados.masonry({
+        itemSelector: '.item'
+      });
     });
    
    // Función para grabar la selección de la tabla de navegación
