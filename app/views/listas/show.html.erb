@@ -128,10 +128,6 @@ ready = function() {
    $('#myTab a').on('click', function (e) {
     e.preventDefault();
     $(this).tab('show');
-    var $container = $('#regalos-reservados');
-      $container.masonry({
-      itemSelector: '.item'
-    });
     var $container = $('#regalos-comprados');
       $container.masonry({
       itemSelector: '.item'
