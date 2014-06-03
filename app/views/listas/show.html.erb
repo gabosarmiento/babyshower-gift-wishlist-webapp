@@ -35,7 +35,7 @@
 
      <div class="btn-group">
       <%= link_to fiesta_lista_regalos_path(@fiesta, @lista), class: "btn btn-success"  do %>
-      <i class="glyphicon glyphicon-th-list"></i> Ver listado completo de regalos
+      <i class="glyphicon glyphicon-th-list"></i> lista unificada de regalos
       <% end %>
       </div>
   </div>
@@ -128,14 +128,17 @@ ready = function() {
    $('#myTab a').on('click', function (e) {
     e.preventDefault();
     $(this).tab('show');
+    // Cargar Masonry para cada tab
     var $container = $('#regalos-comprados');
       $container.masonry({
       itemSelector: '.item'
     });
+
     var $container = $('#regalos-disponibles');
         $container.masonry({
         itemSelector: '.item'
       });
+
     });
    
    // Función para grabar la selección de la tabla de navegación

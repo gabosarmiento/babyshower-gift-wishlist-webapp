@@ -5,9 +5,9 @@
     <%= link_to user_omniauth_authorize_path(:facebook), class: "btn btn-facebook" do %>
       <span>Accede vía Facebook</span>
         <% end %>
-        <span class="help-block">Solo si tu mail de FB coincide con el de la invitación recibida.</span>
+        <span class="help-block">Si recibiste una invitación sólo podrás verla si tu mail coincide con el de tu cuenta en Facebook o el de tu registro.</span>
       <div class="text-with-hr">
-        <span>de resto regístrate con tus datos</span>
+        <span> o regístrate con tus datos</span>
       </div>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%# if @token != nil %>
