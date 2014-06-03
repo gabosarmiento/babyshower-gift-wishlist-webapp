@@ -13,7 +13,7 @@
 <%= link_to "añade un regalo a la lista", new_fiesta_lista_regalo_path(@fiesta, @lista), class: "btn btn-primary" %>
 </div>
 <br>
-<div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div id="lista-regalos-sortable" class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
   <ol id="sortable" data-update-url="<%= ordenar_fiesta_lista_regalos_url(@fiesta, @lista) %>">
     <% @regalos.each do |regalo| %>
       <%= content_tag_for :li, regalo do %>
@@ -38,11 +38,15 @@
 <script>
 var ready;
 ready = function() {
-   $("img").lazyload({
-    placeholder: "<%= asset_path 'grey.gif' %>",
-    effect : "fadeIn", 
-    failure_limit   : 5
+  var $containersortable = $('#lista-regalos-sortable');
+  $containersortable.imagesLoaded(function(){
+    $('.hover img').lazyload({
+      placeholder: "<%= asset_path 'grey.gif' %>",
+      effect: 'fadeIn'
+    });
+    $('.hover img').trigger('scroll');
   });
+
   $('.btn').tooltip();
    $('#sortable').sortable({
     axis: 'y',
