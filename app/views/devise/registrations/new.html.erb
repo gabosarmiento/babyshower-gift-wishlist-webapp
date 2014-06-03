@@ -3,8 +3,9 @@
 <div class="row">
   <div class="col-md-8">
     <%= link_to user_omniauth_authorize_path(:facebook), class: "btn btn-facebook" do %>
-      <span>Accede vía Facebook</span>
+      <span>Accede vía Facebook solo si tu mail de FB concuerda con el de la invitación</span>
         <% end %>
+
       <div class="text-with-hr">
         <span>o utiliza tus datos</span>
       </div>
