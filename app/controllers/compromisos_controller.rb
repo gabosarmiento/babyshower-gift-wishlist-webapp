@@ -3,18 +3,18 @@ class CompromisosController < ApplicationController
 
   def reservar
     actualizar_compromiso("reservado")
-    redirect_to :back, notice: "Regalo reservado exitósamente de manera anónima."
+    redirect_to [@lista.fiesta, @lista], notice: "Regalo reservado exitósamente de manera anónima."
 
   end
 
   def comprar
     actualizar_compromiso("comprado")
-    redirect_to :back, notice: "Regalo comprado exitosamente. Hemos notificado al anfitrión anónimamente."
+    redirect_to [@lista.fiesta, @lista], notice: "Regalo comprado exitosamente. Hemos notificado al anfitrión anónimamente."
   end
 
   def liberar
     actualizar_compromiso("disponible")
-    redirect_to :back, notice: "El regalo fue liberado exitosamente."
+    redirect_to [@lista.fiesta, @lista], notice: "El regalo fue liberado exitosamente."
   end
 
   def destroy
