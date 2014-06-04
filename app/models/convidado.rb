@@ -21,7 +21,7 @@ class Convidado < ActiveRecord::Base
   belongs_to :fiesta
   belongs_to :anfitrion, :class_name => 'User'
   belongs_to :invitado, :class_name => 'User'
-  default_scope { where(published: true) }
+  default_scope { where(asistencia: true) }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }                    
   

@@ -7,8 +7,7 @@
     <h3>Has recibido una invitación de parte de <%= User.find(@convidado.anfitrion_id).name.to_s.humanize.titleize %>!</h3>
 
     <p>Queremos invitarte a la celebración del <strong><%= @convidado.fiesta.nombre.humanize.titleize%></strong>.</p>
-    <p>
-      Ingresa a nuestra <%= link_to "aplicación", @url %> y entre todos haremos que la entrega de regalos sea más divertida.</p></p>  
+    <p>Ingresa a nuestra aplicación en el siguiente link: <%= link_to "aplicación", @url %> y entre todos haremos que la entrega de regalos sea más divertida.</p></p>  
 
     <p>Regístrate vía facebook o con tus datos personales, mira el detalle de los regalos y reserva el que más te guste.
     </p>
@@ -17,6 +16,8 @@
 
     <p>Un abrazo,</p>
     <p><strong>Gabo Sarmiento</strong></p>
+    <p>Creador</p>
+    <p><%= link_to 'lalistaderegalos.co', "http://lalistaderegalos.co") %></p>
 
   </body>
 </html>
