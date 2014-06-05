@@ -15,7 +15,7 @@
       </div>
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div class="form-group">
-          <p>Correo no confirmado. Esperando confirmación del correo:</p>
+          <p>Este correo aún no ha sido confirmado. Revisa tu cuenta de correo y confirma tu identidad:</p>
           <%= resource.unconfirmed_email %>
         </div>
       <% end %>
@@ -31,7 +31,7 @@
       </div>
       <% end %>
       <div class="form-group">
-        <%= f.submit "Update", class: 'btn btn-success' %>
+        <%= f.submit "Actualizar", class: 'btn btn-success' %>
       </div>
     <% end %>
 
