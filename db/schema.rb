@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140531152955) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "compromisos", force: true do |t|
     t.integer  "user_id"
     t.integer  "regalo_id"
@@ -21,8 +24,8 @@ ActiveRecord::Schema.define(version: 20140531152955) do
     t.datetime "updated_at"
   end
 
-  add_index "compromisos", ["regalo_id"], name: "index_compromisos_on_regalo_id"
-  add_index "compromisos", ["user_id"], name: "index_compromisos_on_user_id"
+  add_index "compromisos", ["regalo_id"], name: "index_compromisos_on_regalo_id", using: :btree
+  add_index "compromisos", ["user_id"], name: "index_compromisos_on_user_id", using: :btree
 
   create_table "convidados", force: true do |t|
     t.string   "email"
@@ -35,7 +38,7 @@ ActiveRecord::Schema.define(version: 20140531152955) do
     t.boolean  "asistencia"
   end
 
-  add_index "convidados", ["fiesta_id"], name: "index_convidados_on_fiesta_id"
+  add_index "convidados", ["fiesta_id"], name: "index_convidados_on_fiesta_id", using: :btree
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false
@@ -51,7 +54,7 @@ ActiveRecord::Schema.define(version: 20140531152955) do
     t.datetime "updated_at"
   end
 
-  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "fiestas", force: true do |t|
     t.string   "nombre"
@@ -66,7 +69,7 @@ ActiveRecord::Schema.define(version: 20140531152955) do
     t.string   "slug"
   end
 
-  add_index "fiestas", ["slug"], name: "index_fiestas_on_slug"
+  add_index "fiestas", ["slug"], name: "index_fiestas_on_slug", using: :btree
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -76,10 +79,10 @@ ActiveRecord::Schema.define(version: 20140531152955) do
     t.datetime "created_at"
   end
 
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "listas", force: true do |t|
     t.string   "nombre"
@@ -89,8 +92,8 @@ ActiveRecord::Schema.define(version: 20140531152955) do
     t.string   "slug"
   end
 
-  add_index "listas", ["fiesta_id"], name: "index_listas_on_fiesta_id"
-  add_index "listas", ["slug"], name: "index_listas_on_slug"
+  add_index "listas", ["fiesta_id"], name: "index_listas_on_fiesta_id", using: :btree
+  add_index "listas", ["slug"], name: "index_listas_on_slug", using: :btree
 
   create_table "regalos", force: true do |t|
     t.string   "titulo"
@@ -104,7 +107,7 @@ ActiveRecord::Schema.define(version: 20140531152955) do
     t.text     "descripcion"
   end
 
-  add_index "regalos", ["lista_id"], name: "index_regalos_on_lista_id"
+  add_index "regalos", ["lista_id"], name: "index_regalos_on_lista_id", using: :btree
 
   create_table "rsvps", force: true do |t|
     t.integer  "user_id"
@@ -113,8 +116,8 @@ ActiveRecord::Schema.define(version: 20140531152955) do
     t.datetime "updated_at"
   end
 
-  add_index "rsvps", ["fiesta_id"], name: "index_rsvps_on_fiesta_id"
-  add_index "rsvps", ["user_id"], name: "index_rsvps_on_user_id"
+  add_index "rsvps", ["fiesta_id"], name: "index_rsvps_on_fiesta_id", using: :btree
+  add_index "rsvps", ["user_id"], name: "index_rsvps_on_user_id", using: :btree
 
   create_table "tiendas", force: true do |t|
     t.string   "nombre"
@@ -149,8 +152,8 @@ ActiveRecord::Schema.define(version: 20140531152955) do
     t.string   "uid"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "versions", force: true do |t|
     t.string   "item_type",  null: false
@@ -161,6 +164,6 @@ ActiveRecord::Schema.define(version: 20140531152955) do
     t.datetime "created_at"
   end
 
-  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
 end
