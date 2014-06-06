@@ -1,7 +1,7 @@
 <% case regalo.compromiso.value %>
     <% when "disponible" %>
     <span>
-      <%= link_to "Lo quiero reservar", "#", class: "btn btn-info btn-md btn-modal btn-block hidden-xs", "data-toggle" => "modal", "data-target" => "#modal-regalo-#{regalo.id}", rel: "tooltip", title: "Resérvalo antes de que sea demasiado tarde.", id: " reservado" %>
+      <%= link_to "Reservar", "#", class: "btn btn-info btn-md btn-modal btn-block hidden-xs", "data-toggle" => "modal", "data-target" => "#modal-regalo-#{regalo.id}", rel: "tooltip", title: "Resérvalo antes de que sea demasiado tarde.", id: " reservado" %>
       <%= link_to "Reservar", "#", class: "btn btn-info btn-md btn-modal btn-block hidden-sm hidden-md hidden-lg", "data-toggle" => "modal", "data-target" => "#modal-regalo-#{regalo.id}", rel: "tooltip", title: "Resérvalo antes de que sea demasiado tarde.", id: " reservado" %>
     </span>
     <% when "reservado" %>
@@ -11,8 +11,12 @@
       <%= link_to "Notificar compra", fiesta_lista_regalo_comprar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-info btn-md btn-block hidden-xs", data: {toggle: "tooltip", placement: "top"}, title: "Notifica al anfitrión de tu compra de manera anónima",  id: "comprado" %>
       <%= link_to "Notificar", fiesta_lista_regalo_comprar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-info btn-md btn-block visible-xs", data: {toggle: "tooltip", placement: "top"}, title: "Notifica al anfitrión de tu compra de manera anónima",  id: "comprado" %>
     </span>
+    <br>
+    <small>Si cambiaste de parecer libéralo</small>
     <span>
-      <%= link_to "Liberarlo", fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-success btn-md", data: {toggle: "tooltip", placement: "top"}, title: "Cancelará tu reserva y olverá a estar disponible en la lista de regalos", id: "liberado" %>
+      <%= link_to fiesta_lista_regalo_liberar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-success btn-md", data: {toggle: "tooltip", placement: "top"}, title: "Cancelará tu reserva y olverá a estar disponible en la lista de regalos", id: "liberado" do %>
+      <i class="fa fa-unlock"></i> Liberarlo
+      <% end %>
     </span>
     <% else %>
       <span>

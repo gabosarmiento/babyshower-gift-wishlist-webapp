@@ -5,7 +5,7 @@
       <div class="well">
       <h3>Próximas fiestas</h3>
       <span class="help-block">
-        Fiestas en las que esperan tu presencia.
+        Lista de fiestas en las que esperan tu presencia. Selecciona la que quieras ver.
       </span>
       </div>
       <% unless @fiestas_ids.empty? %>
@@ -29,6 +29,8 @@
         <% end %>
       <% else %>
         Algún día te sorprenderá. No pierdas la fe. Ya llegará la invitación!
+        <span class="alert alert-warning help-block">Si recibiste una invitación en tu buzón de correo y no la vez aquí puede ser que el correo con el que te registráste sea diferente al mail donde recibiste la invitación.<br><%= link_to "Modifica tu email", edit_user_registration_path , class: "btn btn-primary btn-md" %></span>
+        
       <% end %>
     </div>
 

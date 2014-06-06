@@ -15,8 +15,10 @@
       </div>
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div class="form-group">
-          <p>Este correo aún no ha sido confirmado. Revisa tu cuenta de correo y confirma tu identidad:</p>
+          <span class="alert alert-warning help-block">
+          <p>Este correo aún no ha sido confirmado. Revisa tu cuenta de correo y confirma que eres dueño del email:</p>
           <%= resource.unconfirmed_email %>
+        </span>
         </div>
       <% end %>
       <% unless current_user.provider? %>

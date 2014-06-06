@@ -7,6 +7,17 @@
           <h4 class="modal-title"><%= "#{regalo.titulo}" %></h4>
         </div>
         <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-5">
+              <div class="text-center" id="ajaxloader">
+                 <sm> cargando imagen </sm>
+                 <img src="/assets/grey.gif"></img>
+              </div>  
+              <div class="imagen text-center">
+              <%= image_tag(regalo.imagen.normal.url, class: "lazy") if regalo.imagen? %>
+              </div>
+            </div>
+            <div class="col-lg-6 col-lg-offset-1">
               <p><%= simple_format(regalo.descripcion) %>
               </p>
               <% unless regalo.donde_lo_consigues.nil? %>
@@ -16,19 +27,14 @@
               <% end %>
               <p><%= link_to 'Link de referencia', regalo.url if regalo.url? %>
               </p>
-              <hr>
-              <div class="text-center" id="ajaxloader">
-                 <sm> cargando imagen </sm>
-                 <img src="/assets/grey.gif"></img>
-              </div>  
-              <div class="imagen text-center">
-              <%= image_tag(regalo.imagen.normal.url, class: "lazy") if regalo.imagen? %></div>
-              </div>
+            </div>
+          </div>
+        </div>
         <div class="modal-footer">
         <% unless regalo.compromiso.nil? %>
           <% case regalo.compromiso.value %>
             <% when "disponible" %>
-              <%= link_to "Confirmar Reserva!", fiesta_lista_regalo_reservar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-info text-center ", id: "reservado" %>
+              <%= link_to "Confirmar Reserva!", fiesta_lista_regalo_reservar_path(regalo.lista.fiesta, regalo.lista, regalo), class: "btn btn-info text-center ",data: {toggle: "tooltip", placement: "top"}, title: "Se enviará a tu lista de regalos reservados. Podrás cancelar la reserva en cualquier momento", id: "reservado" %>
             <% when "reservado" %>
             <%= link_to "regalo reservado", "", class: "btn btn-default disabled"   %>
             <% if current_user == regalo.compromiso.user || policy(regalo).edit? %>
