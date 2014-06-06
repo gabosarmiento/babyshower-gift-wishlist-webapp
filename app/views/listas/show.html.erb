@@ -41,8 +41,9 @@
   </div>
   <div class="tab-content">
     <div class="tab-pane active" id="lista-disponibles" data-selector="regalos-disponibles">
-      <div class="well well-sm">
-          <strong>Regalos Disponibles </strong>
+      <div class="well well-sm text-center">
+          <strong>Lista de regalos disponibles </strong>
+          <span class="help-block"><small>Todos estos regalos aún no tienen dueño. Elige el que más te guste</small></span>
       </div>
       <div id="regalos-disponibles" class="row list-group">
         <% @disponibles.each do |regalo| %>
@@ -51,8 +52,13 @@
       </div>
     </div>
     <div class="tab-pane" id="lista-reservados" data-selector="regalos-reservados">
-       <div class="well well-sm">
-          <strong>Regalos Reservados </strong>
+       <div class="well well-sm text-center">
+          <strong>Lista de regalos reservados por los invitados</strong>
+          <% if @comprados.empty? %>
+          <span class="help-block"><small>Se el primero en reservar un regalo. Ve a la lista de regalos disponibles y elige el tuyo.</small></span>
+          <% else %>
+          <span class="help-block"><small>Si reservas un regalo puedes liberarlo y no habrá pasado nada. Notifica al anfitrión cuando lo hayas comprado</small></span>
+          <% end %>
       </div>
       <div id="regalos-reservados" class="row list-group">
         <% @reservados.each do |regalo| %>
@@ -61,8 +67,13 @@
       </div>
     </div>
     <div class="tab-pane" id="lista-comprados" data-selector="regalos-comprados">
-      <div class="well well-sm">
-          <strong>Regalos Comprados </strong>
+      <div class="well well-sm text-center">
+          <strong>Lista de regalos comprados por los invitados</strong>
+          <% if @comprados.empty? %>
+          <span class="help-block"><small>Ninguno de los invitados ha comprado un regalo aún.</small></span>
+          <% else %>
+          <span class="help-block"><small>Regalos que ya fueron comprados por los invitados.</small></span>
+          <% end %>
       </div>
       <div id="regalos-comprados" class="row list-group">
         <% @comprados.each do |regalo| %>
