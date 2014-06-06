@@ -49,6 +49,7 @@
         </div>
         
       </div><! --/row -->
+       <% if current_user %>
       <div class="row">
         <div class="col-lg-8-offset-2 centered">
           <span class="help-block">Empieza por ser el anfitrión de la fiesta</span>
@@ -58,6 +59,17 @@
           <% end %>
         </div><!-- /col-lg-8 -->
       </div>
+      <% else %>
+      <div class="row">
+        <div class="col-lg-8-offset-2 centered">
+          <span class="help-block">Empieza por ser el anfitrión de la fiesta</span>
+          <%= link_to registrarse_path, class: "btn btn-lg btn-success" do %>
+          <small><i class="fa fa-plus"></i>
+          </small> Crear tu primera fiesta
+          <% end %>
+        </div><!-- /col-lg-8 -->
+      </div>
+      <% end %>
       <div class="row">
         <span><%= link_to tour_listas_path, class: "btn btn-lg btn-primary pull-right" do %>
           siguiente: listas <i class="fa fa-chevron-right"></i>

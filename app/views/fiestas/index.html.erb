@@ -13,10 +13,10 @@
       <% unless @fiestas.empty? %>
         <div>
           <% if policy(@fiesta).create? %>
-          <%= link_to new_fiesta_path(@fiesta), class: "btn btn-md btn-primary" do %>
-          añadir fiesta 
-          <i class="fa  fa-plus-circle"></i> 
-          <% end %>
+            <%= link_to new_fiesta_path(@fiesta), class: "btn btn-md btn-primary" do %>
+            añadir fiesta 
+            <i class="fa  fa-plus-circle"></i>
+            <% end %>
           <% end %>
         </div>
         <br>
@@ -24,7 +24,13 @@
         <div id="fiesta-<%= fiesta.id %>" class="lista-fiestas"><%= link_to fiesta.nombre, fiesta %></div>
         <% end %>
       <% else %>
-        Anímate a crear tu primera fiesta. Es gratis! <% if policy(@fiesta).create? %><%= link_to " añadir fiesta", new_fiesta_path(@fiesta), class: "btn btn-xs btn-primary fa fa-plus"  %><% end %>
+       <% if policy(@fiesta).create? %>
+       <div>
+        <%= link_to " crea una fiesta", tour_fiestas_path, class: "btn btn-md btn-primary fa fa-plus"  %>
+       </div>
+        <span class="help-block">Anímate a crear tu primera fiesta. Es gratis!</span>
+
+       <% end %>
 
       <% end %>
     </div>
