@@ -1,16 +1,40 @@
 <!-- ==== SECTION DIVIDER1 -->
   <section class="section-divider textdivider divider1">
     <div class="container">
-      <h1><%= @fiesta.nombre %></h1>
-      <hr>
-      <p>Invita <%= @fiesta.users.first.name %></p>
-      <% if policy(@fiesta).update? %>
-        <span>
-        <%= link_to "editar", edit_fiesta_path(@fiesta), class: "btn btn-primary btn-md" %></span>
-        <span>
-        <%= link_to "borrar", @fiesta, method: :delete, class: "btn btn-danger btn-md", data: {confirm: "Se eliminarán listas, regalos e invidatos, Estas seguro de borrar esta fiesta?"} %>
-        </span>
-      <% end %>
+      <div class="divider-contenidos">
+         <h1><%= @fiesta.nombre %></h1>
+          <hr>
+          <p>Invita <%= @fiesta.users.first.name %></p>
+          <% if policy(@fiesta).update? %>
+            <span>
+            <%= link_to "editar", edit_fiesta_path(@fiesta), class: "btn btn-primary btn-md" %></span>
+            <span>
+            <%= link_to "borrar", @fiesta, method: :delete, class: "btn btn-danger btn-md", data: {confirm: "Se eliminarán listas, regalos e invidatos, Estas seguro de borrar esta fiesta?"} %>
+            </span>
+          <% end %>
+          <div class="hidden-xs divider-herramientas">
+            <div class="divider-herramientas-lista">
+              <div class="diviver-herramientas-lista-acciones">
+                <a data-scroll href="#fecha" class="divider-herramientas-herramienta" data-toggle="tooltip" title="<%= @fiesta.fecha_y_hora_inicio.to_s %>">
+                    <span id="herramienta-icon" class="fa fa-clock-o"></span>
+                    <span>Cuándo? </span>
+                </a>
+                <%= link_to fiesta_lista_path(@fiesta, @lista),  class: "divider-herramientas-herramienta", data: {toggle: "tooltip", placement: "right"}, title: "lista de regalos" do %>
+                  <span id="herramienta-icon" class="fa fa-gift"></span>
+                  <span>Regalos</span>
+                <% end %>
+                <a data-scroll href="#listas" class="divider-herramientas-herramienta" data-toggle="tooltip" title="<%= @fiesta.convidados.count if @fiesta.convidados %>">
+                 <span id="herramienta-icon" class="fa fa-group"></span>
+                  <span>Invitados</span>
+                </a>
+                <a data-scroll href="#contacto" class="divider-herramientas-herramienta" data-toggle="tooltip" title="ver datos de contacto">
+                  <span id="herramienta-icon" class="fa fa-envelope-o"></span>
+                  <span>Contactar</span>
+                </a>
+              </div>
+            </div>
+          </div><!-- /herramientas-->
+      </div> <!-- /contenidos -->
     </div><!-- container -->
   </section><!-- section -->
 
@@ -213,3 +237,18 @@
       </div><!--/.row -->
     </div><!--/.container -->
   </div><!--/ #footer -->
+
+<script>
+var ready;
+ready = function() {
+  // Función mostrar tooltips
+  smoothScroll.init({
+    speed: 500, // Integer. How fast to complete the scroll in milliseconds
+    easing: 'easeInOutCubic', // Easing pattern to use
+    offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+  });
+  $('a').tooltip({placement: 'right'});
+  };
+$(document).ready(ready);
+$(document).on('page:load', ready);
+</script>

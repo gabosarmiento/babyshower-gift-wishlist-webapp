@@ -526,8 +526,88 @@ margin-top: 15px;
 /* Section Dividers Backgrounds */
 
 .divider1 {
-  background-image: url(divider1.jpg)
+  background-image: url(divider1.jpg);
 }
+
+/* Background overlay */
+
+  .divider-herramientas {
+    display: block;
+    padding: 20px 0;
+    text-align: center;
+    height: 100%;
+    position: absolute;
+    right: 100px;
+    top: 50px;
+  }
+
+  .divider-herramientas-lista {
+  display: table;
+  height: 100%;
+  }
+
+  .divider-herramientas-lista-acciones {
+  display: table-cell;
+  vertical-align: middle;
+  }
+
+  .divider-herramientas-herramienta {
+  -moz-transition-duration: 0.2s;
+  -o-transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -moz-transition-property: color;
+  -o-transition-property: color;
+  -webkit-transition-property: color;
+  transition-property: color;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.6);
+  color: rgba(255,255,255,0.9);
+  cursor: pointer;
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  width: 80px;
+  margin-bottom: 20px;
+
+  .fa {
+    width: 46px;
+    height: 46px;
+    line-height: 47px;
+    font-size: 46px;
+    display: block;
+    font-weight: 100;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    }
+
+    #herramienta-icon
+    {
+      display: inline-block;
+      vertical-align: middle;
+      font-style: normal;
+      font-weight: normal;
+      text-align: center;
+      vertical-align: middle;
+      speak: none;
+      -webkit-font-smoothing: antialiased;
+      width: 40px;
+      height: 40px;
+      line-height: 41px;
+      font-size: 40px;
+    }
+    a {
+      color: #333;
+      text-decoration: underline;
+      -moz-transition: color 0.2s;
+      -o-transition: color 0.2s;
+      -webkit-transition: color 0.2s;
+      transition: color 0.2s;
+    }
+  }
+
+
 
 /* ===============
    Other Settings
