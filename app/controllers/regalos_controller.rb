@@ -3,7 +3,7 @@ class RegalosController < ApplicationController
     @fiesta = Fiesta.friendly.find(params[:fiesta_id])
     @lista = @fiesta.listas.friendly.find(params[:lista_id])
     @regalos = @lista.regalos.order("position")
-    authorize @regalos
+    authorize @lista
   end
 
   def new
