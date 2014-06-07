@@ -10,14 +10,17 @@
         Los regalos que tu seleccionaste en las listas en las que fuiste invitado.
       </span>
       </div>
+      <div class="lista-regalos-comprometidos"> 
       <% unless @compromisos.empty? %>
         <% @compromisos.each do |compromiso| %>
-          <div class="lista-compromisos"> 
-          <small><i>Regalo de la fiesta <%= link_to compromiso.regalo.lista.fiesta.nombre, compromiso.regalo.lista.fiesta %></i></small>
-          <%= render compromiso.regalo %>
+          <div class="lista-regalos-comprometidos-regalo"> 
+            <div>
+              <%= render compromiso.regalo %>
+            </div>
           </div>
         <% end %>
       <% end %>
+      </div>
     </div>
   </div>
 </div>
@@ -25,11 +28,20 @@
 <script>
 var ready;
 ready = function() {
- $("img").lazyload({
-    placeholder: "/assets/grey.gif",
-    effect: "fadeIn", 
-    threshold: 100
+  var $container = $('.lista-regalos-comprometidos');
+  $container.imagesLoaded(function(){
+    $container.masonry({
+        itemSelector: '.item'
+    });
+    $('.item img').lazyload({
+        placeholder: "/assets/grey.gif",
+        effect: 'fadeIn',
+
+    });
+    $('.item img').trigger('scroll');
   });
+
+ 
   $('.btn').tooltip();
   $('#reservado, #liberado, #comprado').click(function(){
     $(this).addClass('disabled');
