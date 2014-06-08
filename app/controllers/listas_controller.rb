@@ -1,4 +1,5 @@
 class ListasController < ApplicationController
+  before_filter :authenticate_user!
   def index
     @fiesta = Fiesta.friendly.find(params[:fiesta_id])
     @listas = current_user.listas

@@ -1,4 +1,5 @@
 class RegalosController < ApplicationController
+  before_filter :authenticate_user!
   def index
     @fiesta = Fiesta.friendly.find(params[:fiesta_id])
     @lista = @fiesta.listas.friendly.find(params[:lista_id])

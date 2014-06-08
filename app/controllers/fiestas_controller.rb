@@ -1,4 +1,5 @@
 class FiestasController < ApplicationController
+  before_filter :authenticate_user!
   def index
     @fiestas = current_user.fiestas
     @fiesta = Fiesta.new
