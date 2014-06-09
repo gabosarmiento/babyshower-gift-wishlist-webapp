@@ -18,8 +18,9 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+env :PATH, ENV['PATH']
 set :output, "#{path}/log/cron.log"
 set :job_template, "deploy /bin/bash -l -c ':job'"
-every :day, :at => '5:00 pm' do 
+every :day, :at => '5:05 pm' do 
   runner "Fiesta.alerta_de_cierre_rsvp"
 end
