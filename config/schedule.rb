@@ -20,6 +20,6 @@
 # Learn more: http://github.com/javan/whenever
 set :output, "#{path}/log/cron.log"
 set :job_template, "deploy /bin/bash -l -c ':job'"
-every :day, :at => '4:50 pm' do 
+every :day, :at => '4:55 pm' do 
   runner "Fiesta.alerta_de_cierre_rsvp"
 end
