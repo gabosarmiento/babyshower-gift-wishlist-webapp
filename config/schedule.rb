@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 set :output, "#{path}/log/cron.log"
-every :day, :at => '6:00 am' do 
+every :day, :at => '1:50 pm' do 
   runner "Fiesta.alerta_de_cierre_rsvp"
 end
