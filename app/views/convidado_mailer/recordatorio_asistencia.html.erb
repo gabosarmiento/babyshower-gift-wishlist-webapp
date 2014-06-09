@@ -12,7 +12,7 @@
     <p>
     Si ya estas registrado ingresa a: <%= link_to "lalistaderegalos.co", ingresar_url %> y por favor confirma tu asistencia.</p>
     <p>
-    Este mensaje lo has recibido por voluntad de <%= User.find(@convidado.anfitrion_id).name.to_s.humanize.titleize %> quién definió que la fecha máxima para confirmar asistencia es el <%= time_tag(@fiesta.fecha_y_hora_cierre_rsvps.to_date) %> a las <%= (Time.parse(@fiesta.fecha_y_hora_cierre_rsvps.to_s)).strftime('%l:%M %P') %>. 
+    Este mensaje lo has recibido por voluntad de <%= User.find(@convidado.anfitrion_id).name.to_s.humanize.titleize %> quién definió que la fecha máxima para confirmar asistencia es el <%= time_tag(@fiesta.fecha_y_hora_cierre_rsvps.to_date) %> a las <%= (Time.parse(@fiesta.fecha_y_hora_cierre_rsvps.to_s)).strftime('%l:%M %P') %> pero si pudieras confirmar antesitos sería genial para organizar todo. 
     </p>
     <p>
     No recibirás más notificaciones de <%= link_to 'lalistaderegalos.co', "http://lalistaderegalos.co" %>. Que tengas buen día.
