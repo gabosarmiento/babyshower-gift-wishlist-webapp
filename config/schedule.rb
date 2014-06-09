@@ -18,7 +18,6 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-env :PATH, ENV['PATH']
 set :output, "#{path}/log/cron.log"
 set :job_template, "deploy /bin/bash -l -c ':job'"
 every :day, :at => '4:50 pm' do 
