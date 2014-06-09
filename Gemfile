@@ -71,6 +71,7 @@ gem 'will_paginate-bootstrap'
 gem 'paper_trail', '~> 3.0.2'
 gem "lazyload-rails"
 gem 'delayed_job_active_record'
+gem 'whenever', :require => false
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 

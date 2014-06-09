@@ -1,0 +1,15 @@
+Hola <%= @convidado.email %>!
+
+Faltan <%= pluralize((@fiesta.fecha_y_hora_inicio.to_date - Date.today).to_i, 'Día') %> para la celebración del <%= @convidado.fiesta.nombre.humanize.titleize %> y aún no hemos recibido confirmación de tu asistencia.
+
+Si no te has registrado ingresa en este link:  <%= link_to "registro", new_user_registration_url %>
+
+Si ya estas registrado ingresa a: <%= link_to "lalistaderegalos.co", ingresar_url %> y por favor confirma tu asistencia.
+
+Este mensaje lo has recibido por voluntad de <%= User.find(@convidado.anfitrion_id).name.to_s.humanize.titleize %> quién definió que la fecha máxima para confirmar asistencia es el <%= time_tag(@fiesta.fecha_y_hora_cierre_rsvps.to_date) %> a las <%= (Time.parse(@fiesta.fecha_y_hora_cierre_rsvps.to_s)).strftime('%l:%M %P') %>. 
+
+No recibirás más notificaciones de <%= link_to 'lalistaderegalos.co', "http://lalistaderegalos.co" %> Que tengas buen día.
+
+
+
+

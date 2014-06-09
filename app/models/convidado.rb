@@ -22,6 +22,8 @@ class Convidado < ActiveRecord::Base
   belongs_to :anfitrion, :class_name => 'User'
   belongs_to :invitado, :class_name => 'User'
   scope :confirmados, -> { where asistencia: true }
+  scope :sin_confirmar_asistencia, -> { where asistencia: nil}
+  scope :no_registrados, -> { where invitado_id: nil}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }                    
   
@@ -34,6 +36,8 @@ class Convidado < ActiveRecord::Base
    if invitado
       self.invitado_id = invitado.id
    end
- end
+  end
+
+  
 
 end

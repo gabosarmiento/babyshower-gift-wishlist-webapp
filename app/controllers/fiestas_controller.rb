@@ -66,6 +66,6 @@ class FiestasController < ApplicationController
   end
   private
   def fiesta_params
-    params.require(:fiesta).permit(:nombre, :descripcion, :fecha_y_hora_inicio, :fecha_y_hora_cierre, :lugar, :email_contacto, :telefono_contacto, :slug)
+    params.require(:fiesta).permit(:nombre, :descripcion, :fecha_y_hora_inicio, :fecha_y_hora_cierre, :lugar, :email_contacto, :telefono_contacto, :slug, :fecha_y_hora_cierre_rsvps)
   end
 end

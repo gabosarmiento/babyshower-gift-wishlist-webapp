@@ -93,6 +93,22 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
+        <%= form_group_tag(fiesta.errors[:fecha_y_hora_cierre_rsvps]) do %>
+        <div class="form-group">
+            <%= f.label :fecha_y_hora_cierre_rsvps, "Fecha máxima de confirmación de asistencia" %>
+            <div id="datetimepicker3" class="input-group date">
+            <%= f.text_field :fecha_y_hora_cierre_rsvps, class: "form-control", placeholder: "Qué día y hora es el límite para que confirmen su asistencia tus invitados" %>
+              <span class="input-group-addon">
+                <i class="fa fa-calendar">
+                </i>
+              </span>
+            </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
         <div class="form-group">
           <br>
          <%= f.submit class: "btn btn-md btn-primary" do %>
@@ -119,6 +135,16 @@ ready = function() {
         language: "es"
     });
     $('#datetimepicker2').datetimepicker({
+        icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                }, 
+        format: 'DD/MM/YYYY hh:mm A', 
+        language: "es" 
+    });
+     $('#datetimepicker3').datetimepicker({
         icons: {
                     time: "fa fa-clock-o",
                     date: "fa fa-calendar",

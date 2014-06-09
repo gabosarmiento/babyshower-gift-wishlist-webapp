@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140531152955) do
+ActiveRecord::Schema.define(version: 20140609054602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20140531152955) do
     t.string   "email_contacto"
     t.string   "telefono_contacto"
     t.string   "slug"
+    t.string   "fecha_y_hora_cierre_rsvps"
   end
 
   add_index "fiestas", ["slug"], name: "index_fiestas_on_slug", using: :btree
