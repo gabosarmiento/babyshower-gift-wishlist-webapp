@@ -1,5 +1,5 @@
-<%= form_for @fiesta do |f| %>
-<div class="col-md-12">
+<%= form_for fiesta do |f| %>
+<div class="col-sm-12 col-md-12 col-lg-8 col-lg-offset-2">
   <!-- notificaciones de errores -->
   <% if fiesta.errors.any? %>
     <div class="alert alert-danger">
@@ -13,7 +13,7 @@
       <div class="col-sm-12">
         <%= form_group_tag(fiesta.errors[:nombre]) do %>
         <div class="form-group">
-            <%= f.label :nombre %>
+            <%= f.label :nombre, "Nombre*" %>
             <%= f.text_field :nombre, class: "form-control", :autofocus => true, placeholder: "por ejemplo baby shower de.., matrimonio, mi cumpleaños, shower de apartamento, fiesta de..." %>
         </div>
         <% end %>
@@ -23,7 +23,7 @@
       <div class="col-sm-12">
         <%= form_group_tag(fiesta.errors[:descripcion]) do %>
         <div class="form-group">
-            <%= f.label :descripcion, "Descripción" %>
+            <%= f.label :descripcion, "Descripción*" %>
             <%= f.text_area :descripcion, class: "form-control", placeholder: "Este es el mensaje que tus invitados veran al ingresar, pónle tu toque personal. Unas cuantas palabras autenticas bastarán.", rows: "6" %>
         </div>
         <% end %>
@@ -33,7 +33,7 @@
       <div class="col-sm-12">
         <%= form_group_tag(fiesta.errors[:lugar]) do %>
         <div class="form-group">
-            <%= f.label :lugar %>
+            <%= f.label :lugar, "Lugar*" %>
             <%= f.text_field :lugar, class: "form-control", placeholder: "ingresa la dirección o el lugar" %>
         </div>
         <% end %>
@@ -44,7 +44,7 @@
         <div class="col-sm-5">
           <%= form_group_tag(fiesta.errors[:fecha_y_hora_inicio]) do %>
           <div class="form-group">
-              <%= f.label :fecha_y_hora_inicio %>
+              <%= f.label :fecha_y_hora_inicio, "Fecha y Hora de Inicio*" %>
               <div id="datetimepicker1" class="input-group date">
               <%= f.text_field :fecha_y_hora_inicio, placeholder: "Selecciona la fecha y hora en el calendario" , class: "form-control" %>
               <span class="input-group-addon">
@@ -58,7 +58,7 @@
         <div class="col-sm-5 col-sm-offset-1">
           <%= form_group_tag(fiesta.errors[:fecha_y_hora_cierre]) do %>
           <div class="form-group">
-              <%= f.label :fecha_y_hora_cierre %>
+              <%= f.label :fecha_y_hora_cierre, "Fecha y hora de cierre*" %>
               <div id="datetimepicker2" class="input-group date">
               <%= f.text_field :fecha_y_hora_cierre, placeholder: "Selecciona la fecha y hora en el calendario" , class: "form-control" %>
               <span class="input-group-addon">
@@ -95,7 +95,7 @@
       <div class="col-sm-12">
         <%= form_group_tag(fiesta.errors[:fecha_y_hora_cierre_rsvps]) do %>
         <div class="form-group">
-            <%= f.label :fecha_y_hora_cierre_rsvps, "Fecha máxima de confirmación de asistencia" %>
+            <%= f.label :fecha_y_hora_cierre_rsvps, "Fecha máxima para confirmar la asistencia*" %>
             <div id="datetimepicker3" class="input-group date">
             <%= f.text_field :fecha_y_hora_cierre_rsvps, class: "form-control", placeholder: "Qué día y hora es el límite para que confirmen su asistencia tus invitados" %>
               <span class="input-group-addon">
@@ -107,6 +107,25 @@
         <% end %>
       </div>
     </div>
+    <% if fiesta.nombre != nil %>
+    <div class="row">
+      <div class="col-sm-12">
+        <%# form_group_tag(fiesta.errors[:cover]) do %>
+          <%= image_tag(fiesta.cover.previa.url) if fiesta.cover? %>
+          
+          <div class="form-group">
+            <%= f.label :cover, "Subir una foto grande de Cover" %>
+            <%= f.file_field :cover %>
+          </div>
+
+          <div class="form-group">
+           <%= f.label :remote_cover_url, "o haz copy/paste  de la dirección(URL) de la foto" %><br />
+            <%= f.text_field :remote_cover_url, class: "form-control", placeholder: "http://google.com/imagen_grande.jpg" %>
+          </div>
+      <%# end %>
+      </div>
+    </div>
+    <% end %>
     <div class="row">
       <div class="col-sm-12">
         <div class="form-group">

@@ -19,7 +19,7 @@ class Regalo < ActiveRecord::Base
   has_one :compromiso, dependent: :destroy
   acts_as_list scope: :lista
   mount_uploader :imagen, ImagenUploader
-  validates :titulo, length: { minimum: 5 }, presence: true
+  validates :titulo, length: { minimum: 2 }, presence: true
   validates :imagen, presence: true 
   validates :donde_lo_consigues, :allow_blank => true, length: { maximum: 300 }
   validates :url, :allow_blank => true, :format => URI::regexp(%w(http https))

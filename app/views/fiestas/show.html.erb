@@ -1,5 +1,5 @@
 <!-- ==== SECTION DIVIDER1 -->
-  <section class="section-divider textdivider divider1">
+  <%= content_tag :section, class: "section-divider textdivider", style: ( @fiesta.cover? ? "background-image: url(#{@fiesta.cover.url})" : "background-image: url(#{asset_path("divider1.jpg")});") do %>
     <div class="container">
       <div class="divider-contenidos">
          <h1><%= @fiesta.nombre %></h1>
@@ -43,7 +43,7 @@
           </div><!-- /herramientas-->
       </div> <!-- /contenidos -->
     </div><!-- container -->
-  </section><!-- section -->
+  <% end %><!-- section -->
 
 <section id="descripcion" name="descripcion"></section>
   <div id="intro">

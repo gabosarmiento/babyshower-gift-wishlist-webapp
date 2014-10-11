@@ -14,11 +14,13 @@
 #  telefono_contacto         :string(255)
 #  slug                      :string(255)
 #  fecha_y_hora_cierre_rsvps :string(255)
+#  cover                     :string(255)
 #
 
 class Fiesta < ActiveRecord::Base
   extend FriendlyId
   friendly_id :nombre, use: [:slugged, :history]
+  mount_uploader :cover, CoverUploader
 
   has_many :rsvps, dependent: :destroy
   has_many :users, through: :rsvps, source: :anfitrion
@@ -26,7 +28,7 @@ class Fiesta < ActiveRecord::Base
   has_many :convidados, dependent: :destroy
   
   validates :nombre, length: { minimum: 5 }, presence: true
-  validates :descripcion, length: { minimum: 10 }, presence: true
+  validates :descripcion, length: { minimum: 5 }, presence: true
   validates :lugar, length: {minimum: 5}, presence: true
   validates :fecha_y_hora_inicio, presence: true
   validates :fecha_y_hora_cierre, presence: true

@@ -5,28 +5,32 @@
   <div class="row">
 
     <ul class="nav nav-tabs" id="myTab">
-      <li class="hidden-xs col-sm-4 col-md-4 col-lg-4 active"><%= link_to "#lista-disponibles" do %>
+      <li class="hidden-xs col-sm-4 col-md-4 col-lg-4 active">
+        <%= link_to "#lista-disponibles" do %>
         <span class="fa fa-star-o"></span>
-        <p>Disponibles</p>
+        <p><strong><%= @disponibles.count %></strong> Disponibles</p>
         <% end %>
       </li>
-      <li class="visible-xs col-xs-4"><%= link_to "#lista-disponibles", class: "btn btn-info btn-md" do %><span class="fa fa-star-o"></span>
-        <p>Disponibles</p>
+      <li class="visible-xs col-xs-4">
+        <%= link_to "#lista-disponibles", class: "btn btn-info btn-md" do %><span class="fa fa-star-o"></span>
+        <p><strong><%= @disponibles.count %></strong> Disponibles</p>
         <% end %></li>
-      <li class="hidden-xs col-sm-4 col-md-4 col-lg-4"><%= link_to "#lista-reservados" do %>
-        <span class="fa fa-star-half-full"></span>
-        <p>Reservados</p>
+      <li class="hidden-xs col-sm-4 col-md-4 col-lg-4">
+        <%= link_to "#lista-reservados" do %>
+        <span class="fa fa-lock"></span>
+        <p><strong><%= @reservados.count %></strong> Reservados</p>
         <% end %></li>
-      <li class="visible-xs col-xs-4"><%= link_to "#lista-reservados", class: "btn btn-warning btn-md" do %><span class="fa fa-star-half-full"></span>
-        <p>Reservados</p>
+      <li class="visible-xs col-xs-4">
+        <%= link_to "#lista-reservados", class: "btn btn-warning btn-md" do %><span class="fa fa-lock"></span>
+        <p><strong><%= @reservados.count %></strong> Reservados</p>
         <% end %></li>
       <li class="hidden-xs col-sm-4 col-md-4 col-lg-4"><%= link_to "#lista-comprados"  do %>
-        <span class="fa  fa-star"></span>
-        <p>Comprados</p>
+        <span class="fa fa-check"></span>
+        <p><strong><%= @comprados.count %></strong>  Comprados</p>
         <% end %></li>
         <li class="visible-xs col-xs-4"><%= link_to "#lista-comprados", class: "btn btn-success btn-md" do %>
-        <span class="fa  fa-star"></span>
-        <p>Comprados</p>
+        <span class="fa fa-check"></span>
+        <p><strong><%= @comprados.count %></strong> Comprados</p>
         <% end %></li>
     </ul>
   </div>

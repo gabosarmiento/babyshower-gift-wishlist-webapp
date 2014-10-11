@@ -8,8 +8,8 @@
     <% end %>
     <%= form_group_tag(regalo.errors[:titulo]) do %>
       <div class="form-group">
-        <%= f.label :titulo %>
-        <%= f.text_field :titulo, class: 'form-control', placeholder: "Hazlo corto" %>
+        <%= f.label :titulo, "Título*" %>
+        <%= f.text_field :titulo, class: 'form-control', placeholder: "Ingresa el nombre del regalo" %>
       </div>
     <% end %>
 
@@ -24,7 +24,7 @@
     <div><%= image_tag(regalo.imagen.normal.url) if regalo.imagen? %>
     </div>
       <div class="form-group">
-        <%= f.label :imagen, "Subir una foto" %>
+        <%= f.label :imagen, "Subir una foto*" %>
         <%= f.file_field :imagen %>
       </div>
 
