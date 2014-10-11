@@ -19,7 +19,7 @@
                     <span id="herramienta-icon" class="fa fa-clock-o"></span>
                     <span>Cuándo? </span>
                 </a>
-                <% if @fiesta %>
+                <% if @lista %>
                  <%= link_to fiesta_lista_path(@fiesta, @lista),  class: "divider-herramientas-herramienta", data: {toggle: "tooltip", placement: "right"}, title: "lista de regalos" do %>
                    <span id="herramienta-icon" class="fa fa-gift"></span>
                    <span>Regalos</span>
