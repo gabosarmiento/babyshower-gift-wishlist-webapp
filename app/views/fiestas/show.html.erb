@@ -19,9 +19,16 @@
                     <span id="herramienta-icon" class="fa fa-clock-o"></span>
                     <span>Cuándo? </span>
                 </a>
-                <%= link_to fiesta_lista_path(@fiesta, @lista),  class: "divider-herramientas-herramienta", data: {toggle: "tooltip", placement: "right"}, title: "lista de regalos" do %>
-                  <span id="herramienta-icon" class="fa fa-gift"></span>
+                <% if @fiesta %>
+                 <%= link_to fiesta_lista_path(@fiesta, @lista),  class: "divider-herramientas-herramienta", data: {toggle: "tooltip", placement: "right"}, title: "lista de regalos" do %>
+                   <span id="herramienta-icon" class="fa fa-gift"></span>
+                   <span>Regalos</span>
+                 <% end %>
+                <% else %>
+                <a data-scroll href="#listas" class="divider-herramientas-herramienta" data-toggle="tooltip" title="No has creado una lista aún">
+                 <span id="herramienta-icon" class="fa fa-gift"></span>
                   <span>Regalos</span>
+                </a>
                 <% end %>
                 <a data-scroll href="#listas" class="divider-herramientas-herramienta" data-toggle="tooltip" title="<%= @fiesta.convidados.count if @fiesta.convidados %>">
                  <span id="herramienta-icon" class="fa fa-group"></span>
